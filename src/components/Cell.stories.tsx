@@ -1,6 +1,8 @@
 import React from "react";
-import {Cell} from "./Cell";
+import { action } from "@storybook/addon-actions";
 import {boolean, number, withKnobs} from "@storybook/addon-knobs";
+
+import {Cell} from "./Cell";
 
 export default {
     title: "Cell Story",
@@ -12,7 +14,7 @@ const GeneralCellStory: React.FC<{x: number, y: number, filled: boolean}> = (pro
     const y = number('Y', props.y);
     const filled = boolean('Is Filled', props.filled);
     return (
-        <Cell x={x} y={y} filled={filled}/>
+        <Cell x={x} y={y} filled={filled} clickHandler={action("Cell clicked")}/>
     );
 };
 

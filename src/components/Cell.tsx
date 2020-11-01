@@ -4,12 +4,13 @@ interface CellProp {
     x: number;
     y: number;
     filled: boolean;
+    clickHandler: (x: number, y: number) => void;
 }
 
-export const Cell: React.FC<CellProp> = (({x, y, filled}) => {
+export const Cell: React.FC<CellProp> = (({x, y, filled, clickHandler}) => {
     const filledSign = filled ? "[X]" : "[ ]";
     return (
-        <td>
+        <td onClick={() => clickHandler(x, y)}>
             {`${filledSign} ${x}, ${y}`}
         </td>
     )

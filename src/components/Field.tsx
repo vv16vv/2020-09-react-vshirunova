@@ -5,9 +5,10 @@ interface FieldProp {
     width: number;
     height: number;
     filledCells: Array<{ x: number, y: number }>;
+    clickHandler: (x: number, y: number) => void;
 }
 
-export const Field: React.FC<FieldProp> = (({width, height, filledCells}) => {
+export const Field: React.FC<FieldProp> = (({width, height, filledCells, clickHandler}) => {
     let divs = [];
     for (let h = 1; h <= height; h++) {
         let cells = [];
@@ -21,13 +22,18 @@ export const Field: React.FC<FieldProp> = (({width, height, filledCells}) => {
         }
         divs.push(cells);
     }
-    return <table>
+    return <table><tbody>
         {divs.map((line, i) => {
-            return <tr key={i}>
+            return <tr key={i + 1}>
                 {line.map((cell, j) => {
-                    return <Cell key={i * j} x={cell.x} y={cell.y} filled={cell.filled}/>
+                    return <Cell
+                        key={(i + 1) * (j + 1)}
+                        x={cell.x}
+                        y={cell.y}
+                        filled={cell.filled}
+                        clickHandler={clickHandler}/>
                 })}
             </tr>;
         })}
-    </table>;
+    </tbody></table>;
 });

@@ -1,13 +1,35 @@
 import React from "react";
-import {render} from "enzyme";
+import {render, shallow} from "enzyme";
 import {Cell} from "./Cell";
 
 describe("Cell", () => {
-    it("coordinates are shown, cell is filled up", () => {
-       expect(render(<Cell x={3} y={4} filled={true} />).text()).toEqual("[X] 3, 4")
+
+    const clickHandler = jest.fn();
+    const x = 3;
+    const y = 4;
+    const onClickParams = {
+        x: x,
+        y: y
+    }
+
+    it("should show coordinates and filled up sign", () => {
+        expect(render(<Cell x={x} y={y} filled={true} clickHandler={clickHandler}/>).text()).toEqual("[X] 3, 4")
     });
 
-    it("coordinates are shown, cell is empty", () => {
-       expect(render(<Cell x={3} y={4} filled={false} />).text()).toEqual("[ ] 3, 4")
+    it("should show coordinates and empty sign", () => {
+        expect(render(<Cell x={x} y={y} filled={false} clickHandler={clickHandler}/>).text()).toEqual("[ ] 3, 4")
+    });
+
+    it('should pass coordinates to the onClick handler', () => {
+
+        const wrapper = shallow(
+            <Cell x={x} y={y} filled={false} clickHandler={clickHandler}/>
+        );
+
+        wrapper.simulate('click', {
+            target: onClickParams,
+        });
+
+        expect(clickHandler).toBeCalledWith(x, y);
     });
 });

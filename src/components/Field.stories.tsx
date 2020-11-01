@@ -1,5 +1,7 @@
 import React from "react";
 import {array, number, withKnobs} from "@storybook/addon-knobs";
+import {action} from "@storybook/addon-actions";
+
 import {Field} from "./Field";
 
 export default {
@@ -31,5 +33,5 @@ export const FieldStory: React.FC<{}> = () => {
                 y: +parts[1],
             }
         });
-    return <Field width={width} height={height} filledCells={filledCells}/>
+    return <Field width={width} height={height} filledCells={filledCells} clickHandler={action("Cell clicked")}/>
 };
