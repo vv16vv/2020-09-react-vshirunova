@@ -1,0 +1,15 @@
+.filledCell {
+    background-color: darkblue;
+    color: white;
+}
+
+.emptyCell {
+    background-color: white;
+    color: darkblue;
+}
+
+table, tr, td {
+    border-collapse: collapse;
+    border: 1px solid darkblue;
+    padding: 4px;
+}
