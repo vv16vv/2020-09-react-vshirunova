@@ -1,5 +1,4 @@
 import React from "react";
-import './../css/styles.css';
 
 interface CellProp {
     x: number;
@@ -8,9 +7,10 @@ interface CellProp {
 }
 
 export const Cell: React.FC<CellProp> = (({x, y, filled}) => {
+    const filledSign = filled ? "[X]" : "[ ]";
     return (
-        <td className={filled ? "filledCell" : "emptyCell"}>
-            {`${x}, ${y}`}
+        <td>
+            {`${filledSign} ${x}, ${y}`}
         </td>
     )
 });

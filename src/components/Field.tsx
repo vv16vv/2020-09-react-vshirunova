@@ -1,6 +1,5 @@
 import React from "react";
 import {Cell} from "./Cell";
-import './../css/styles.css';
 
 interface FieldProp {
     width: number;
