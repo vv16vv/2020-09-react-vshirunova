@@ -17,11 +17,11 @@ export const FieldStory: React.FC<{}> = () => {
     const width = number("Width", 10, options);
     const height = number("Height", 10, options);
     const filledCellsData = [
-        "1,1",
-        "2,2",
-        "3,3",
-        "3,1",
-        "1,3",
+        "1, 1",
+        "2, 2",
+        "3, 3",
+        "3, 1",
+        "1, 3",
     ];
     const filledCells = array("Filled cells", filledCellsData, ":")
         .map(cellString => {

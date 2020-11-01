@@ -23,7 +23,7 @@ export const Field: React.FC<FieldProp> = (({width, height, filledCells}) => {
     }
     return <table>
         {divs.map((line, i) => {
-            return <tr>
+            return <tr key={i}>
                 {line.map((cell, j) => {
                     return <Cell key={i * j} x={cell.x} y={cell.y} filled={cell.filled}/>
                 })}
