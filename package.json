@@ -15,7 +15,6 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@babel/cli": "^7.12.1",
     "@babel/core": "^7.12.3",
     "@babel/preset-env": "^7.12.1",
     "@babel/preset-react": "^7.12.1",
@@ -26,6 +25,7 @@
     "@storybook/addon-storysource": "^5.3.18",
     "@storybook/addons": "^5.3.18",
     "@storybook/react": "^5.3.18",
+    "@types/enzyme": "^3.10.8",
     "@types/jest": "^26.0.14",
     "@types/react": "^16.9.53",
     "@types/react-dom": "^16.9.8",
@@ -33,18 +33,21 @@
     "@typescript-eslint/parser": "^4.5.0",
     "babel-jest": "^26.6.1",
     "babel-loader": "^8.1.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.5",
     "eslint": "^7.11.0",
     "html-webpack-plugin": "^4.0.3",
-    "jest": "^26.6.0",
+    "jest": "^26.6.1",
+    "loki": "^0.25.1",
     "prettier": "^2.1.2",
-    "react-is": "^17.0.1",
+    "ts-node": "^8.8.2",
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3"
   },
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
   }
 }
