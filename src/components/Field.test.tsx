@@ -46,25 +46,22 @@ describe("Field", () => {
 
 
     it('table should pass onClick handler to nested cells', () => {
-        const x = 1;
-        const y = 1;
-        const onClickParams = {
-            x: x,
-            y: y
-        }
-
         const wrapper = mount(
-            <Field width={1} height={1} filledCells={filledCellsData} clickHandler={clickHandler}/>
+            <Field width={2} height={2} filledCells={filledCellsData} clickHandler={clickHandler}/>
         );
 
-        expect(wrapper).toMatchSnapshot();
+        [
+            {x: 1, y: 1},
+            {x: 1, y: 2},
+            {x: 2, y: 1},
+            {x: 2, y: 2}
+        ].forEach(({x, y}) => {
+            console.log(`Check click for coordinates [${x}, ${y}]`)
+            wrapper
+                .find(`td#id${x}-${y}`)
+                .simulate('click');
 
-        wrapper
-            .find('td')
-            .simulate('click', {
-                target: onClickParams,
-            });
-
-        expect(clickHandler).toBeCalledWith(x, y);
+            expect(clickHandler).toBeCalledWith(x, y);
+        })
     });
 });

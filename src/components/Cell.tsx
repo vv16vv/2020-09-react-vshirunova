@@ -10,7 +10,7 @@ interface CellProp {
 export const Cell: React.FC<CellProp> = (({x, y, filled, clickHandler}) => {
     const filledSign = filled ? "[X]" : "[ ]";
     return (
-        <td onClick={() => clickHandler(x, y)}>
+        <td id={`id${x}-${y}`} onClick={() => clickHandler(x, y)}>
             {`${filledSign} ${x}, ${y}`}
         </td>
     )

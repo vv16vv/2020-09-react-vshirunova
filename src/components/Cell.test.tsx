@@ -7,10 +7,6 @@ describe("Cell", () => {
     const clickHandler = jest.fn();
     const x = 3;
     const y = 4;
-    const onClickParams = {
-        x: x,
-        y: y
-    }
 
     it("should show coordinates and filled up sign", () => {
         expect(render(<Cell x={x} y={y} filled={true} clickHandler={clickHandler}/>).text()).toEqual("[X] 3, 4")
@@ -26,9 +22,7 @@ describe("Cell", () => {
             <Cell x={x} y={y} filled={false} clickHandler={clickHandler}/>
         );
 
-        wrapper.simulate('click', {
-            target: onClickParams,
-        });
+        wrapper.simulate('click');
 
         expect(clickHandler).toBeCalledWith(x, y);
     });

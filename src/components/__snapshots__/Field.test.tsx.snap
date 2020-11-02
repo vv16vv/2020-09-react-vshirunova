@@ -1,3 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Field table should pass onClick handler to nested cells 1`] = `ReactWrapper {}`;
