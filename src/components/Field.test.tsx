@@ -5,9 +5,7 @@ import {Field} from "./Field";
 
 describe("Field", () => {
 
-    const clickHandler = (x: number, y: number) => {
-        console.log(`clicked as [${x}, ${y}]`);
-    }
+    const clickHandler = jest.fn();
 
     const filledCellsData = [
         "1, 1",
@@ -48,7 +46,6 @@ describe("Field", () => {
 
 
     it('table should pass onClick handler to nested cells', () => {
-        const clickHandler = jest.fn();
         const x = 1;
         const y = 1;
         const onClickParams = {
