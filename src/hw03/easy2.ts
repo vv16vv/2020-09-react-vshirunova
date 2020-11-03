@@ -29,12 +29,12 @@ type Order =
       produceEstimate: Date;
     }
   | {
-      state: "fullfilled";
+      state: "fulfilled";
       sum: number;
       workerId: number;
       suppliesSum: number;
       produceEstimate: Date;
-      fullfillmentDate: Date;
+      fulfillmentDate: Date;
     };
 
 export const getOrderState = (order: Order): FIXME => order.state;
