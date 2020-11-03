@@ -3,7 +3,6 @@
 // Нужно заменить FIXME на тип который достанет из Order все возможные состояния (state)
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-type FIXME = any;
 
 type Order =
   | {
@@ -36,5 +35,7 @@ type Order =
       produceEstimate: Date;
       fulfillmentDate: Date;
     };
+
+type FIXME = Order['state'];
 
 export const getOrderState = (order: Order): FIXME => order.state;
