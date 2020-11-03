@@ -4,12 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npx webpack-dev-server --mode development --open --hot",
+    "start": "webpack-dev-server --mode development --open --hot",
     "build": "npx webpack --mode production",
-    "lint": "npx eslint --ext .js,.jsx,.ts,.tsx --fix src/",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx --fix src/",
     "loki:update": "npm run build-storybook && npx loki update --requireReference --reactUri file:./storybook-static",
-    "loki:approve": "npx loki approve",
-    "test": "npx jest",
+    "loki:approve": "loki approve",
+    "test": "jest",
     "test:loki": "npm run build-storybook && npx loki --requireReference --reactUri file:./storybook-static",
     "storybook": "start-storybook -p 6007",
     "build-storybook": "build-storybook"
