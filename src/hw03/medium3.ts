@@ -6,7 +6,7 @@ const orderStates = [
   "inWork",
   "buyingSupplies",
   "producing",
-  "fullfilled",
+  "fulfilled",
 ] as const;
 
 type OrderState = typeof orderStates[number];
