@@ -9,11 +9,11 @@ describe("Cell", () => {
     const y = 4;
 
     it("should show coordinates and filled up sign", () => {
-        expect(render(<Cell x={x} y={y} filled={true} clickHandler={clickHandler}/>).text()).toEqual("[X] 3, 4")
+        expect(render(<Cell x={x} y={y} filled={true} clickHandler={clickHandler}/>)).toMatchSnapshot();
     });
 
     it("should show coordinates and empty sign", () => {
-        expect(render(<Cell x={x} y={y} filled={false} clickHandler={clickHandler}/>).text()).toEqual("[ ] 3, 4")
+        expect(render(<Cell x={x} y={y} filled={false} clickHandler={clickHandler}/>)).toMatchSnapshot();
     });
 
     it('should pass coordinates to the onClick handler', () => {

@@ -23,14 +23,14 @@ describe("Field", () => {
         expect(render(<Field
             width={1} height={1}
             filledCells={[{x: 1, y: 1}]}
-            clickHandler={clickHandler}/>).text()).toEqual("[X] 1, 1")
+            clickHandler={clickHandler}/>)).toMatchSnapshot();
     });
 
     it("table 1x1 with empty cell", () => {
         expect(render(<Field
             width={1} height={1}
             filledCells={[]}
-            clickHandler={clickHandler}/>).text()).toEqual("[ ] 1, 1")
+            clickHandler={clickHandler}/>)).toMatchSnapshot();
     });
 
     it("table 3x4 with different cells", () => {
@@ -40,8 +40,8 @@ describe("Field", () => {
                 height={4}
                 filledCells={filledCellsData}
                 clickHandler={clickHandler}/>
-            ).text()
-        ).toEqual("[X] 1, 1[ ] 2, 1[ ] 3, 1[ ] 1, 2[X] 2, 2[ ] 3, 2[ ] 1, 3[ ] 2, 3[ ] 3, 3[ ] 1, 4[ ] 2, 4[X] 3, 4")
+            )
+        ).toMatchSnapshot();
     });
 
 
