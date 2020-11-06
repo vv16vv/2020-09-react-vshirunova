@@ -1,5 +1,6 @@
 import React from "react";
-import {render, shallow} from "enzyme";
+import renderer from "react-test-renderer";
+import {shallow} from "enzyme";
 import {Cell} from "./Cell";
 
 describe("Cell", () => {
@@ -9,11 +10,25 @@ describe("Cell", () => {
     const y = 4;
 
     it("should show coordinates and filled up sign", () => {
-        expect(render(<Cell x={x} y={y} filled={true} clickHandler={clickHandler}/>)).toMatchSnapshot();
+        expect(renderer.create(
+            <Cell
+                x={x}
+                y={y}
+                filled={true}
+                clickHandler={clickHandler}/>
+            ).toJSON()
+        ).toMatchSnapshot();
     });
 
     it("should show coordinates and empty sign", () => {
-        expect(render(<Cell x={x} y={y} filled={false} clickHandler={clickHandler}/>)).toMatchSnapshot();
+        expect(renderer.create(
+            <Cell
+                x={x}
+                y={y}
+                filled={false}
+                clickHandler={clickHandler}/>
+            ).toJSON()
+        ).toMatchSnapshot();
     });
 
     it('should pass coordinates to the onClick handler', () => {

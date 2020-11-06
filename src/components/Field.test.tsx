@@ -1,6 +1,7 @@
 import 'jsdom-global/register';
 import React from "react";
-import {mount, render} from "enzyme";
+import renderer from "react-test-renderer";
+import {mount} from "enzyme";
 import {Field} from "./Field";
 
 describe("Field", () => {
@@ -20,27 +21,35 @@ describe("Field", () => {
     });
 
     it("table 1x1 with filled cell", () => {
-        expect(render(<Field
-            width={1} height={1}
-            filledCells={[{x: 1, y: 1}]}
-            clickHandler={clickHandler}/>)).toMatchSnapshot();
+        expect(renderer.create(
+            <Field
+                width={1}
+                height={1}
+                filledCells={[{x: 1, y: 1}]}
+                clickHandler={clickHandler}/>
+            ).toJSON()
+        ).toMatchSnapshot();
     });
 
     it("table 1x1 with empty cell", () => {
-        expect(render(<Field
-            width={1} height={1}
-            filledCells={[]}
-            clickHandler={clickHandler}/>)).toMatchSnapshot();
+        expect(renderer.create(
+            <Field
+                width={1}
+                height={1}
+                filledCells={[]}
+                clickHandler={clickHandler}/>
+            ).toJSON()
+        ).toMatchSnapshot();
     });
 
     it("table 3x4 with different cells", () => {
-        expect(render(
+        expect(renderer.create(
             <Field
                 width={3}
                 height={4}
                 filledCells={filledCellsData}
                 clickHandler={clickHandler}/>
-            )
+            ).toJSON()
         ).toMatchSnapshot();
     });
 
