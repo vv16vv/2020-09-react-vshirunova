@@ -9,5 +9,5 @@ type FIXME<T> = T extends { defaultProps: infer P } ? P : never;
 export const getDefaultProps = <T>(
   component: React.ComponentType<T>
 ): FIXME<T> => {
-    return component.defaultProps as FIXME<T>;
+    return component.defaultProps as FIXME<typeof component>;
 };
