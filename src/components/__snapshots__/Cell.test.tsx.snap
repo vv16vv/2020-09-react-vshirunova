@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Cell should show coordinates and empty sign 1`] = `
+<td
+  id="id3-4"
+  onClick={[Function]}
+>
+  [ ] 3, 4
+</td>
+`;
+
+exports[`Cell should show coordinates and filled up sign 1`] = `
+<td
+  id="id3-4"
+  onClick={[Function]}
+>
+  [X] 3, 4
+</td>
+`;
