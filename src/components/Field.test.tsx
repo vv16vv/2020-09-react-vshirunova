@@ -58,7 +58,7 @@ describe("Field", () => {
         ].forEach(({x, y}) => {
             console.log(`Check click for coordinates [${x}, ${y}]`)
             wrapper
-                .find(`td#id${x}-${y}`)
+                .find({x: x, y: y})
                 .simulate('click');
 
             expect(clickHandler).toBeCalledWith(x, y);
