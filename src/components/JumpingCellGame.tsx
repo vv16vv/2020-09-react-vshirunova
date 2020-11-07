@@ -36,12 +36,16 @@ export class JumpingCellGame extends React.Component<GameProp, GameState> {
     handleJump = () => {
         console.log(`JumpingCellGame - handleJump`);
         const {width, height} = this.props;
-        const newX = Math.round(Math.random() * width + 1);
-        const newY = Math.round(Math.random() * height + 1);
+        const newX = this.nextRandomCoord(width);
+        const newY = this.nextRandomCoord(height);
         this.setState({
             x: newX,
             y: newY
         })
+    }
+
+    nextRandomCoord = (quantity: number): number => {
+        return Math.floor(Math.random() * quantity + 1)
     }
 
     increaseFrequency = () => {
