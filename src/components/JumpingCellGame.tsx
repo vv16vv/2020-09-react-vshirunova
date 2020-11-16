@@ -22,8 +22,6 @@ export class JumpingCellGame extends React.Component<GameProp, GameState> {
             x: 1,
             y: 1,
         };
-
-        this.handleClick = this.handleClick.bind(this);
     }
 
     handleClick = (x: number, y: number) => {
@@ -57,7 +55,7 @@ export class JumpingCellGame extends React.Component<GameProp, GameState> {
         )
     }
 
-    componentDidMount = () => {
+    componentDidMount() {
         console.log(`JumpingCellGame - componentDidMount`);
         if (this.state.timerId === undefined) {
             const timerId = setInterval(this.handleJump, this.state.frequency);
@@ -67,7 +65,7 @@ export class JumpingCellGame extends React.Component<GameProp, GameState> {
         }
     }
 
-    componentWillUnmount = () => {
+    componentWillUnmount() {
         console.log(`JumpingCellGame - componentWillUnmount`);
         if (this.state.timerId !== undefined) {
             clearInterval(this.state.timerId);
@@ -77,19 +75,19 @@ export class JumpingCellGame extends React.Component<GameProp, GameState> {
         }
     }
 
-    shouldComponentUpdate = (nextProps: Readonly<GameProp>, nextState: Readonly<GameState>, nextContext: any): boolean => {
+    shouldComponentUpdate(nextProps: Readonly<GameProp>, nextState: Readonly<GameState>): boolean {
         console.log(`JumpingCellGame - shouldComponentUpdate: nextProps [w=${nextProps.width}, h=${nextProps.height}]`);
-        console.log(`JumpingCellGame - shouldComponentUpdate: nextState = [f=${nextState.frequency}, x=${nextState.x}, y=${nextState.y}, t=${nextState.timerId}], nextContext = ${nextContext}`);
+        console.log(`JumpingCellGame - shouldComponentUpdate: nextState = [f=${nextState.frequency}, x=${nextState.x}, y=${nextState.y}, t=${nextState.timerId}]`);
         const {x: currX, y: currY} = this.state;
         const {x: newX, y: newY} = nextState;
         return currX !== newX || currY !== newY;
     }
 
-    componentDidUpdate = (prevProps: Readonly<GameProp>, prevState: Readonly<GameState>, snapshot?: any) => {
-        console.log(`JumpingCellGame - componentDidUpdate: prevProps = ${JSON.stringify(prevProps)}, prevState = ${JSON.stringify(prevState)}, snapshot = ${snapshot}`);
+    componentDidUpdate(prevProps: Readonly<GameProp>, prevState: Readonly<GameState>) {
+        console.log(`JumpingCellGame - componentDidUpdate: prevProps = ${JSON.stringify(prevProps)}, prevState = ${JSON.stringify(prevState)}`);
         const {frequency: oldFreq} = prevState;
         const {frequency: currFreq, timerId: currTimeId} = this.state;
-        if(oldFreq !== currFreq && currTimeId !== undefined){
+        if (oldFreq !== currFreq && currTimeId !== undefined) {
             clearInterval(currTimeId)
             const timerId = setInterval(this.handleJump, currFreq);
             this.setState({
@@ -99,7 +97,7 @@ export class JumpingCellGame extends React.Component<GameProp, GameState> {
 
     }
 
-    render = () => {
+    render() {
         console.log(`JumpingCellGame - render`);
         return <Field
             width={this.props.width}
