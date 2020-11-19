@@ -55,8 +55,7 @@ export class JumpingCellGame extends React.Component<GameProp, GameState> {
     }
 
     nextRandomCoord = (quantity: number): number => {
-        // Incorrect generation only to demonstrate exception processing
-        return Math.floor(Math.random() * (quantity + 4) - 2)
+        return Math.floor(Math.random() * quantity + 1)
     }
 
     assertCoordIsOk = (coord: number, max: number): number => {
