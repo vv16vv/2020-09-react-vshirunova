@@ -1,6 +1,7 @@
 import React from "react";
 import {number, withKnobs} from "@storybook/addon-knobs";
 import {JumpingCellGame} from "./JumpingCellGame";
+import {ErrorBoundary} from "./ErrorBoundary";
 
 export default {
     title: "Jumping Cell Game Story",
@@ -16,5 +17,7 @@ export const JumpingCellGameStory: React.FC<{}> = () => {
     };
     const width = number("Width", 10, options);
     const height = number("Height", 10, options);
-    return <JumpingCellGame width={width} height={height}/>
+    return <ErrorBoundary>
+        <JumpingCellGame width={width} height={height}/>
+    </ErrorBoundary>
 };

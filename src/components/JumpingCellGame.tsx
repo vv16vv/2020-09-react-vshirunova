@@ -13,6 +13,18 @@ interface GameState {
     timerId?: ReturnType<typeof setInterval>;
 }
 
+class NegativeCoord extends Error {
+    constructor(coord: number) {
+        super(`Coordinate ${coord} cannot be 0 or negative`);
+    }
+}
+
+class TooBigCoord extends Error {
+    constructor(coord: number, max: number) {
+        super(`Coordinate ${coord} bigger than a maximum ${max}`);
+    }
+}
+
 export class JumpingCellGame extends React.Component<GameProp, GameState> {
     constructor(props: GameProp) {
         super(props);
@@ -34,8 +46,8 @@ export class JumpingCellGame extends React.Component<GameProp, GameState> {
     handleJump = () => {
         console.log(`JumpingCellGame - handleJump`);
         const {width, height} = this.props;
-        const newX = this.nextRandomCoord(width);
-        const newY = this.nextRandomCoord(height);
+        const newX = this.assertCoordIsOk(this.nextRandomCoord(width), width);
+        const newY = this.assertCoordIsOk(this.nextRandomCoord(height), height);
         this.setState({
             x: newX,
             y: newY
@@ -43,7 +55,14 @@ export class JumpingCellGame extends React.Component<GameProp, GameState> {
     }
 
     nextRandomCoord = (quantity: number): number => {
-        return Math.floor(Math.random() * quantity + 1)
+        // Incorrect generation only to demonstrate exception processing
+        return Math.floor(Math.random() * (quantity + 4) - 2)
+    }
+
+    assertCoordIsOk = (coord: number, max: number): number => {
+        if (coord <= 0) throw new NegativeCoord(coord);
+        if (coord > max) throw new TooBigCoord(coord, max);
+        return coord
     }
 
     increaseFrequency = () => {
