@@ -97,6 +97,12 @@ export class JumpingCellGame extends React.Component<GameProp, GameState> {
 
     }
 
+    getSnapshotBeforeUpdate(prevProps: Readonly<GameProp>, prevState: Readonly<GameState>): any | null {
+        console.log(`JumpingCellGame - getSnapshotBeforeUpdate: prevProps = ${JSON.stringify(prevProps)}`)
+        console.log(`JumpingCellGame - getSnapshotBeforeUpdate: ${JSON.stringify(prevState)}`)
+        return null;
+    }
+
     render() {
         console.log(`JumpingCellGame - render`);
         return <Field
