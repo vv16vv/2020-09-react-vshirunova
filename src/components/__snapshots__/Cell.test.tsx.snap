@@ -1,19 +1,41 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Cell should show coordinates and empty sign 1`] = `
-<td
-  id="id3-4"
-  onClick={[Function]}
->
-  [ ] 3, 4
-</td>
+Array [
+  <style
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": ".css-1odp4ej{text-align:center;width:1.5em;height:1.5em;border-width:1px;border-style:solid;border-color:black;background-color:white;color:darkblue;}",
+      }
+    }
+    data-emotion="css 1odp4ej"
+  />,
+  <td
+    className="css-1odp4ej"
+    id="id3-4"
+    onClick={[Function]}
+  >
+     
+  </td>,
+]
 `;
 
 exports[`Cell should show coordinates and filled up sign 1`] = `
-<td
-  id="id3-4"
-  onClick={[Function]}
->
-  [X] 3, 4
-</td>
+Array [
+  <style
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": ".css-1ws95wt{text-align:center;width:1.5em;height:1.5em;border-width:1px;border-style:solid;border-color:black;background-color:darkblue;color:white;}",
+      }
+    }
+    data-emotion="css 1ws95wt"
+  />,
+  <td
+    className="css-1ws95wt"
+    id="id3-4"
+    onClick={[Function]}
+  >
+    X
+  </td>,
+]
 `;
