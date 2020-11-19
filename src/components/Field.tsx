@@ -1,5 +1,6 @@
 import React from "react";
 import {Cell} from "./Cell";
+import {StyledTable, StyledTr} from "./StyledComponents";
 
 interface FieldProp {
     width: number;
@@ -22,9 +23,9 @@ export const Field: React.FC<FieldProp> = (({width, height, filledCells, clickHa
         }
         divs.push(cells);
     }
-    return <table><tbody>
+    return <StyledTable><tbody>
         {divs.map((line, i) => {
-            return <tr key={i + 1}>
+            return <StyledTr key={i + 1}>
                 {line.map((cell, j) => {
                     return <Cell
                         key={(i + 1) * (j + 1)}
@@ -33,7 +34,7 @@ export const Field: React.FC<FieldProp> = (({width, height, filledCells, clickHa
                         filled={cell.filled}
                         clickHandler={clickHandler}/>
                 })}
-            </tr>;
+            </StyledTr>;
         })}
-    </tbody></table>;
+    </tbody></StyledTable>;
 });
