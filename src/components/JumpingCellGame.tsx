@@ -46,8 +46,8 @@ export class JumpingCellGame extends React.Component<GameProp, GameState> {
     handleJump = () => {
         console.log(`JumpingCellGame - handleJump`);
         const {width, height} = this.props;
-        const newX = this.assertCoordIsOk(this.nextRandomCoord(width), width);
-        const newY = this.assertCoordIsOk(this.nextRandomCoord(height), height);
+        const newX = this.nextRandomCoord(width);
+        const newY = this.nextRandomCoord(height);
         this.setState({
             x: newX,
             y: newY
@@ -123,11 +123,13 @@ export class JumpingCellGame extends React.Component<GameProp, GameState> {
     }
 
     render() {
+        const x = this.assertCoordIsOk(this.state.x, this.props.width)
+        const y = this.assertCoordIsOk(this.state.y, this.props.height)
         console.log(`JumpingCellGame - render`);
         return <Field
             width={this.props.width}
             height={this.props.height}
-            filledCells={[{x: this.state.x, y: this.state.y}]}
+            filledCells={[{x: x, y: y}]}
             clickHandler={this.handleClick}
         />;
     }
