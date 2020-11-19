@@ -1,4 +1,5 @@
 import React from "react";
+import {StyledTd} from "./StyledComponents";
 
 interface CellProp {
     x: number;
@@ -8,10 +9,11 @@ interface CellProp {
 }
 
 export const Cell: React.FC<CellProp> = (({x, y, filled, clickHandler}) => {
-    const filledSign = filled ? "[X]" : "[ ]";
+    const filledSign = filled ? "X" : " ";
+    const id = `id${x}-${y}`;
     return (
-        <td id={`id${x}-${y}`} onClick={() => clickHandler(x, y)}>
-            {`${filledSign} ${x}, ${y}`}
-        </td>
+        <StyledTd filled={filled} id={id} onClick={() => clickHandler(x, y)}>
+            {filledSign}
+        </StyledTd>
     )
 });
