@@ -1,10 +1,11 @@
 import styled from "@emotion/styled";
 import {css} from "@emotion/core";
+import {CurrentTheme} from "./StyledColors";
 
 const TableBorder = css`
   border-width: 1px;
   border-style: solid;
-  border-color: black;
+  border-color: ${CurrentTheme.mainForeColor};
 `;
 
 export const StyledTable = styled.table`
@@ -31,13 +32,13 @@ const CommonCell = css`
 `;
 
 const EmptyCell = css`
-  background-color: white;
-  color: darkblue;
+  background-color: ${CurrentTheme.backgroundColor};
+  color: ${CurrentTheme.accentForeColor};
 `;
 
 const FilledCell = css`
-  background-color: darkblue;
-  color: white;
+  background-color: ${CurrentTheme.accentForeColor};
+  color: ${CurrentTheme.backgroundColor};
 `;
 
 export const StyledTd = styled.td`
