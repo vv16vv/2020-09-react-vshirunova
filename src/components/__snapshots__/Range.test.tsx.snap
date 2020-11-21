@@ -1,0 +1,139 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Range should show min, max and current value - all props 1`] = `
+Array [
+  <style
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": ".css-814x24{width:200px;height:15px;background-color:#ffffff;}",
+      }
+    }
+    data-emotion="css 814x24"
+  />,
+  <div
+    className="css-814x24"
+  >
+    <div>
+      <style
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": ".css-1eqgw2z{font-family:Tahoma,serif;font-style:normal;font-weight:bold;font-size:15px;line-height:18px;text-align:center;width:100%;color:#00008b;background-color:#ffffff;}",
+          }
+        }
+        data-emotion="css 1eqgw2z"
+      />
+      <legend
+        className="css-1eqgw2z"
+      >
+        5
+      </legend>
+    </div>
+    <div>
+      <style
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": ".css-1y5wkk4{font-family:Tahoma,serif;font-style:normal;font-weight:normal;font-size:13px;line-height:15px;color:#000000;display:inline;vertical-align:top;width:10%;color:#888888;background-color:#ffffff;}",
+          }
+        }
+        data-emotion="css 1y5wkk4"
+      />
+      <span
+        className="css-1y5wkk4"
+      >
+        1
+      </span>
+      <style
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": ".css-oi2fxo{width:85%;color:#000000;background-color:#ffffff;}",
+          }
+        }
+        data-emotion="css oi2fxo"
+      />
+      <input
+        className="css-oi2fxo"
+        max={10}
+        min={1}
+        onChange={[Function]}
+        step={1}
+        type="range"
+        value={5}
+      />
+      <span
+        className="css-1y5wkk4"
+      >
+        10
+      </span>
+    </div>
+  </div>,
+]
+`;
+
+exports[`Range should show min, max and current value - only required props 1`] = `
+Array [
+  <style
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": ".css-814x24{width:200px;height:15px;background-color:#ffffff;}",
+      }
+    }
+    data-emotion="css 814x24"
+  />,
+  <div
+    className="css-814x24"
+  >
+    <div>
+      <style
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": ".css-1eqgw2z{font-family:Tahoma,serif;font-style:normal;font-weight:bold;font-size:15px;line-height:18px;text-align:center;width:100%;color:#00008b;background-color:#ffffff;}",
+          }
+        }
+        data-emotion="css 1eqgw2z"
+      />
+      <legend
+        className="css-1eqgw2z"
+      >
+        5
+      </legend>
+    </div>
+    <div>
+      <style
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": ".css-1y5wkk4{font-family:Tahoma,serif;font-style:normal;font-weight:normal;font-size:13px;line-height:15px;color:#000000;display:inline;vertical-align:top;width:10%;color:#888888;background-color:#ffffff;}",
+          }
+        }
+        data-emotion="css 1y5wkk4"
+      />
+      <span
+        className="css-1y5wkk4"
+      >
+        1
+      </span>
+      <style
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": ".css-oi2fxo{width:85%;color:#000000;background-color:#ffffff;}",
+          }
+        }
+        data-emotion="css oi2fxo"
+      />
+      <input
+        className="css-oi2fxo"
+        max={10}
+        min={1}
+        onChange={[Function]}
+        step={1}
+        type="range"
+        value={5}
+      />
+      <span
+        className="css-1y5wkk4"
+      >
+        10
+      </span>
+    </div>
+  </div>,
+]
+`;

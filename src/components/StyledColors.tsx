@@ -3,7 +3,7 @@ const LightTheme = {
     backgroundColor: '#ffffff',
     backForeColor: '#888888',
     mainForeColor: '#000000',
-    accentForeColor: '#152ea5'
+    accentForeColor: '#00008b'
 }
 
 const DarkTheme = {
