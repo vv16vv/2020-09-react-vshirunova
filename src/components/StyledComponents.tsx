@@ -45,3 +45,16 @@ export const StyledTd = styled.td`
   ${CommonCell};
   ${({filled}: StyledCellProp) => (filled ? FilledCell : EmptyCell)};
 `;
+
+export const StyledRange = styled.input`
+  width: 85%;
+  color: ${CurrentTheme.mainForeColor};
+  background-color: ${CurrentTheme.backgroundColor};
+`;
+
+export const RangeBlock = styled.div`
+  width: 200px;
+  height: 15px;
+  background-color: ${CurrentTheme.backgroundColor};
+`;
+
