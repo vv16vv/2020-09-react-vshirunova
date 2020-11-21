@@ -5,13 +5,13 @@ Array [
   <style
     dangerouslySetInnerHTML={
       Object {
-        "__html": ".css-1odp4ej{text-align:center;width:1.5em;height:1.5em;border-width:1px;border-style:solid;border-color:black;background-color:white;color:darkblue;}",
+        "__html": ".css-3chxdl{text-align:center;width:1.5em;height:1.5em;border-width:1px;border-style:solid;border-color:#000000;background-color:#ffffff;color:#00008b;}",
       }
     }
-    data-emotion="css 1odp4ej"
+    data-emotion="css 3chxdl"
   />,
   <td
-    className="css-1odp4ej"
+    className="css-3chxdl"
     id="id3-4"
     onClick={[Function]}
   >
@@ -25,13 +25,13 @@ Array [
   <style
     dangerouslySetInnerHTML={
       Object {
-        "__html": ".css-1ws95wt{text-align:center;width:1.5em;height:1.5em;border-width:1px;border-style:solid;border-color:black;background-color:darkblue;color:white;}",
+        "__html": ".css-14h0qql{text-align:center;width:1.5em;height:1.5em;border-width:1px;border-style:solid;border-color:#000000;background-color:#00008b;color:#ffffff;}",
       }
     }
-    data-emotion="css 1ws95wt"
+    data-emotion="css 14h0qql"
   />,
   <td
-    className="css-1ws95wt"
+    className="css-14h0qql"
     id="id3-4"
     onClick={[Function]}
   >

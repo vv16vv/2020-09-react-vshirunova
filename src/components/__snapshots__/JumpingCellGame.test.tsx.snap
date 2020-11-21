@@ -5,36 +5,36 @@ Array [
   <style
     dangerouslySetInnerHTML={
       Object {
-        "__html": ".css-12hphec{border-collapse:collapse;border-width:1px;border-style:solid;border-color:black;}",
+        "__html": ".css-13wua49{border-collapse:collapse;border-width:1px;border-style:solid;border-color:#000000;}",
       }
     }
-    data-emotion="css 12hphec"
+    data-emotion="css 13wua49"
   />,
   <table
-    className="css-12hphec"
+    className="css-13wua49"
   >
     <tbody>
       <style
         dangerouslySetInnerHTML={
           Object {
-            "__html": ".css-ph6625{border-width:1px;border-style:solid;border-color:black;}",
+            "__html": ".css-15usuub{border-width:1px;border-style:solid;border-color:#000000;}",
           }
         }
-        data-emotion="css ph6625"
+        data-emotion="css 15usuub"
       />
       <tr
-        className="css-ph6625"
+        className="css-15usuub"
       >
         <style
           dangerouslySetInnerHTML={
             Object {
-              "__html": ".css-1ws95wt{text-align:center;width:1.5em;height:1.5em;border-width:1px;border-style:solid;border-color:black;background-color:darkblue;color:white;}",
+              "__html": ".css-14h0qql{text-align:center;width:1.5em;height:1.5em;border-width:1px;border-style:solid;border-color:#000000;background-color:#00008b;color:#ffffff;}",
             }
           }
-          data-emotion="css 1ws95wt"
+          data-emotion="css 14h0qql"
         />
         <td
-          className="css-1ws95wt"
+          className="css-14h0qql"
           id="id1-1"
           onClick={[Function]}
         >
@@ -43,20 +43,20 @@ Array [
         <style
           dangerouslySetInnerHTML={
             Object {
-              "__html": ".css-1odp4ej{text-align:center;width:1.5em;height:1.5em;border-width:1px;border-style:solid;border-color:black;background-color:white;color:darkblue;}",
+              "__html": ".css-3chxdl{text-align:center;width:1.5em;height:1.5em;border-width:1px;border-style:solid;border-color:#000000;background-color:#ffffff;color:#00008b;}",
             }
           }
-          data-emotion="css 1odp4ej"
+          data-emotion="css 3chxdl"
         />
         <td
-          className="css-1odp4ej"
+          className="css-3chxdl"
           id="id2-1"
           onClick={[Function]}
         >
            
         </td>
         <td
-          className="css-1odp4ej"
+          className="css-3chxdl"
           id="id3-1"
           onClick={[Function]}
         >
@@ -64,24 +64,24 @@ Array [
         </td>
       </tr>
       <tr
-        className="css-ph6625"
+        className="css-15usuub"
       >
         <td
-          className="css-1odp4ej"
+          className="css-3chxdl"
           id="id1-2"
           onClick={[Function]}
         >
            
         </td>
         <td
-          className="css-1odp4ej"
+          className="css-3chxdl"
           id="id2-2"
           onClick={[Function]}
         >
            
         </td>
         <td
-          className="css-1odp4ej"
+          className="css-3chxdl"
           id="id3-2"
           onClick={[Function]}
         >
@@ -89,24 +89,24 @@ Array [
         </td>
       </tr>
       <tr
-        className="css-ph6625"
+        className="css-15usuub"
       >
         <td
-          className="css-1odp4ej"
+          className="css-3chxdl"
           id="id1-3"
           onClick={[Function]}
         >
            
         </td>
         <td
-          className="css-1odp4ej"
+          className="css-3chxdl"
           id="id2-3"
           onClick={[Function]}
         >
            
         </td>
         <td
-          className="css-1odp4ej"
+          className="css-3chxdl"
           id="id3-3"
           onClick={[Function]}
         >
@@ -114,24 +114,24 @@ Array [
         </td>
       </tr>
       <tr
-        className="css-ph6625"
+        className="css-15usuub"
       >
         <td
-          className="css-1odp4ej"
+          className="css-3chxdl"
           id="id1-4"
           onClick={[Function]}
         >
            
         </td>
         <td
-          className="css-1odp4ej"
+          className="css-3chxdl"
           id="id2-4"
           onClick={[Function]}
         >
            
         </td>
         <td
-          className="css-1odp4ej"
+          className="css-3chxdl"
           id="id3-4"
           onClick={[Function]}
         >

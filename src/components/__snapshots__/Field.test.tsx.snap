@@ -2,14 +2,14 @@
 
 exports[`Field table 1x1 with empty cell 1`] = `
 <table
-  className="css-12hphec"
+  className="css-13wua49"
 >
   <tbody>
     <tr
-      className="css-ph6625"
+      className="css-15usuub"
     >
       <td
-        className="css-1odp4ej"
+        className="css-3chxdl"
         id="id1-1"
         onClick={[Function]}
       >
@@ -22,14 +22,14 @@ exports[`Field table 1x1 with empty cell 1`] = `
 
 exports[`Field table 1x1 with filled cell 1`] = `
 <table
-  className="css-12hphec"
+  className="css-13wua49"
 >
   <tbody>
     <tr
-      className="css-ph6625"
+      className="css-15usuub"
     >
       <td
-        className="css-1ws95wt"
+        className="css-14h0qql"
         id="id1-1"
         onClick={[Function]}
       >
@@ -42,28 +42,28 @@ exports[`Field table 1x1 with filled cell 1`] = `
 
 exports[`Field table 3x4 with different cells 1`] = `
 <table
-  className="css-12hphec"
+  className="css-13wua49"
 >
   <tbody>
     <tr
-      className="css-ph6625"
+      className="css-15usuub"
     >
       <td
-        className="css-1ws95wt"
+        className="css-14h0qql"
         id="id1-1"
         onClick={[Function]}
       >
         X
       </td>
       <td
-        className="css-1odp4ej"
+        className="css-3chxdl"
         id="id2-1"
         onClick={[Function]}
       >
          
       </td>
       <td
-        className="css-1odp4ej"
+        className="css-3chxdl"
         id="id3-1"
         onClick={[Function]}
       >
@@ -71,24 +71,24 @@ exports[`Field table 3x4 with different cells 1`] = `
       </td>
     </tr>
     <tr
-      className="css-ph6625"
+      className="css-15usuub"
     >
       <td
-        className="css-1odp4ej"
+        className="css-3chxdl"
         id="id1-2"
         onClick={[Function]}
       >
          
       </td>
       <td
-        className="css-1ws95wt"
+        className="css-14h0qql"
         id="id2-2"
         onClick={[Function]}
       >
         X
       </td>
       <td
-        className="css-1odp4ej"
+        className="css-3chxdl"
         id="id3-2"
         onClick={[Function]}
       >
@@ -96,24 +96,24 @@ exports[`Field table 3x4 with different cells 1`] = `
       </td>
     </tr>
     <tr
-      className="css-ph6625"
+      className="css-15usuub"
     >
       <td
-        className="css-1odp4ej"
+        className="css-3chxdl"
         id="id1-3"
         onClick={[Function]}
       >
          
       </td>
       <td
-        className="css-1odp4ej"
+        className="css-3chxdl"
         id="id2-3"
         onClick={[Function]}
       >
          
       </td>
       <td
-        className="css-1odp4ej"
+        className="css-3chxdl"
         id="id3-3"
         onClick={[Function]}
       >
@@ -121,24 +121,24 @@ exports[`Field table 3x4 with different cells 1`] = `
       </td>
     </tr>
     <tr
-      className="css-ph6625"
+      className="css-15usuub"
     >
       <td
-        className="css-1odp4ej"
+        className="css-3chxdl"
         id="id1-4"
         onClick={[Function]}
       >
          
       </td>
       <td
-        className="css-1odp4ej"
+        className="css-3chxdl"
         id="id2-4"
         onClick={[Function]}
       >
          
       </td>
       <td
-        className="css-1ws95wt"
+        className="css-14h0qql"
         id="id3-4"
         onClick={[Function]}
       >
