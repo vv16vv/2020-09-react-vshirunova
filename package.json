@@ -63,6 +63,9 @@
     "react-dom": "^16.13.1"
   },
   "loki": {
+    "looks-same": {
+      "ignoreCaret": true
+    },
     "configurations": {
       "chrome.laptop": {
         "target": "chrome.app",
