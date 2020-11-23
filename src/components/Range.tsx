@@ -14,11 +14,11 @@ export const Range: React.FC<RangeProp> = ({min, max, step, value, changeHandler
     const realMin = min ?? 1;
     const [currentValue, setCurValue] = useState(value);
 
-    const onChange = useCallback( (event: ChangeEvent<HTMLInputElement>) => {
+    const onChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
         const newValue = +event?.target?.value ?? realMin;
         changeHandler(newValue);
         setCurValue(newValue);
-    },[]);
+    }, []);
 
     return (<RangeBlock>
         <div><CenteredLabel>{currentValue}</CenteredLabel></div>
