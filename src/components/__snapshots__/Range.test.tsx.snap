@@ -5,40 +5,40 @@ Array [
   <style
     dangerouslySetInnerHTML={
       Object {
-        "__html": ".css-814x24{width:200px;height:15px;background-color:#ffffff;}",
+        "__html": ".css-1xita4q{display:inline-block;width:400px;height:15px;background-color:#ffffff;}",
       }
     }
-    data-emotion="css 814x24"
+    data-emotion="css 1xita4q"
   />,
   <div
-    className="css-814x24"
+    className="css-1xita4q"
   >
     <div>
       <style
         dangerouslySetInnerHTML={
           Object {
-            "__html": ".css-1eqgw2z{font-family:Tahoma,serif;font-style:normal;font-weight:bold;font-size:15px;line-height:18px;text-align:center;width:100%;color:#00008b;background-color:#ffffff;}",
+            "__html": ".css-1gle2ug{font-family:Tahoma,serif;font-style:normal;font-weight:bold;font-size:15px;line-height:18px;display:inline-block;text-align:center;width:100%;color:#00008b;background-color:#ffffff;}",
           }
         }
-        data-emotion="css 1eqgw2z"
+        data-emotion="css 1gle2ug"
       />
-      <legend
-        className="css-1eqgw2z"
+      <span
+        className="css-1gle2ug"
       >
         5
-      </legend>
+      </span>
     </div>
     <div>
       <style
         dangerouslySetInnerHTML={
           Object {
-            "__html": ".css-1y5wkk4{font-family:Tahoma,serif;font-style:normal;font-weight:normal;font-size:13px;line-height:15px;color:#000000;display:inline;vertical-align:top;width:10%;color:#888888;background-color:#ffffff;}",
+            "__html": ".css-1g5toxl{font-family:Tahoma,serif;font-style:normal;font-weight:normal;font-size:13px;line-height:15px;color:#000000;vertical-align:top;width:10%;color:#888888;background-color:#ffffff;}",
           }
         }
-        data-emotion="css 1y5wkk4"
+        data-emotion="css 1g5toxl"
       />
       <span
-        className="css-1y5wkk4"
+        className="css-1g5toxl"
       >
         1
       </span>
@@ -60,7 +60,7 @@ Array [
         value={5}
       />
       <span
-        className="css-1y5wkk4"
+        className="css-1g5toxl"
       >
         10
       </span>
@@ -74,40 +74,40 @@ Array [
   <style
     dangerouslySetInnerHTML={
       Object {
-        "__html": ".css-814x24{width:200px;height:15px;background-color:#ffffff;}",
+        "__html": ".css-1xita4q{display:inline-block;width:400px;height:15px;background-color:#ffffff;}",
       }
     }
-    data-emotion="css 814x24"
+    data-emotion="css 1xita4q"
   />,
   <div
-    className="css-814x24"
+    className="css-1xita4q"
   >
     <div>
       <style
         dangerouslySetInnerHTML={
           Object {
-            "__html": ".css-1eqgw2z{font-family:Tahoma,serif;font-style:normal;font-weight:bold;font-size:15px;line-height:18px;text-align:center;width:100%;color:#00008b;background-color:#ffffff;}",
+            "__html": ".css-1gle2ug{font-family:Tahoma,serif;font-style:normal;font-weight:bold;font-size:15px;line-height:18px;display:inline-block;text-align:center;width:100%;color:#00008b;background-color:#ffffff;}",
           }
         }
-        data-emotion="css 1eqgw2z"
+        data-emotion="css 1gle2ug"
       />
-      <legend
-        className="css-1eqgw2z"
+      <span
+        className="css-1gle2ug"
       >
         5
-      </legend>
+      </span>
     </div>
     <div>
       <style
         dangerouslySetInnerHTML={
           Object {
-            "__html": ".css-1y5wkk4{font-family:Tahoma,serif;font-style:normal;font-weight:normal;font-size:13px;line-height:15px;color:#000000;display:inline;vertical-align:top;width:10%;color:#888888;background-color:#ffffff;}",
+            "__html": ".css-1g5toxl{font-family:Tahoma,serif;font-style:normal;font-weight:normal;font-size:13px;line-height:15px;color:#000000;vertical-align:top;width:10%;color:#888888;background-color:#ffffff;}",
           }
         }
-        data-emotion="css 1y5wkk4"
+        data-emotion="css 1g5toxl"
       />
       <span
-        className="css-1y5wkk4"
+        className="css-1g5toxl"
       >
         1
       </span>
@@ -129,7 +129,7 @@ Array [
         value={5}
       />
       <span
-        className="css-1y5wkk4"
+        className="css-1g5toxl"
       >
         10
       </span>

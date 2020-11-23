@@ -62,7 +62,10 @@ export const LayoutTd = styled.td`
 
 export const StyledTd = styled.td`
   ${TableBorder};
+  text-align: center;
   ${({filled}: StyledCellProp) => (filled ? FilledCell : EmptyCell)};
+  height: 20px;
+  width: 20px;
 `;
 
 export const StyledRange = styled.input`
