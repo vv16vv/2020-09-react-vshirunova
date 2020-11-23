@@ -11,7 +11,7 @@ const BaseFont = css`
   color: ${CurrentTheme.mainForeColor};
 `;
 
-const SelectedFontSmall = css`
+export const SelectedFontSmall = css`
   font-family: Tahoma, serif;
   font-style: normal;
   font-weight: bold;
@@ -19,19 +19,40 @@ const SelectedFontSmall = css`
   line-height: 18px;
 `;
 
+export const SelectedFontMedium = css`
+  font-family: Tahoma, serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 18px;
+`;
+
 export const RangeLabel = styled.span`
   ${BaseFont};
-  display: inline;
   vertical-align: top;
   width: 10%;
   color: ${CurrentTheme.backForeColor};
   background-color: ${CurrentTheme.backgroundColor};
 `;
 
-export const CenteredLabel = styled.legend`
+export const CenteredLabel = styled.span`
   ${SelectedFontSmall};
+  display: inline-block;
   text-align: center;
   width: 100%;
   color: ${CurrentTheme.accentForeColor};
   background-color: ${CurrentTheme.backgroundColor};
 `;
+
+export const FieldTitle = styled.span`
+  ${SelectedFontSmall};
+  color: ${CurrentTheme.accentForeColor};
+  background-color: ${CurrentTheme.backgroundColor};
+`;
+
+export const TableTitle = styled.legend`
+  ${SelectedFontMedium};
+  color: ${CurrentTheme.accentForeColor};
+  background-color: ${CurrentTheme.backgroundColor};
+`;
+
