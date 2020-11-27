@@ -50,7 +50,7 @@ export class SettingsForm extends React.Component<SettingsFormProps, SettingsFor
     render() {
         return (
             <Formik initialValues={initialFormProps} onSubmit={this.props.onSubmit}>
-                <Form>
+                <Form id={"settingsForm"}>
                     <StyledFieldSet>
                         <TableTitle>Game Settings</TableTitle>
                         <LayoutTable>
