@@ -54,18 +54,27 @@ export class SettingsForm extends React.Component<SettingsFormProps, SettingsFor
                             <tbody>
                             <LayoutTr>
                                 <LayoutTd><FieldTitle>Width</FieldTitle></LayoutTd>
-                                <LayoutTd><Range max={50} value={initialFormProps.width}
-                                                 changeHandler={this.changeWidth}/></LayoutTd>
+                                <LayoutTd><Range
+                                    name={"Width"}
+                                    max={50}
+                                    value={initialFormProps.width}
+                                    changeHandler={this.changeWidth}/></LayoutTd>
                             </LayoutTr>
                             <LayoutTr>
                                 <LayoutTd><FieldTitle>Height</FieldTitle></LayoutTd>
-                                <LayoutTd><Range max={50} value={initialFormProps.height}
-                                                 changeHandler={this.changeHeight}/></LayoutTd>
+                                <LayoutTd><Range
+                                    name={"Height"}
+                                    max={50}
+                                    value={initialFormProps.height}
+                                    changeHandler={this.changeHeight}/></LayoutTd>
                             </LayoutTr>
                             <LayoutTr>
                                 <LayoutTd><FieldTitle>Frequency, sec</FieldTitle></LayoutTd>
-                                <LayoutTd><Range max={10} min={2} step={0.5} value={initialFormProps.frequency}
-                                                 changeHandler={this.changeFrequency}/></LayoutTd>
+                                <LayoutTd><Range
+                                    name={"Frequency"}
+                                    max={10} min={2} step={0.5}
+                                    value={initialFormProps.frequency}
+                                    changeHandler={this.changeFrequency}/></LayoutTd>
                             </LayoutTr>
                             </tbody>
                         </LayoutTable>

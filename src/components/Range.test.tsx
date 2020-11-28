@@ -13,6 +13,7 @@ describe("Range", () => {
     it("should set min and step when they missed", () => {
         const wrapper = shallow(
             <Range
+                name={"test"}
                 max={max}
                 value={initialValue}
                 changeHandler={changeHandler}/>
@@ -26,6 +27,7 @@ describe("Range", () => {
     it('should call onChange handler', () => {
         const wrapper = shallow(
             <Range
+                name={"test"}
                 min={min}
                 max={max}
                 step={step}
