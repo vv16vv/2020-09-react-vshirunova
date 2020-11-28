@@ -12,7 +12,7 @@ describe("Settings form", () => {
             <SettingsForm onSubmit={submitHandler}/>
         );
         wrapper
-            .find({id: "settingsForm"})
+            .find(SettingsForm)
             .simulate('submit')
         expect(submitHandler).toBeCalled()
     });
