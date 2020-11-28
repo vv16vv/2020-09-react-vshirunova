@@ -24,9 +24,6 @@ export class SettingsForm extends React.Component<SettingsFormProps, SettingsFor
 
     constructor(props: SettingsFormProps) {
         super(props);
-        this.state = {
-            ...initialFormProps
-        };
     }
 
     changeWidth = (newValue: number) => {
@@ -50,7 +47,7 @@ export class SettingsForm extends React.Component<SettingsFormProps, SettingsFor
     render() {
         return (
             <Formik initialValues={initialFormProps} onSubmit={this.props.onSubmit}>
-                <Form id={"settingsForm"}>
+                <Form>
                     <StyledFieldSet>
                         <TableTitle>Game Settings</TableTitle>
                         <LayoutTable>
