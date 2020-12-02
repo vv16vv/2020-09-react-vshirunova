@@ -3,6 +3,7 @@ import {Form, Formik} from "formik";
 import {Range} from "./Range";
 import {FieldTitle, TableTitle} from "./StyledTextComponents";
 import {LayoutTable, LayoutTd, LayoutTr, StyledButton, StyledFieldSet} from "./StyledComponents";
+import {RangeFormik} from "./RangeFormik";
 
 export interface SettingsFormResult {
     width: number;
@@ -54,7 +55,7 @@ export class SettingsFormikForm extends React.Component<SettingsFormProps, Setti
                             <tbody>
                             <LayoutTr>
                                 <LayoutTd><FieldTitle>Width</FieldTitle></LayoutTd>
-                                <LayoutTd><Range
+                                <LayoutTd><RangeFormik
                                     name={"Width"}
                                     max={50}
                                     value={initialFormProps.width}
@@ -62,7 +63,7 @@ export class SettingsFormikForm extends React.Component<SettingsFormProps, Setti
                             </LayoutTr>
                             <LayoutTr>
                                 <LayoutTd><FieldTitle>Height</FieldTitle></LayoutTd>
-                                <LayoutTd><Range
+                                <LayoutTd><RangeFormik
                                     name={"Height"}
                                     max={50}
                                     value={initialFormProps.height}
@@ -70,7 +71,7 @@ export class SettingsFormikForm extends React.Component<SettingsFormProps, Setti
                             </LayoutTr>
                             <LayoutTr>
                                 <LayoutTd><FieldTitle>Frequency, sec</FieldTitle></LayoutTd>
-                                <LayoutTd><Range
+                                <LayoutTd><RangeFormik
                                     name={"Frequency"}
                                     max={10} min={2} step={0.5}
                                     value={initialFormProps.frequency}
