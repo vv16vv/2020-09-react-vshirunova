@@ -4,6 +4,7 @@ import {Field} from "./Field";
 interface GameProp {
     width: number;
     height: number;
+    frequency?:number;
 }
 
 interface GameState {
@@ -30,7 +31,7 @@ export class JumpingCellGame extends React.Component<GameProp, GameState> {
         super(props);
         console.log(`JumpingCellGame - constructor: props = ${JSON.stringify(props)}`);
         this.state = {
-            frequency: 2000,
+            frequency: this.props.frequency || 2000,
             x: 1,
             y: 1,
         };
