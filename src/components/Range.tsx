@@ -1,7 +1,6 @@
 import React, {ChangeEvent, useCallback, useState} from "react";
 import {RangeBlock, StyledRange} from "./StyledComponents";
 import {CenteredLabel, RangeLabel} from "./StyledTextComponents";
-import {Field} from "formik";
 
 export interface RangeProp {
     name: string;
@@ -26,14 +25,14 @@ export const Range: React.FC<RangeProp> = ({name, min, max, step, value, changeH
         <div><CenteredLabel>{currentValue}</CenteredLabel></div>
         <div>
             <RangeLabel>{realMin}</RangeLabel>
-            <Field name={name}
-                   type="range"
-                   min={realMin}
-                   max={max}
-                   step={step ?? 1}
-                   value={currentValue}
-                   onChange={onChange}
-                   component={StyledRange}
+            <StyledRange
+                name={name}
+                type="range"
+                min={realMin}
+                max={max}
+                step={step ?? 1}
+                value={currentValue}
+                onChange={onChange}
             />
             <RangeLabel>{max}</RangeLabel>
         </div>
