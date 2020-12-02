@@ -1,6 +1,6 @@
 import 'jsdom-global/register';
 import React from "react";
-import {SettingsForm} from "./SettingsForm";
+import {SettingsFormikForm} from "./SettingsFormikForm";
 import {mount} from "enzyme";
 import {act} from "@testing-library/react";
 
@@ -10,7 +10,7 @@ describe("Settings form", () => {
 
     it("should process submit", async () => {
         const wrapper = mount(
-            <SettingsForm onSubmit={submitHandler}/>
+            <SettingsFormikForm onSubmit={submitHandler}/>
         );
         act(() => {
             wrapper
