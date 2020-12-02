@@ -1,39 +1,72 @@
 // Задание 1
+import {QsObj} from "./pureFunctions";
+
 export type OriginalTeam = {
-  size: number;
-  name: string;
-  league: string;
+    size: number;
+    name: string;
+    league: string;
 };
 
 export type ExpectedTeam = {
-  name: string;
-  league: string;
-  roster: number;
+    name: string;
+    league: string;
+    roster: number;
 };
 
-export const originalTeamToExpectedTeam = (
-  originalTeam: OriginalTeam
+export const originalTeamToExpectedTeam1 = (
+    originalTeam: OriginalTeam
 ): ExpectedTeam => {
-  //
+    return Object.entries(originalTeam)
+        .reduce((team, [k, v]) => {
+            switch (k) {
+                case "name": {
+                    team[k] = "New York Badgers";
+                    break;
+                }
+                case "league": {
+                    team[k] = v;
+                    break;
+                }
+                default:
+                    break;
+            }
+            return team;
+        }, {"roster": 25}) as ExpectedTeam
 };
 
 // Задание 2
-type SomeArray = Array<number | string>;
+export type SomeArray = Array<number | string>;
 
-const originalArrayToExpectedArray = (originalArray: SomeArray): SomeArray => {
-  //
+export const originalArrayToExpectedArray = (originalArray: Readonly<SomeArray>): SomeArray => {
+    return ["two"].concat(originalArray.slice(-2), 5);
 };
 
 // Задание 3
 
 export type Team = {
-  name: string;
-  captain: {
     name: string;
-    age: number;
-  };
+    captain: {
+        name: string;
+        age: number;
+    };
 };
 
-export const originalTeamToExpectedTeam = (originalTeam: Team): Team => {
-  //
+const isPrimitive = (obj: any) => {
+    return (obj !== Object(obj));
+}
+
+const deepCopyIncAge = (obj: object): object => {
+    return Object.entries(obj)
+        .reduce((team, [k, v]) => {
+            if (k === "age") team[k] = v + 1;
+            else if (isPrimitive(v)) {
+                team[k] = v;
+            } else team[k] = deepCopyIncAge(v)
+
+            return team;
+        }, {});
+}
+
+export const originalTeamToExpectedTeam2 = (originalTeam: Team): Team => {
+    return deepCopyIncAge(originalTeam) as Team;
 }
