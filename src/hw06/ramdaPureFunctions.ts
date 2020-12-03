@@ -1,17 +1,16 @@
-import {
-  compose,
-  //...
-} from "ramda";
+import {assoc, compose, concat, fromPairs, join, last, map, prop, slice, sortBy, split, toPairs} from "ramda";
 
 // Задание 1
 export type Team = { name: string; score: number };
 
-export const getTopName = compose(/* ... */);
+export const getTopName = compose(prop("name"), last, sortBy(prop("score")));
 
 // Задание 2
-export type QsObj = Record<string, string | number | boolean | object>;
+type OneValue = string | number | boolean | object;
+export type QsObj = Record<string, OneValue>;
 
-const createQs = compose(/* ... */);
+export const createQs = compose(concat("?"),join("&"),map(join("=")),toPairs);
 
 // Задание 3
-const parseQs = compose(/* ... */);
+const stringToEntry = split("=");
+export const parseQs = compose(fromPairs, map(stringToEntry), split("&"), slice(1, Infinity));
