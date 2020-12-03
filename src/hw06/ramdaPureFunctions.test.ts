@@ -1,5 +1,4 @@
-
-import { getTopName, Team, QsObj, createQs, parseQs } from "./ramdaPureFunctions";
+import {createQs, getTopName, parseQs, QsObj, Team} from "./ramdaPureFunctions";
 
 test("getTopName", () => {
   const teams: Team[] = [
@@ -28,7 +27,7 @@ test("createQs", () => {
 test("parseQs", () => {
   const qs = "?page=2&pageSize=10&total=205&somethingElse=value";
 
-  expect(parseQs(qs)).toBe({
+  expect(parseQs(qs)).toStrictEqual({
     page: "2",
     pageSize: "10",
     total: "205",
