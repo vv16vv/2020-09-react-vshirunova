@@ -6,18 +6,18 @@ import {act} from "@testing-library/react";
 
 describe("Settings form", () => {
 
-    const submitHandler = jest.fn();
+  const submitHandler = jest.fn();
 
-    it("should process submit", async () => {
-        const wrapper = mount(
-            <SettingsFormikForm onSubmit={submitHandler}/>
-        );
-        act(() => {
-            wrapper
-                .find('button')
-                .simulate('submit');
-        });
-        await expect(submitHandler).toHaveBeenCalled()
+  it("should process submit", async () => {
+    await act(async () => {
+      const wrapper = mount(
+        <SettingsFormikForm onSubmit={submitHandler}/>
+      );
+      wrapper
+        .find('SettingsFormikForm')
+        .simulate('submit');
     });
+    expect(submitHandler).toHaveBeenCalled()
+  });
 
 });
