@@ -2,7 +2,7 @@
 export type Team = { name: string; score: number };
 
 export const getTopName = (teams: Team[]): string => {
-    return teams.sort((a, b) => (a.score === b.score) ? 0 : (a.score > b.score) ? 1 : -1)
+    return teams.sort((a, b) => a.score - b.score)
         ?.pop()
         ?.name ?? "";
 };
@@ -26,5 +26,5 @@ export const parseQs = (qs: string): QsObj => {
         .reduce((acc, [k, v]) => {
             acc[k] = v
             return acc;
-        }, {}) as QsObj
+        }, {} as QsObj)
 };

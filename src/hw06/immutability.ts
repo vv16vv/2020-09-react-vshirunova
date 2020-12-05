@@ -1,5 +1,4 @@
 // Задание 1
-import {QsObj} from "./pureFunctions";
 
 export type OriginalTeam = {
     size: number;
@@ -24,21 +23,21 @@ export const originalTeamToExpectedTeam1 = (
                     break;
                 }
                 case "league": {
-                    team[k] = v;
+                    team[k] = v as string;
                     break;
                 }
                 default:
                     break;
             }
             return team;
-        }, {"roster": 25}) as ExpectedTeam
+        }, {"roster": 25} as ExpectedTeam)
 };
 
 // Задание 2
 export type SomeArray = Array<number | string>;
 
 export const originalArrayToExpectedArray = (originalArray: Readonly<SomeArray>): SomeArray => {
-    return ["two"].concat(originalArray.slice(-2), 5);
+    return ["two", ...originalArray.slice(-2), 5];
 };
 
 // Задание 3
@@ -55,16 +54,19 @@ const isPrimitive = (obj: any) => {
     return (obj !== Object(obj));
 }
 
-const deepCopyIncAge = (obj: object): object => {
+type OneValue = string | number | boolean | object;
+type ComplexObject = Record<string, OneValue>;
+
+const deepCopyIncAge = (obj: ComplexObject): ComplexObject => {
     return Object.entries(obj)
         .reduce((team, [k, v]) => {
-            if (k === "age") team[k] = v + 1;
+            if (k === "age") team[k] = (v as number) + 1;
             else if (isPrimitive(v)) {
                 team[k] = v;
-            } else team[k] = deepCopyIncAge(v)
+            } else team[k] = deepCopyIncAge(v as ComplexObject)
 
             return team;
-        }, {});
+        }, {} as ComplexObject);
 }
 
 export const originalTeamToExpectedTeam2 = (originalTeam: Team): Team => {
