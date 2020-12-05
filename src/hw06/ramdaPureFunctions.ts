@@ -1,9 +1,14 @@
-import {assoc, compose, concat, fromPairs, join, last, map, prop, slice, sortBy, split, toPairs} from "ramda";
+import {compose, concat, fromPairs, join, last, map, prop, slice, sortBy, split, toPairs} from "ramda";
 
 // Задание 1
 export type Team = { name: string; score: number };
 
-export const getTopName = compose(prop("name"), last, sortBy(prop("score")));
+export const getTopName = compose(
+  prop<string, Team>("name"),
+  last,
+  sortBy(prop("score")),
+  map((v: Team) => ({...v}))
+);
 
 // Задание 2
 type OneValue = string | number | boolean | object;
