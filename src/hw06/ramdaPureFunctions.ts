@@ -14,8 +14,17 @@ export const getTopName = compose(
 type OneValue = string | number | boolean | object;
 export type QsObj = Record<string, OneValue>;
 
-export const createQs = compose(concat("?"),join("&"),map(join("=")),toPairs);
+export const createQs = compose(
+  concat("?"),
+  join("&"),
+  map(join("=")),
+  toPairs as (qsObj: QsObj) => string[][]
+);
 
 // Задание 3
 const stringToEntry = split("=");
-export const parseQs = compose(fromPairs, map(stringToEntry), split("&"), slice(1, Infinity));
+export const parseQs = compose(fromPairs as (pairs: string[][]) => QsObj,
+  map(stringToEntry),
+  split("&"),
+  slice(1, Infinity)
+) as (p: string) => QsObj;
