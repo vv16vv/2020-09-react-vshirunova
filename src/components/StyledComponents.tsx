@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import {css} from "@emotion/core";
 import {CurrentTheme} from "./StyledColors";
 import {SelectedFontSmall} from "./StyledTextComponents";
+import React from "react";
 
 const TableBorder = css`
   border-width: 1px;
@@ -81,10 +82,17 @@ export const RangeBlock = styled.div`
   background-color: ${CurrentTheme.backgroundColor};
 `;
 
-export const ColumnBlock = styled.div`
-  display: inline-block;
-  background-color: ${CurrentTheme.backgroundColor};
-`;
+export const ColumnBlockFC: React.FC<{ width: string, name: string }> = ({width, name, children}) => {
+  const Cmp = styled.div`
+    display: inline-block;
+    width: ${width};
+    background-color: ${CurrentTheme.backgroundColor};
+  `;
+
+  return <Cmp data-name={name}>
+    {children}
+  </Cmp>;
+}
 
 export const StyledButton = styled.button`
   ${SelectedFontSmall};
