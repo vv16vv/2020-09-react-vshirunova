@@ -1,6 +1,5 @@
 import React from "react";
-import {GameWithSettings} from "../components/GameWithSettings";
-import {ColumnLayout} from "./ColumnLayout";
+import {GameHalfWindowColumn} from "./ColumnLayout";
 
 export class GameLayout extends React.Component<{}> {
 
@@ -10,8 +9,8 @@ export class GameLayout extends React.Component<{}> {
 
   render() {
     return (<>
-      <ColumnLayout><GameWithSettings/></ColumnLayout>
-      <ColumnLayout><GameWithSettings/></ColumnLayout>
+      <GameHalfWindowColumn name={"left"}/>
+      <GameHalfWindowColumn name={"right"}/>
     </>);
   }
 }
