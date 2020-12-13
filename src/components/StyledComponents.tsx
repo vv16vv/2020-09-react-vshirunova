@@ -32,10 +32,10 @@ export const LayoutTr = styled.tr`
 `;
 
 interface StyledCellProp {
-    filled: boolean;
-    id: string;
-    onClick: () => void;
-    children?: string;
+  filled: boolean;
+  id: string;
+  onClick: () => void;
+  children?: string;
 }
 
 const CommonCell = css`
@@ -78,6 +78,11 @@ export const RangeBlock = styled.div`
   display: inline-block;
   width: 400px;
   height: 15px;
+  background-color: ${CurrentTheme.backgroundColor};
+`;
+
+export const ColumnBlock = styled.div`
+  display: inline-block;
   background-color: ${CurrentTheme.backgroundColor};
 `;
 
