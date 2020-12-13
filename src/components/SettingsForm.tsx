@@ -31,22 +31,12 @@ export class SettingsForm extends React.Component<SettingsFormProps, SettingsFor
         };
     }
 
-    changeWidth = (newValue: number) => {
-        this.setState({
-            width: newValue
-        })
-    }
-
-    changeHeight = (newValue: number) => {
-        this.setState({
-            height: newValue
-        })
-    }
-
-    changeFrequency = (newValue: number) => {
-        this.setState({
-            frequency: newValue
-        })
+    changeValue = (field: string, newValue: number) => {
+        if(field in this.state) {
+            this.setState({
+                [field]: newValue,
+            })
+        }
     }
 
     handleSubmit = (event: React.FormEvent) => {
@@ -69,26 +59,26 @@ export class SettingsForm extends React.Component<SettingsFormProps, SettingsFor
                         <LayoutTr>
                             <LayoutTd><FieldTitle>Width</FieldTitle></LayoutTd>
                             <LayoutTd><Range
-                                name={"Width"}
+                                name={"width"}
                                 max={50}
                                 value={this.state.width}
-                                changeHandler={this.changeWidth}/></LayoutTd>
+                                changeHandler={this.changeValue}/></LayoutTd>
                         </LayoutTr>
                         <LayoutTr>
                             <LayoutTd><FieldTitle>Height</FieldTitle></LayoutTd>
                             <LayoutTd><Range
-                                name={"Height"}
+                                name={"height"}
                                 max={50}
                                 value={this.state.height}
-                                changeHandler={this.changeHeight}/></LayoutTd>
+                                changeHandler={this.changeValue}/></LayoutTd>
                         </LayoutTr>
                         <LayoutTr>
                             <LayoutTd><FieldTitle>Frequency, sec</FieldTitle></LayoutTd>
                             <LayoutTd><Range
-                                name={"Frequency"}
+                                name={"frequency"}
                                 max={10} min={2} step={0.5}
                                 value={this.state.frequency}
-                                changeHandler={this.changeFrequency}/></LayoutTd>
+                                changeHandler={this.changeValue}/></LayoutTd>
                         </LayoutTr>
                         </tbody>
                     </LayoutTable>

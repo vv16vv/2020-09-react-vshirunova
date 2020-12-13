@@ -8,7 +8,7 @@ export interface RangeProp {
     max: number;
     step?: number;
     value: number;
-    changeHandler: (newValue: number) => void;
+    changeHandler: (field: string, newValue: number) => void;
 }
 
 export const Range: React.FC<RangeProp> = ({name, min, max, step, value, changeHandler}) => {
@@ -17,7 +17,7 @@ export const Range: React.FC<RangeProp> = ({name, min, max, step, value, changeH
 
     const onChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
         const newValue = +event?.target?.value ?? realMin;
-        changeHandler(newValue);
+        changeHandler(name,newValue);
         setCurValue(newValue);
     }, []);
 

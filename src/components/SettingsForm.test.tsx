@@ -29,17 +29,17 @@ describe("Settings form", () => {
             <SettingsForm onSubmit={submitHandler}/>
         );
         wrapper
-            .find('input[name="Width"]')
+            .find('input[name="width"]')
             .simulate("change", {
                 target: { value: changedValues.width },
             });
         wrapper
-            .find('input[name="Height"]')
+            .find('input[name="height"]')
             .simulate("change", {
                 target: { value: changedValues.height },
             });
         wrapper
-            .find('input[name="Frequency"]')
+            .find('input[name="frequency"]')
             .simulate("change", {
                 target: { value: changedValues.frequency / 1000 },
             });
