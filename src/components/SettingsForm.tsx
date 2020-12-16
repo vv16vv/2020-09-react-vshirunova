@@ -32,11 +32,9 @@ export class SettingsForm extends React.Component<SettingsFormProps, SettingsFor
     }
 
     changeValue = (field: string, newValue: number) => {
-        if(field in this.state) {
-            this.setState({
-                [field]: newValue,
-            })
-        }
+        this.setState({
+            [field]: newValue
+        } as Pick<SettingsFormResult, keyof SettingsFormResult>)
     }
 
     handleSubmit = (event: React.FormEvent) => {

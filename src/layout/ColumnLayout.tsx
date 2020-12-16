@@ -23,8 +23,8 @@ class ColumnLayout extends React.Component<ColumnLayoutProps> {
   }
 }
 
-function columnLayoutHoc<T>(cq: ColQuantity, Component: React.Component<T> | React.FunctionComponent<T>) {
-  return (name: string) => <ColumnLayout name={name} col_quantity={cq}><Component/></ColumnLayout>
+function columnLayoutHoc(cq: ColQuantity, Component: React.ComponentType) {
+  return ({name}: { name: string }) => <ColumnLayout name={name} col_quantity={cq}><Component/></ColumnLayout>
 }
 
 export const GameHalfWindowColumn = columnLayoutHoc(2, GameWithSettings);
