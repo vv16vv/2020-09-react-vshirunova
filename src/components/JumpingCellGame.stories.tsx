@@ -15,9 +15,16 @@ export const JumpingCellGameStory: React.FC<{}> = () => {
         max: 20,
         step: 1
     };
+    const optionsFreq = {
+        range: true,
+        min: 2000,
+        max: 10000,
+        step: 500
+    };
     const width = number("Width", 10, options);
     const height = number("Height", 10, options);
+    const frequency = number("Frequency", 5000, optionsFreq);
     return <ErrorBoundary>
-        <JumpingCellGame width={width} height={height}/>
+        <JumpingCellGame width={width} height={height} frequency={frequency}/>
     </ErrorBoundary>
 };

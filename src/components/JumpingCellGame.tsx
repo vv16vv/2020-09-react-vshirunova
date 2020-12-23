@@ -1,11 +1,6 @@
 import React from "react";
 import {Field} from "./Field";
-
-interface GameProp {
-    width: number;
-    height: number;
-    frequency?:number;
-}
+import {SettingsFormResult} from "./SettingsForm";
 
 interface GameState {
     frequency: number;
@@ -26,12 +21,12 @@ class TooBigCoord extends Error {
     }
 }
 
-export class JumpingCellGame extends React.Component<GameProp, GameState> {
-    constructor(props: GameProp) {
+export class JumpingCellGame extends React.Component<SettingsFormResult, GameState> {
+    constructor(props: SettingsFormResult) {
         super(props);
         console.log(`JumpingCellGame - constructor: props = ${JSON.stringify(props)}`);
         this.state = {
-            frequency: this.props.frequency || 2000,
+            frequency: this.props.frequency,
             x: 1,
             y: 1,
         };
@@ -94,13 +89,22 @@ export class JumpingCellGame extends React.Component<GameProp, GameState> {
         }
     }
 
-    componentDidUpdate(prevProps: Readonly<GameProp>, prevState: Readonly<GameState>) {
+    componentDidUpdate(prevProps: Readonly<SettingsFormResult>, prevState: Readonly<GameState>) {
         console.log(`JumpingCellGame - componentDidUpdate: prevProps = ${JSON.stringify(prevProps)}, prevState = ${JSON.stringify(prevState)}`);
-        const {frequency: oldFreq} = prevState;
-        const {frequency: currFreq, timerId: currTimeId} = this.state;
-        if (oldFreq !== currFreq && currTimeId !== undefined) {
+        const {frequency: freqPrevProps} = prevProps;
+        const {frequency: freqCurrProps} = this.props;
+        const {frequency: freqPrevState} = prevState;
+        const {frequency: freqCurrState, timerId: currTimeId} = this.state;
+        if(freqPrevProps !== freqCurrProps){
+            clearInterval(currTimeId as NodeJS.Timeout)
+            const timerId = setInterval(this.handleJump, freqCurrProps);
+            this.setState({
+                frequency: freqCurrProps,
+                timerId: timerId
+            })
+        } else if (freqPrevState !== freqCurrState && currTimeId !== undefined) {
             clearInterval(currTimeId)
-            const timerId = setInterval(this.handleJump, currFreq);
+            const timerId = setInterval(this.handleJump, freqCurrState);
             this.setState({
                 timerId: timerId
             })
@@ -108,7 +112,7 @@ export class JumpingCellGame extends React.Component<GameProp, GameState> {
 
     }
 
-    getSnapshotBeforeUpdate(prevProps: Readonly<GameProp>, prevState: Readonly<GameState>): any | null {
+    getSnapshotBeforeUpdate(prevProps: Readonly<SettingsFormResult>, prevState: Readonly<GameState>): any | null {
         console.log(`JumpingCellGame - getSnapshotBeforeUpdate: prevProps = ${JSON.stringify(prevProps)}`)
         console.log(`JumpingCellGame - getSnapshotBeforeUpdate: ${JSON.stringify(prevState)}`)
         return null;
