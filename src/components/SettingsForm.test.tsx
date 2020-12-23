@@ -1,13 +1,14 @@
 import 'jsdom-global/register';
 import React from "react";
 import {mount} from "enzyme";
-import {initialFormProps, SettingsForm, SettingsFormResult} from "./SettingsForm";
+import {SettingsForm, SettingsFormResult} from "./SettingsForm";
+import {initialGameSettings} from "./GameWithSettings";
 
 describe("Settings form", () => {
 
     const submitHandler = jest.fn();
 
-    const defaultValues = initialFormProps;
+    const defaultValues = initialGameSettings;
     const changedValues:SettingsFormResult = {
         width: 15,
         height: 8,
@@ -16,7 +17,11 @@ describe("Settings form", () => {
 
     it("should process submit with default values", () => {
         const wrapper = mount(
-            <SettingsForm onSubmit={submitHandler}/>
+            <SettingsForm
+              width={defaultValues.width}
+              height={defaultValues.height}
+              frequency={defaultValues.frequency}
+              onSubmit={submitHandler}/>
         );
         wrapper
             .find('button')
@@ -26,7 +31,11 @@ describe("Settings form", () => {
 
     it("should process submit with changed values", () => {
         const wrapper = mount(
-            <SettingsForm onSubmit={submitHandler}/>
+          <SettingsForm
+            width={defaultValues.width}
+            height={defaultValues.height}
+            frequency={defaultValues.frequency}
+            onSubmit={submitHandler}/>
         );
         wrapper
             .find('input[name="width"]')

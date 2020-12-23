@@ -9,13 +9,7 @@ export interface SettingsFormResult {
     frequency: number;
 }
 
-export const initialFormProps: SettingsFormResult = {
-    width: 10,
-    height: 10,
-    frequency: 5000
-} as const;
-
-export interface SettingsFormProps {
+export interface SettingsFormProps extends SettingsFormResult{
     onSubmit: (settings: SettingsFormResult) => void;
 }
 
@@ -26,8 +20,8 @@ export class SettingsForm extends React.Component<SettingsFormProps, SettingsFor
     constructor(props: SettingsFormProps) {
         super(props);
         this.state = {
-            ...initialFormProps,
-            frequency: initialFormProps.frequency / milliInSecond
+            ...props,
+            frequency: props.frequency / milliInSecond
         };
     }
 
