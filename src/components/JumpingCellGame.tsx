@@ -94,14 +94,6 @@ export class JumpingCellGame extends React.Component<GameProp, GameState> {
         }
     }
 
-    shouldComponentUpdate(nextProps: Readonly<GameProp>, nextState: Readonly<GameState>): boolean {
-        console.log(`JumpingCellGame - shouldComponentUpdate: nextProps [w=${nextProps.width}, h=${nextProps.height}]`);
-        console.log(`JumpingCellGame - shouldComponentUpdate: nextState = [f=${nextState.frequency}, x=${nextState.x}, y=${nextState.y}, t=${nextState.timerId}]`);
-        const {x: currX, y: currY} = this.state;
-        const {x: newX, y: newY} = nextState;
-        return currX !== newX || currY !== newY;
-    }
-
     componentDidUpdate(prevProps: Readonly<GameProp>, prevState: Readonly<GameState>) {
         console.log(`JumpingCellGame - componentDidUpdate: prevProps = ${JSON.stringify(prevProps)}, prevState = ${JSON.stringify(prevState)}`);
         const {frequency: oldFreq} = prevState;
