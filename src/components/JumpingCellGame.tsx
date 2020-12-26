@@ -1,11 +1,15 @@
 import React from "react";
 import {Field} from "./Field";
 import {SettingsFormResult} from "./SettingsForm";
+import {StyledBlock, StyledButton} from "./StyledComponents";
+import {CenteredLabel, RangeLabel} from "./StyledTextComponents";
 
 interface GameState {
     frequency: number;
     x: number;
     y: number;
+    jumps: number;
+    clicks: number;
     timerId?: ReturnType<typeof setInterval>;
 }
 
@@ -21,21 +25,30 @@ class TooBigCoord extends Error {
     }
 }
 
+const initialState: GameState = {
+    x: 1,
+    y: 1,
+    jumps: 0,
+    clicks: 0,
+    frequency: 1000
+}
+
 export class JumpingCellGame extends React.Component<SettingsFormResult, GameState> {
     constructor(props: SettingsFormResult) {
         super(props);
         console.log(`JumpingCellGame - constructor: props = ${JSON.stringify(props)}`);
         this.state = {
+            ...initialState,
             frequency: this.props.frequency,
-            x: 1,
-            y: 1,
         };
     }
 
     handleClick = (x: number, y: number) => {
         console.log(`JumpingCellGame - handleClick: x = ${x}, y = ${y}`);
+        this.incrementClicks()
         if (this.state.x === x && this.state.y === y) {
             this.increaseFrequency()
+            this.incrementJumps()
         }
     }
 
@@ -65,6 +78,33 @@ export class JumpingCellGame extends React.Component<SettingsFormResult, GameSta
         const {frequency} = this.state;
         this.setState({
                 frequency: Math.max(10, Math.round(frequency / 2))
+            }
+        )
+    }
+
+    incrementClicks = () => {
+        console.log(`JumpingCellGame - incrementClicks`);
+        const {clicks} = this.state;
+        this.setState({
+                clicks: clicks + 1
+            }
+        )
+    }
+
+    incrementJumps = () => {
+        console.log(`JumpingCellGame - incrementJumps`);
+        const {jumps} = this.state;
+        this.setState({
+                jumps: jumps + 1
+            }
+        )
+    }
+
+    resetHandle = () => {
+        console.log(`JumpingCellGame - resetHandle`);
+        this.setState({
+                ...initialState,
+                frequency: this.props.frequency,
             }
         )
     }
@@ -122,11 +162,20 @@ export class JumpingCellGame extends React.Component<SettingsFormResult, GameSta
         const x = this.assertCoordIsOk(this.state.x, this.props.width)
         const y = this.assertCoordIsOk(this.state.y, this.props.height)
         console.log(`JumpingCellGame - render`);
-        return <Field
-            width={this.props.width}
-            height={this.props.height}
-            filledCells={[{x: x, y: y}]}
-            clickHandler={this.handleClick}
-        />;
+        return <>
+            <StyledBlock>
+            <Field
+                width={this.props.width}
+                height={this.props.height}
+                filledCells={[{x: x, y: y}]}
+                clickHandler={this.handleClick}
+            />
+            </StyledBlock>
+            <StyledBlock>
+                <CenteredLabel>{`Jumps: ${this.state.jumps}`}</CenteredLabel>
+                <CenteredLabel>{`Clicks: ${this.state.clicks}`}</CenteredLabel>
+                <StyledButton onClick={this.resetHandle}>Reset</StyledButton>
+            </StyledBlock>
+        </>;
     }
 }

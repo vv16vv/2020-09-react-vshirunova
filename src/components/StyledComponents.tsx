@@ -112,3 +112,10 @@ export const StyledFieldSet = styled.fieldset`
   border-style: solid;
   width: 500px;
 `;
+
+export const StyledBlock = styled.div`
+  display: inline-block;
+  margin-top: 10px;
+  margin-right: 10px;
+  vertical-align: top;
+`;
