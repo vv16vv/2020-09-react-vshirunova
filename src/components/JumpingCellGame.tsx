@@ -49,6 +49,7 @@ export class JumpingCellGame extends React.Component<SettingsFormResult, GameSta
         if (this.state.x === x && this.state.y === y) {
             this.increaseFrequency()
             this.incrementJumps()
+            this.handleJump()
         }
     }
 
