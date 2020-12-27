@@ -141,6 +141,10 @@ export class JumpingCellGame extends React.Component<SettingsFormResult, GameSta
         if (newWidth < oldWidth && x > newWidth) {
             this.setState({
                 x: newWidth,
+            })
+        }
+        if(newWidth !== oldWidth) {
+            this.setState({
                 width: newWidth,
             })
         }
@@ -151,6 +155,11 @@ export class JumpingCellGame extends React.Component<SettingsFormResult, GameSta
         if (newHeight < oldHeight && y > newHeight) {
             this.setState({
                 y: newHeight,
+                height: newHeight,
+            })
+        }
+        if(newHeight !== oldHeight) {
+            this.setState({
                 height: newHeight,
             })
         }
