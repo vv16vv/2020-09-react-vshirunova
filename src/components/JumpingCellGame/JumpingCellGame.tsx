@@ -6,6 +6,8 @@ import {CenteredLabel} from "styled/StyledTextComponents";
 
 interface GameState {
     frequency: number;
+    width: number;
+    height: number;
     x: number;
     y: number;
     jumps: number;
@@ -28,10 +30,12 @@ class TooBigCoord extends Error {
 const initialState: GameState = {
     x: 1,
     y: 1,
+    width: 10,
+    height: 10,
     jumps: 0,
     clicks: 0,
     frequency: 1000
-}
+} as const;
 
 export class JumpingCellGame extends React.Component<SettingsFormResult, GameState> {
     constructor(props: SettingsFormResult) {
@@ -39,7 +43,7 @@ export class JumpingCellGame extends React.Component<SettingsFormResult, GameSta
         console.log(`JumpingCellGame - constructor: props = ${JSON.stringify(props)}`);
         this.state = {
             ...initialState,
-            frequency: this.props.frequency,
+            ...props,
         };
     }
 
@@ -55,7 +59,7 @@ export class JumpingCellGame extends React.Component<SettingsFormResult, GameSta
 
     handleJump = () => {
         console.log(`JumpingCellGame - handleJump`);
-        const {width, height} = this.props;
+        const {width, height} = this.state;
         const newX = this.nextRandomCoord(width);
         const newY = this.nextRandomCoord(height);
         this.setState({
@@ -106,6 +110,8 @@ export class JumpingCellGame extends React.Component<SettingsFormResult, GameSta
         this.setState({
                 ...initialState,
                 frequency: this.props.frequency,
+                width: this.props.width,
+                height: this.props.height,
             }
         )
     }
@@ -130,27 +136,55 @@ export class JumpingCellGame extends React.Component<SettingsFormResult, GameSta
         }
     }
 
-    componentDidUpdate(prevProps: Readonly<SettingsFormResult>, prevState: Readonly<GameState>) {
-        console.log(`JumpingCellGame - componentDidUpdate: prevProps = ${JSON.stringify(prevProps)}, prevState = ${JSON.stringify(prevState)}`);
-        const {frequency: freqPrevProps} = prevProps;
-        const {frequency: freqCurrProps} = this.props;
-        const {frequency: freqPrevState} = prevState;
-        const {frequency: freqCurrState, timerId: currTimeId} = this.state;
-        if(freqPrevProps !== freqCurrProps){
-            clearInterval(currTimeId as NodeJS.Timeout)
-            const timerId = setInterval(this.handleJump, freqCurrProps);
+    checkFieldWidth = (newWidth: number, oldWidth: number) => {
+        const {x} = this.state;
+        if (newWidth < oldWidth && x > newWidth) {
             this.setState({
-                frequency: freqCurrProps,
+                x: newWidth,
+                width: newWidth,
+            })
+        }
+    }
+
+    checkFieldHeight = (newHeight: number, oldHeight: number) => {
+        const {y} = this.state;
+        if (newHeight < oldHeight && y > newHeight) {
+            this.setState({
+                y: newHeight,
+                height: newHeight,
+            })
+        }
+    }
+
+    checkFrequencyReset = (newFreq: number, oldFreq: number) => {
+        if (newFreq !== oldFreq) {
+            const {timerId: currTimeId} = this.state;
+            clearInterval(currTimeId as NodeJS.Timeout)
+            const timerId = setInterval(this.handleJump, newFreq);
+            this.setState({
+                frequency: newFreq,
                 timerId: timerId
             })
-        } else if (freqPrevState !== freqCurrState && currTimeId !== undefined) {
-            clearInterval(currTimeId)
-            const timerId = setInterval(this.handleJump, freqCurrState);
+        }
+    }
+
+    checkFrequencyChange = (newFreq: number, oldFreq: number) => {
+        const {timerId: currTimeId} = this.state;
+        if (newFreq !== oldFreq && currTimeId !== undefined) {
+            clearInterval(currTimeId as NodeJS.Timeout)
+            const timerId = setInterval(this.handleJump, newFreq);
             this.setState({
                 timerId: timerId
             })
         }
+    }
 
+    componentDidUpdate(prevProps: Readonly<SettingsFormResult>, prevState: Readonly<GameState>) {
+        console.log(`JumpingCellGame - componentDidUpdate: prevProps = ${JSON.stringify(prevProps)}, prevState = ${JSON.stringify(prevState)}`);
+        this.checkFieldWidth(this.props.width, prevState.width)
+        this.checkFieldHeight(this.props.height, prevState.height)
+        this.checkFrequencyReset(this.props.frequency, prevProps.frequency)
+        this.checkFrequencyChange(this.state.frequency, prevState.frequency)
     }
 
     getSnapshotBeforeUpdate(prevProps: Readonly<SettingsFormResult>, prevState: Readonly<GameState>): any | null {
@@ -160,17 +194,18 @@ export class JumpingCellGame extends React.Component<SettingsFormResult, GameSta
     }
 
     render() {
-        const x = this.assertCoordIsOk(this.state.x, this.props.width)
-        const y = this.assertCoordIsOk(this.state.y, this.props.height)
+        const {width, height} = this.state;
+        const x = this.assertCoordIsOk(this.state.x, width)
+        const y = this.assertCoordIsOk(this.state.y, height)
         console.log(`JumpingCellGame - render`);
         return <>
             <StyledBlock>
-            <Field
-                width={this.props.width}
-                height={this.props.height}
-                filledCells={[{x: x, y: y}]}
-                clickHandler={this.handleClick}
-            />
+                <Field
+                    width={width}
+                    height={height}
+                    filledCells={[{x: x, y: y}]}
+                    clickHandler={this.handleClick}
+                />
             </StyledBlock>
             <StyledBlock>
                 <CenteredLabel>{`Jumps: ${this.state.jumps}`}</CenteredLabel>
