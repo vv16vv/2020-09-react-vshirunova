@@ -1,7 +1,7 @@
 import React from "react";
-import {Range} from "./Range";
-import {FieldTitle, TableTitle} from "./StyledTextComponents";
-import {LayoutTable, LayoutTd, LayoutTr, StyledButton, StyledFieldSet} from "./StyledComponents";
+import {Range} from "cmp/Range";
+import {FieldTitle, TableTitle} from "styled/StyledTextComponents";
+import {LayoutTable, LayoutTd, LayoutTr, StyledButton, StyledFieldSet} from "styled/StyledComponents";
 
 export interface SettingsFormResult {
     width: number;

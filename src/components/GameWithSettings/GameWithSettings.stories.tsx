@@ -1,6 +1,4 @@
 import React from "react";
-import {action} from "@storybook/addon-actions";
-import {SettingsForm} from "./SettingsForm";
 import {GameWithSettings} from "./GameWithSettings";
 
 export default {

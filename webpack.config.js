@@ -6,6 +6,11 @@ module.exports = {
   devtool: "source-map",
   resolve: {
     extensions: [".js", ".jsx", ".ts", ".tsx", ".json"],
+    alias:{
+      styled: path.resolve(__dirname, "src/components/styled"),
+      cmp: path.resolve(__dirname, "src/components"),
+      "@": path.resolve(__dirname, "src"),
+    }
   },
   output: {
     path: path.join(__dirname, "/dist"),

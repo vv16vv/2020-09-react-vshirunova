@@ -2,7 +2,7 @@ import 'jsdom-global/register';
 import React from "react";
 import {mount} from "enzyme";
 import {SettingsForm, SettingsFormResult} from "./SettingsForm";
-import {initialGameSettings} from "./GameWithSettings";
+import {initialGameSettings} from "cmp/GameWithSettings";
 
 describe("Settings form", () => {
 
