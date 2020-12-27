@@ -1,8 +1,8 @@
 import React from "react";
-import {Field} from "./Field";
-import {SettingsFormResult} from "./SettingsForm";
-import {StyledBlock, StyledButton} from "./StyledComponents";
-import {CenteredLabel, RangeLabel} from "./StyledTextComponents";
+import {Field} from "cmp/Field";
+import {SettingsFormResult} from "cmp/SettingsForm";
+import {StyledBlock, StyledButton} from "styled/StyledComponents";
+import {CenteredLabel} from "styled/StyledTextComponents";
 
 interface GameState {
     frequency: number;

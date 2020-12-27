@@ -1,6 +1,6 @@
 import React, {useCallback, useState} from "react";
-import {SettingsForm, SettingsFormResult} from "./SettingsForm";
-import {JumpingCellGame} from "./JumpingCellGame";
+import {SettingsForm, SettingsFormResult} from "cmp/SettingsForm";
+import {JumpingCellGame} from "cmp/JumpingCellGame";
 
 export const initialGameSettings: SettingsFormResult = {
     width: 10,

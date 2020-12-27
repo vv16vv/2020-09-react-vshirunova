@@ -1,0 +1,1 @@
+export {GameWithSettings, initialGameSettings} from "./GameWithSettings";
