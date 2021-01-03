@@ -27,6 +27,21 @@ export const SelectedFontMedium = css`
   line-height: 18px;
 `;
 
+export const NormalFontLarge = css`
+  font-family: Tahoma, serif;
+  font-style: normal;
+  font-size: 22px;
+  color: ${CurrentTheme.mainForeColor};
+`;
+
+export const StyledP = styled.p`
+  ${NormalFontLarge}
+`;
+
+export const ErrorLabel = styled.span`
+  color: ${CurrentTheme.errorForeColor};
+`;
+
 export const RangeLabel = styled.span`
   ${BaseFont};
   vertical-align: top;
