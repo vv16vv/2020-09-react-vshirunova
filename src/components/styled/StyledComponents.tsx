@@ -69,6 +69,14 @@ export const StyledTd = styled.td`
   width: 20px;
 `;
 
+export const StyledInput = styled.input`
+  border-width: 1px;
+  border-radius: 4px;
+  border-style: solid;
+  color: ${CurrentTheme.mainForeColor};
+  background-color: ${CurrentTheme.backgroundColor};
+`;
+
 export const StyledRange = styled.input`
   width: 85%;
   color: ${CurrentTheme.mainForeColor};
