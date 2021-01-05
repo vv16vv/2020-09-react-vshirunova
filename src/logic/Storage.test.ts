@@ -1,32 +1,32 @@
-import {loginKey, loginStorage} from "@/logic/LoginStorage";
+import {loginKey, LoginStorage} from "@/logic/LoginStorage";
 
 describe("Storage", () => {
 
     const login = "vitkus";
 
     it("should be able to add the login", () => {
-        loginStorage.putNameToStorage(login)
+        LoginStorage.putNameToStorage(login)
         expect(global.localStorage.getItem(loginKey) !== null)
     });
 
     it("should be able to detect whether no login is added ", () => {
-        expect(loginStorage.isNameSet()).toBeFalsy()
+        expect(LoginStorage.isNameSet()).toBeFalsy()
     })
 
     it("should be able to detect whether the login is added ", () => {
-        loginStorage.putNameToStorage(login)
-        expect(loginStorage.isNameSet()).toBeTruthy()
+        LoginStorage.putNameToStorage(login)
+        expect(LoginStorage.isNameSet()).toBeTruthy()
     })
 
     it("should be able to return the added earlier login ", () => {
-        loginStorage.putNameToStorage(login)
-        expect(loginStorage.getCurrentName()).toBe(login)
+        LoginStorage.putNameToStorage(login)
+        expect(LoginStorage.getCurrentName()).toBe(login)
     })
 
     it("should be able to remove the added earlier login ", () => {
-        loginStorage.putNameToStorage(login)
-        loginStorage.clearName()
-        expect(loginStorage.isNameSet()).toBeFalsy()
+        LoginStorage.putNameToStorage(login)
+        LoginStorage.clearName()
+        expect(LoginStorage.isNameSet()).toBeFalsy()
     })
 
     afterEach(() => {
