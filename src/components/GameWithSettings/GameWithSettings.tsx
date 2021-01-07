@@ -1,12 +1,25 @@
 import React, {useCallback, useState} from "react";
 import {SettingsForm, SettingsFormResult} from "cmp/SettingsForm";
 import {JumpingCellGame} from "cmp/JumpingCellGame";
+import {LoginStorage} from "@/logic/LoginStorage";
+import {useHistory} from "react-router-dom";
+import {Paths} from "@/Paths";
+import {StyledButton} from "styled/StyledComponents";
 
 export const initialGameSettings: SettingsFormResult = {
     width: 10,
     height: 10,
     frequency: 5000
-}as const;
+} as const;
+
+const LogoutButton: React.FC<{}> = () => {
+    const history = useHistory()
+    const logout = useCallback(() => {
+        LoginStorage.clearName()
+        history.push(Paths.Root)
+    },[])
+    return <StyledButton onClick={logout}>Log out</StyledButton>
+}
 
 export const GameWithSettings: React.FC<{}> = (() => {
     const [width, setWidth] = useState(initialGameSettings.width);
@@ -24,6 +37,7 @@ export const GameWithSettings: React.FC<{}> = (() => {
         <>
             <SettingsForm width={width} height={height} frequency={frequency} onSubmit={handleSubmit}/>
             <JumpingCellGame width={width} height={height} frequency={frequency}/>
+            <LogoutButton/>
         </>
     );
 });
