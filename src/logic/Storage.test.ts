@@ -1,3 +1,6 @@
+/**
+ * @jest-environment jsdom
+ */
 import {loginKey, LoginStorage} from "@/logic/LoginStorage";
 
 describe("Storage", () => {
