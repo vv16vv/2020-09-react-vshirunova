@@ -22,8 +22,8 @@ export class SettingsForm extends React.Component<SettingsFormProps, SettingsFor
         super(props);
         this.state = {
             ...props,
-            userName: props.userName !== undefined ? `for ${props.userName}` : "",
-            frequency: props.frequency / milliInSecond
+            userName: this.calculateUserName(props.userName),
+            frequency: this.calculateFrequency(props.frequency)
         };
     }
 
@@ -41,6 +41,38 @@ export class SettingsForm extends React.Component<SettingsFormProps, SettingsFor
             height: this.state.height,
             frequency: this.state.frequency * milliInSecond,
         });
+    }
+
+    calculateUserName = (userName: string | undefined): string => {
+        return userName && userName !== "" ? `for ${userName}` : ""
+    }
+
+    calculateFrequency = (frequency: number):number => {
+        return frequency / milliInSecond
+    }
+
+    shouldComponentUpdate(nextProps: Readonly<SettingsFormProps>, nextState: Readonly<SettingsFormResult>): boolean {
+        if(nextProps.userName !== this.props.userName) {
+            this.setState({
+                userName: this.calculateUserName(nextProps.userName)
+            })
+        }
+        if(nextProps.width !== this.props.width) {
+            this.setState({
+                width: nextProps.width
+            })
+        }
+        if(nextProps.height !== this.props.height) {
+            this.setState({
+                height: nextProps.height
+            })
+        }
+        if(nextProps.frequency !== this.props.frequency) {
+            this.setState({
+                frequency: this.calculateFrequency(nextProps.frequency)
+            })
+        }
+        return true;
     }
 
     render() {
