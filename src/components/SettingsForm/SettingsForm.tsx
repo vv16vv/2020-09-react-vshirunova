@@ -1,10 +1,7 @@
 import React from "react";
-import {Redirect} from "react-router-dom";
 import {Range} from "cmp/Range";
 import {FieldTitle, TableTitle} from "styled/StyledTextComponents";
 import {LayoutTable, LayoutTd, LayoutTr, StyledButton, StyledFieldSet} from "styled/StyledComponents";
-import {LoginStorage} from "@/logic/LoginStorage";
-import {Paths} from "@/Paths";
 
 export interface SettingsFormResult {
     width: number;
@@ -25,16 +22,9 @@ export class SettingsForm extends React.Component<SettingsFormProps, SettingsFor
         super(props);
         this.state = {
             ...props,
+            userName: props.userName !== undefined ? `for ${props.userName}` : "",
             frequency: props.frequency / milliInSecond
         };
-    }
-
-    componentDidMount() {
-        const currentName = LoginStorage.isNameSet() ? LoginStorage.getCurrentName() : "";
-        this.setState({
-                userName: currentName
-            }
-        )
     }
 
     changeValue = (field: string, newValue: number) => {
@@ -55,42 +45,40 @@ export class SettingsForm extends React.Component<SettingsFormProps, SettingsFor
 
     render() {
         return (
-            this.state.userName === ""
-                ? <Redirect to={Paths.Root}/>
-                : <form onSubmit={this.handleSubmit}>
-                    <StyledFieldSet>
-                        <TableTitle>{`Game Settings for ${this.state.userName}`}</TableTitle>
-                        <LayoutTable>
-                            <tbody>
-                            <LayoutTr>
-                                <LayoutTd><FieldTitle>Width</FieldTitle></LayoutTd>
-                                <LayoutTd><Range
-                                    name={"width"}
-                                    max={50}
-                                    value={this.state.width}
-                                    changeHandler={this.changeValue}/></LayoutTd>
-                            </LayoutTr>
-                            <LayoutTr>
-                                <LayoutTd><FieldTitle>Height</FieldTitle></LayoutTd>
-                                <LayoutTd><Range
-                                    name={"height"}
-                                    max={50}
-                                    value={this.state.height}
-                                    changeHandler={this.changeValue}/></LayoutTd>
-                            </LayoutTr>
-                            <LayoutTr>
-                                <LayoutTd><FieldTitle>Frequency, sec</FieldTitle></LayoutTd>
-                                <LayoutTd><Range
-                                    name={"frequency"}
-                                    max={10} min={2} step={0.5}
-                                    value={this.state.frequency}
-                                    changeHandler={this.changeValue}/></LayoutTd>
-                            </LayoutTr>
-                            </tbody>
-                        </LayoutTable>
-                    </StyledFieldSet>
-                    <StyledButton>Apply</StyledButton>
-                </form>
+            <form onSubmit={this.handleSubmit}>
+                <StyledFieldSet>
+                    <TableTitle>{`Game Settings ${this.state.userName}`}</TableTitle>
+                    <LayoutTable>
+                        <tbody>
+                        <LayoutTr>
+                            <LayoutTd><FieldTitle>Width</FieldTitle></LayoutTd>
+                            <LayoutTd><Range
+                                name={"width"}
+                                max={50}
+                                value={this.state.width}
+                                changeHandler={this.changeValue}/></LayoutTd>
+                        </LayoutTr>
+                        <LayoutTr>
+                            <LayoutTd><FieldTitle>Height</FieldTitle></LayoutTd>
+                            <LayoutTd><Range
+                                name={"height"}
+                                max={50}
+                                value={this.state.height}
+                                changeHandler={this.changeValue}/></LayoutTd>
+                        </LayoutTr>
+                        <LayoutTr>
+                            <LayoutTd><FieldTitle>Frequency, sec</FieldTitle></LayoutTd>
+                            <LayoutTd><Range
+                                name={"frequency"}
+                                max={10} min={2} step={0.5}
+                                value={this.state.frequency}
+                                changeHandler={this.changeValue}/></LayoutTd>
+                        </LayoutTr>
+                        </tbody>
+                    </LayoutTable>
+                </StyledFieldSet>
+                <StyledButton>Apply</StyledButton>
+            </form>
         );
     }
 }
