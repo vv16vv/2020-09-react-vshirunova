@@ -1,1 +1,1 @@
-export {LoginFormPage} from "./LoginFormPage";
+export {LoginFormResult, LoginForm} from "./LoginForm";
