@@ -1,7 +1,7 @@
 import React from "react";
-import {GameHalfWindowColumn} from "./ColumnLayout";
+import {GameHalfWindowColumn} from "cmp/Layout";
 
-export class GameLayout extends React.Component<{}> {
+export class GamePage extends React.Component<{}> {
 
   shouldComponentUpdate(): boolean {
     return false;
@@ -10,7 +10,6 @@ export class GameLayout extends React.Component<{}> {
   render() {
     return (<>
       <GameHalfWindowColumn name={"left"}/>
-      <GameHalfWindowColumn name={"right"}/>
     </>);
   }
 }
