@@ -1,7 +1,7 @@
 import 'jsdom-global/register';
 import React from "react";
 import {mount} from "enzyme";
-import {NotFound} from "./NotFoundPage";
+import {NotFound} from "./NotFound";
 
 describe("NotFound component", () => {
 

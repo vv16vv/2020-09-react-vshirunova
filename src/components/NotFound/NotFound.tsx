@@ -1,8 +1,6 @@
 import React from 'react';
-import {useHistory, useLocation} from "react-router-dom";
 import {StyledButton} from "styled/StyledComponents";
 import {ErrorLabel, StyledP} from "styled/StyledTextComponents";
-import {Paths} from "@/Paths";
 
 interface NotFoundProps {
     notFoundPath: string;
@@ -18,10 +16,3 @@ export const NotFound: React.FC<NotFoundProps> = ({notFoundPath, onBack}) => {
     )
 }
 
-export const NotFoundPage: React.FC<{}> = () => {
-    const {pathname} = useLocation()
-    const history = useHistory()
-    return (
-        <NotFound notFoundPath={pathname} onBack={() => history.push(Paths.Root)}/>
-    )
-}

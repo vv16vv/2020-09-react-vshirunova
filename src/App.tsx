@@ -1,9 +1,9 @@
 import React from 'react';
 import {GameLayout} from "cmp/GameLayout";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import {NotFoundPage} from "cmp/NotFoundPage";
 import {LoginFormPage} from "cmp/LoginForm";
 import {Paths} from "@/Paths";
+import {NotFoundPage} from "@/pages/NotFound";
 
 export const App: React.FC<{}> = () => {
     return (
