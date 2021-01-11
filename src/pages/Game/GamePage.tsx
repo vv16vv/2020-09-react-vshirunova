@@ -5,17 +5,31 @@ import {Redirect} from "react-router-dom";
 import {Paths} from "@/Paths";
 import {LoginStorage} from "@/logic/LoginStorage";
 
-export class GamePage extends React.Component<{}> {
+interface GameState {
+    isLoggedIn: boolean
+}
 
-  shouldComponentUpdate(): boolean {
-    return false;
-  }
+export class GamePage extends React.Component<{}, GameState> {
+    state = {
+        isLoggedIn: true
+    }
 
-  render() {
-    return <>{
-      LoginStorage.isNameSet()
-          ? <GameHalfWindowColumn name={"left"}/>
-          : <Redirect to={Paths.Root}/>
-    }</>;
-  }
+    componentDidMount() {
+        LoginStorage
+            .isNameSet()
+            .then((result) => this.setState({isLoggedIn: result}))
+    }
+
+    shouldComponentUpdate(nextProps: Readonly<{}>, nextState: Readonly<GameState>): boolean {
+        return this.state.isLoggedIn !== nextState.isLoggedIn
+    }
+
+    render() {
+        return <>{
+            this.state.isLoggedIn
+                ? <GameHalfWindowColumn name={"left"}/>
+                : <Redirect to={Paths.Root}/>
+        }</>;
+    }
+
 }
