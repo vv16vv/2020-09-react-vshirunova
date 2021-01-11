@@ -15,8 +15,9 @@ export const initialGameSettings: SettingsFormResult = {
 const LogoutButton: React.FC<{}> = () => {
     const history = useHistory()
     const logout = useCallback(() => {
-        LoginStorage.clearName()
-        history.push(Paths.Root)
+        LoginStorage
+            .clearName()
+            .then(() => history.push(Paths.Root))
     }, [])
     return <StyledButton onClick={logout}>Log out</StyledButton>
 }
@@ -29,16 +30,14 @@ export const GameWithSettings: React.FC<{}> = (() => {
 
     useEffect(() => {
         const getLogin = () => {
-            const login = LoginStorage.isNameSet() ? LoginStorage.getCurrentName() : ""
-            console.log(`GameWithSettings.useEffect1: login = '${login}'`)
-            setUserName(login)
+            LoginStorage
+                .getCurrentName()
+                .then(login => {
+                    setUserName(login)
+                })
         }
         getLogin()
-        return () => {
-            const login = LoginStorage.isNameSet() ? LoginStorage.getCurrentName() : ""
-            console.log(`GameWithSettings.useEffect2: login = '${login}'`)
-            setUserName(login)
-        }
+        return () => getLogin()
     }, [userName])
 
     const handleSubmit = useCallback(({width, height, frequency}: SettingsFormResult) => {

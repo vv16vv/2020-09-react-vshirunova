@@ -1,19 +1,20 @@
 export const loginKey = "login"
 
-export class LoginStorage {
-    static putNameToStorage(name: string) {
-        global.localStorage.setItem(loginKey, name)
-    }
+export const LoginStorage = {
+    async putNameToStorage(name: string) {
+        await global.localStorage.setItem(loginKey, name)
+    },
 
-    static isNameSet(): boolean {
-        return global.localStorage.getItem(loginKey) !== null
-    }
+    async isNameSet(): Promise<boolean> {
+        const loginValue = global.localStorage.getItem(loginKey)
+        return loginValue !== null && loginValue !== ""
+    },
 
-    static getCurrentName(): string {
-        return global.localStorage.getItem(loginKey)!!
-    }
+    async getCurrentName(): Promise<string> {
+        return global.localStorage.getItem(loginKey) ?? "";
+    },
 
-    static clearName() {
-        global.localStorage.removeItem(loginKey)
+    async clearName() {
+        await global.localStorage.removeItem(loginKey)
     }
 }
