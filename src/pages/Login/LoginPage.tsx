@@ -1,5 +1,5 @@
 import React, {useCallback} from "react";
-import {useHistory} from "react-router-dom";
+import {Redirect, useHistory} from "react-router-dom";
 
 import {LoginForm, LoginFormResult} from "cmp/LoginForm";
 import {LoginStorage} from "@/logic/LoginStorage";
@@ -11,5 +11,9 @@ export const LoginPage: React.FC<{}> = () => {
         LoginStorage.putNameToStorage(login)
         history.push(Paths.Game)
     }, [])
-    return <LoginForm onSubmit={submitHandler}/>
+    return <>{
+        LoginStorage.isNameSet()
+            ? <Redirect to={Paths.Game}/>
+            : <LoginForm onSubmit={submitHandler}/>
+    }</>
 }
