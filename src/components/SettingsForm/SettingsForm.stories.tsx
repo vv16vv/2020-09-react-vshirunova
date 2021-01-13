@@ -26,6 +26,7 @@ export const NoNameSettingsStory: React.FC<{}> = () => {
     const height = number("Height", 10, optionsDimension);
     const frequency = number("Frequency", 5000, optionsFreq);
     return <SettingsForm
+        key={width*height*frequency}
         width={width}
         height={height}
         frequency={frequency}
@@ -39,6 +40,7 @@ export const WithNameSettingsStory: React.FC<{}> = () => {
     const frequency = number("Frequency", 5000, optionsFreq);
     const userName = text("User name", "Vitkus");
     return <SettingsForm
+        key={userName+width*height*frequency}
         width={width}
         height={height}
         frequency={frequency}

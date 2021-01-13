@@ -51,30 +51,6 @@ export class SettingsForm extends React.Component<SettingsFormProps, SettingsFor
         return frequency / milliInSecond
     }
 
-    shouldComponentUpdate(nextProps: Readonly<SettingsFormProps>, nextState: Readonly<SettingsFormResult>): boolean {
-        if(nextProps.userName !== this.props.userName) {
-            this.setState({
-                userName: this.calculateUserName(nextProps.userName)
-            })
-        }
-        if(nextProps.width !== this.props.width) {
-            this.setState({
-                width: nextProps.width
-            })
-        }
-        if(nextProps.height !== this.props.height) {
-            this.setState({
-                height: nextProps.height
-            })
-        }
-        if(nextProps.frequency !== this.props.frequency) {
-            this.setState({
-                frequency: this.calculateFrequency(nextProps.frequency)
-            })
-        }
-        return true;
-    }
-
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
