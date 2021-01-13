@@ -37,7 +37,6 @@ export const GameWithSettings: React.FC<{}> = (() => {
                 })
         }
         getLogin()
-        return () => getLogin()
     }, [userName])
 
     const handleSubmit = useCallback(({width, height, frequency}: SettingsFormResult) => {
