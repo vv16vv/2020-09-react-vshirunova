@@ -18,10 +18,6 @@ export class LoginForm extends React.Component<LoginFormProps, LoginFormResult> 
 
     state = {...initialFormProps}
 
-    constructor(props: LoginFormProps) {
-        super(props);
-    }
-
     changeLogin = (e: ChangeEvent<HTMLInputElement>) => {
         this.setState({
             login: e.target.value ?? ""
