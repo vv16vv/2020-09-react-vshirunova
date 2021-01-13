@@ -15,11 +15,9 @@ export const LoginPage: React.FC<{}> = () => {
     }, [])
     const [isLoggedIn, setLoggedIn] = useState(false)
     useEffect(() => {
-        async function isLoggedIn() {
-            const result = await LoginStorage.isNameSet()
-            setLoggedIn(result)
-        }
-        isLoggedIn()
+        LoginStorage
+            .isNameSet()
+            .then((result: boolean) => setLoggedIn(result))
     })
     return <>{
         isLoggedIn
