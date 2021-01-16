@@ -1,27 +1,44 @@
 import "regenerator-runtime/runtime.js";
-import React, {useCallback, useEffect, useState} from "react";
+import React, {useCallback} from "react";
 import {Redirect, useHistory} from "react-router-dom";
+import {connect} from "react-redux";
+import {Dispatch} from "redux";
 
 import {LoginForm, LoginFormResult} from "cmp/LoginForm";
-import {LoginStorage} from "@/logic/LoginStorage";
 import {Paths} from "@/Paths";
+import {AppState} from "@/rdx/reducers";
+import {login} from "@/rdx/features/login";
 
-export const LoginPage: React.FC<{}> = () => {
+interface ReduxProps {
+    isLoggedIn: boolean
+    loginHandler: (userName: string) => void;
+}
+
+const RawLoginPage: React.FC<ReduxProps> = (props) => {
     const history = useHistory()
-    const submitHandler = useCallback(({login}: LoginFormResult) => {
-        LoginStorage
-            .putNameToStorage(login)
-            .then(() => history.push(Paths.Game))
-    }, [])
-    const [isLoggedIn, setLoggedIn] = useState(false)
-    useEffect(() => {
-        LoginStorage
-            .isNameSet()
-            .then((result: boolean) => setLoggedIn(result))
-    })
+    const submitHandler = useCallback(
+        ({login}: LoginFormResult) => {
+            props.loginHandler(login)
+            history.push(Paths.Game)
+        },
+        [])
     return <>{
-        isLoggedIn
+        props.isLoggedIn
             ? <Redirect to={Paths.Game}/>
             : <LoginForm onSubmit={submitHandler}/>
     }</>
 }
+
+function mapStateToProps(state: AppState) {
+    return {
+        isLoggedIn: state.loginReducer.isLoggedIn
+    };
+}
+
+function mapDispatchToProps(dispatch: Dispatch) {
+    return {
+        loginHandler: (userName: string) => dispatch(login({userName: userName})),
+    };
+}
+
+export const LoginPage = connect(mapStateToProps, mapDispatchToProps)(RawLoginPage);
