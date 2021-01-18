@@ -3,33 +3,25 @@ import {GameHalfWindowColumn} from "cmp/Layout";
 import {Redirect} from "react-router-dom";
 
 import {Paths} from "@/Paths";
-import {LoginStorage} from "@/logic/LoginStorage";
+import {AppState} from "@/rdx/reducers";
+import {connect} from "react-redux";
 
-interface GameState {
+interface ReduxProps {
     isLoggedIn: boolean
 }
 
-export class GamePage extends React.Component<{}, GameState> {
-    state = {
-        isLoggedIn: true
-    }
-
-    componentDidMount() {
-        LoginStorage
-            .isNameSet()
-            .then((result) => this.setState({isLoggedIn: result}))
-    }
-
-    shouldComponentUpdate(nextProps: Readonly<{}>, nextState: Readonly<GameState>): boolean {
-        return this.state.isLoggedIn !== nextState.isLoggedIn
-    }
-
-    render() {
-        return <>{
-            this.state.isLoggedIn
-                ? <GameHalfWindowColumn name={"left"}/>
-                : <Redirect to={Paths.Root}/>
-        }</>;
-    }
-
+export const RawGamePage: React.FC<ReduxProps> = props => {
+    return <>{
+        props.isLoggedIn
+            ? <GameHalfWindowColumn name={"left"}/>
+            : <Redirect to={Paths.Root}/>
+    }</>;
 }
+
+function mapStateToProps(state: AppState) {
+    return {
+        isLoggedIn: state.loginReducer.isLoggedIn
+    };
+}
+
+export const GamePage = connect(mapStateToProps)(RawGamePage);
