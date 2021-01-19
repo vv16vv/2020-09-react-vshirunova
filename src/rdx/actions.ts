@@ -1,4 +1,5 @@
 export enum ActionTypes {
     login = "login",
-    logout = "logout"
+    logout = "logout",
+    settingsSubmit = "settingsSubmit",
 }
