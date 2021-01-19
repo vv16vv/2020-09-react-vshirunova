@@ -1,10 +1,14 @@
-import React from "react";
+import React, {useCallback, useEffect, useState} from "react";
+import {Dispatch} from "redux";
+import {connect} from "react-redux";
+
 import {Field} from "cmp/Field";
-import {SettingsFormResult} from "cmp/SettingsForm";
 import {StyledBlock, StyledButton} from "styled/StyledComponents";
 import {CenteredLabel} from "styled/StyledTextComponents";
+import {AppState} from "@/rdx/reducers";
+import {gameClick, gameJump, gameReset} from "@/rdx/features/game";
 
-interface GameState {
+interface ReduxProps {
     frequency: number;
     width: number;
     height: number;
@@ -12,215 +16,69 @@ interface GameState {
     y: number;
     jumps: number;
     clicks: number;
-    timerId?: ReturnType<typeof setInterval>;
+
+    onClick: (x: number, y: number) => void;
+    onJump: () => void;
+    onReset: () => void;
 }
 
-class NegativeCoord extends Error {
-    constructor(coord: number) {
-        super(`Coordinate ${coord} cannot be 0 or negative`);
-    }
+export const RawJumpingCellGame: React.FC<ReduxProps> = props => {
+
+    const handleClick = useCallback((x: number, y: number) => {
+        props.onClick(x, y)
+        if (props.x === x && props.y === y) {
+            props.onJump()
+        }
+    }, [])
+
+    const [timerId, setTimerId] = useState<ReturnType<typeof setInterval> | undefined>(undefined)
+    useEffect(() => {
+        if (timerId === undefined) {
+            setTimerId(setInterval(props.onJump, props.frequency))
+        }
+        return () => {
+            if (timerId !== undefined) {
+                clearInterval(timerId)
+                setTimerId(undefined)
+            }
+        }
+    })
+
+    return <>
+        <StyledBlock>
+            <Field
+                width={props.width}
+                height={props.height}
+                filledCells={[{x: props.x, y: props.y}]}
+                clickHandler={handleClick}
+            />
+        </StyledBlock>
+        <StyledBlock>
+            <CenteredLabel>{`Jumps: ${props.jumps}`}</CenteredLabel>
+            <CenteredLabel>{`Clicks: ${props.clicks}`}</CenteredLabel>
+            <StyledButton onClick={props.onReset}>Reset</StyledButton>
+        </StyledBlock>
+    </>;
 }
 
-class TooBigCoord extends Error {
-    constructor(coord: number, max: number) {
-        super(`Coordinate ${coord} bigger than a maximum ${max}`);
-    }
+function mapStateToProps(state: AppState) {
+    return {
+        width: state.gameReducer.fieldWidth,
+        height: state.gameReducer.fieldHeight,
+        frequency: state.gameReducer.fieldFrequency,
+        x: state.gameReducer.x,
+        y: state.gameReducer.y,
+        jumps: state.gameReducer.jumps,
+        clicks: state.gameReducer.clicks,
+    };
 }
 
-const initialState: GameState = {
-    x: 1,
-    y: 1,
-    width: 10,
-    height: 10,
-    jumps: 0,
-    clicks: 0,
-    frequency: 1000
-} as const;
-
-export class JumpingCellGame extends React.Component<SettingsFormResult, GameState> {
-    constructor(props: SettingsFormResult) {
-        super(props);
-        console.log(`JumpingCellGame - constructor: props = ${JSON.stringify(props)}`);
-        this.state = {
-            ...initialState,
-            ...props,
-        };
-    }
-
-    handleClick = (x: number, y: number) => {
-        console.log(`JumpingCellGame - handleClick: x = ${x}, y = ${y}`);
-        this.incrementClicks()
-        if (this.state.x === x && this.state.y === y) {
-            this.increaseFrequency()
-            this.incrementJumps()
-            this.handleJump()
-        }
-    }
-
-    handleJump = () => {
-        console.log(`JumpingCellGame - handleJump`);
-        const {width, height} = this.state;
-        const newX = this.nextRandomCoord(width);
-        const newY = this.nextRandomCoord(height);
-        this.setState({
-            x: newX,
-            y: newY
-        })
-    }
-
-    nextRandomCoord = (quantity: number): number => {
-        return Math.floor(Math.random() * quantity + 1)
-    }
-
-    assertCoordIsOk = (coord: number, max: number): number => {
-        if (coord <= 0) throw new NegativeCoord(coord);
-        if (coord > max) throw new TooBigCoord(coord, max);
-        return coord
-    }
-
-    increaseFrequency = () => {
-        console.log(`JumpingCellGame - increaseFrequency`);
-        const {frequency} = this.state;
-        this.setState({
-                frequency: Math.max(10, Math.round(frequency / 2))
-            }
-        )
-    }
-
-    incrementClicks = () => {
-        console.log(`JumpingCellGame - incrementClicks`);
-        const {clicks} = this.state;
-        this.setState({
-                clicks: clicks + 1
-            }
-        )
-    }
-
-    incrementJumps = () => {
-        console.log(`JumpingCellGame - incrementJumps`);
-        const {jumps} = this.state;
-        this.setState({
-                jumps: jumps + 1
-            }
-        )
-    }
-
-    resetHandle = () => {
-        console.log(`JumpingCellGame - resetHandle`);
-        this.setState({
-                ...initialState,
-                frequency: this.props.frequency,
-                width: this.props.width,
-                height: this.props.height,
-            }
-        )
-    }
-
-    componentDidMount() {
-        console.log(`JumpingCellGame - componentDidMount`);
-        if (this.state.timerId === undefined) {
-            const timerId = setInterval(this.handleJump, this.state.frequency);
-            this.setState({
-                timerId: timerId
-            })
-        }
-    }
-
-    componentWillUnmount() {
-        console.log(`JumpingCellGame - componentWillUnmount`);
-        if (this.state.timerId !== undefined) {
-            clearInterval(this.state.timerId);
-            this.setState({
-                timerId: undefined
-            })
-        }
-    }
-
-    checkFieldWidth = (newWidth: number, oldWidth: number) => {
-        const {x} = this.state;
-        if (newWidth < oldWidth && x > newWidth) {
-            this.setState({
-                x: newWidth,
-            })
-        }
-        if(newWidth !== oldWidth) {
-            this.setState({
-                width: newWidth,
-            })
-        }
-    }
-
-    checkFieldHeight = (newHeight: number, oldHeight: number) => {
-        const {y} = this.state;
-        if (newHeight < oldHeight && y > newHeight) {
-            this.setState({
-                y: newHeight,
-                height: newHeight,
-            })
-        }
-        if(newHeight !== oldHeight) {
-            this.setState({
-                height: newHeight,
-            })
-        }
-    }
-
-    checkFrequencyReset = (newFreq: number, oldFreq: number) => {
-        if (newFreq !== oldFreq) {
-            const {timerId: currTimeId} = this.state;
-            clearInterval(currTimeId as NodeJS.Timeout)
-            const timerId = setInterval(this.handleJump, newFreq);
-            this.setState({
-                frequency: newFreq,
-                timerId: timerId
-            })
-        }
-    }
-
-    checkFrequencyChange = (newFreq: number, oldFreq: number) => {
-        const {timerId: currTimeId} = this.state;
-        if (newFreq !== oldFreq && currTimeId !== undefined) {
-            clearInterval(currTimeId as NodeJS.Timeout)
-            const timerId = setInterval(this.handleJump, newFreq);
-            this.setState({
-                timerId: timerId
-            })
-        }
-    }
-
-    componentDidUpdate(prevProps: Readonly<SettingsFormResult>, prevState: Readonly<GameState>) {
-        console.log(`JumpingCellGame - componentDidUpdate: prevProps = ${JSON.stringify(prevProps)}, prevState = ${JSON.stringify(prevState)}`);
-        this.checkFieldWidth(this.props.width, prevState.width)
-        this.checkFieldHeight(this.props.height, prevState.height)
-        this.checkFrequencyReset(this.props.frequency, prevProps.frequency)
-        this.checkFrequencyChange(this.state.frequency, prevState.frequency)
-    }
-
-    getSnapshotBeforeUpdate(prevProps: Readonly<SettingsFormResult>, prevState: Readonly<GameState>): any | null {
-        console.log(`JumpingCellGame - getSnapshotBeforeUpdate: prevProps = ${JSON.stringify(prevProps)}`)
-        console.log(`JumpingCellGame - getSnapshotBeforeUpdate: ${JSON.stringify(prevState)}`)
-        return null;
-    }
-
-    render() {
-        const {width, height} = this.state;
-        const x = this.assertCoordIsOk(this.state.x, width)
-        const y = this.assertCoordIsOk(this.state.y, height)
-        console.log(`JumpingCellGame - render`);
-        return <>
-            <StyledBlock>
-                <Field
-                    width={width}
-                    height={height}
-                    filledCells={[{x: x, y: y}]}
-                    clickHandler={this.handleClick}
-                />
-            </StyledBlock>
-            <StyledBlock>
-                <CenteredLabel>{`Jumps: ${this.state.jumps}`}</CenteredLabel>
-                <CenteredLabel>{`Clicks: ${this.state.clicks}`}</CenteredLabel>
-                <StyledButton onClick={this.resetHandle}>Reset</StyledButton>
-            </StyledBlock>
-        </>;
-    }
+function mapDispatchToProps(dispatch: Dispatch) {
+    return {
+        onClick: (x: number, y: number) => dispatch(gameClick({clickX: x, clickY: y})),
+        onJump: () => dispatch(gameJump()),
+        onReset: () => dispatch(gameReset()),
+    };
 }
+
+export const JumpingCellGame = connect(mapStateToProps, mapDispatchToProps)(RawJumpingCellGame);
