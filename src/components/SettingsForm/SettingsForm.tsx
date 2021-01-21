@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 import {Range} from "cmp/Range";
 import {FieldTitle, TableTitle} from "styled/StyledTextComponents";
 import {LayoutTable, LayoutTd, LayoutTr, StyledButton, StyledFieldSet} from "styled/StyledComponents";
-import {settingsSubmit, SettingsSubmitPayload} from "@/rdx/features/settings";
+import {gameStart, GameStartPayload} from "@/rdx/features/game";
 import {AppState} from "@/rdx/reducers";
 
 interface ReduxProps {
@@ -13,7 +13,7 @@ interface ReduxProps {
     height: number;
     frequency: number;
     userName?: string;
-    onSubmit: (settings: SettingsSubmitPayload) => void;
+    onSubmit: (settings: GameStartPayload) => void;
 }
 
 const milliInSecond = 1000;
@@ -99,16 +99,16 @@ const RawSettingsForm: React.FC<ReduxProps> = props => {
 
 function mapStateToProps(state: AppState) {
     return {
-        width: state.settingsReducer.width,
-        height: state.settingsReducer.height,
-        frequency: state.settingsReducer.frequency,
+        width: state.gameReducer.width,
+        height: state.gameReducer.height,
+        frequency: state.gameReducer.initFrequency,
         userName: state.loginReducer.user
     };
 }
 
 function mapDispatchToProps(dispatch: Dispatch) {
     return {
-        onSubmit: (settings: SettingsSubmitPayload) => dispatch(settingsSubmit(settings)),
+        onSubmit: (settings: GameStartPayload) => dispatch(gameStart(settings)),
     };
 }
 
