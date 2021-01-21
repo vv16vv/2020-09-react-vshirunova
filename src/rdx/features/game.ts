@@ -2,9 +2,10 @@ import {Action} from "redux";
 import {ActionTypes} from "@/rdx/actions";
 
 interface GameState {
-    fieldWidth: number;
-    fieldHeight: number;
-    fieldFrequency: number;
+    width: number;
+    height: number;
+    initFrequency: number;
+    currFrequency: number;
     x: number;
     y: number;
     jumps: number;
@@ -12,9 +13,10 @@ interface GameState {
 }
 
 const defaultGameState: GameState = {
-    fieldWidth: 10,
-    fieldHeight: 10,
-    fieldFrequency: 2000,
+    width: 10,
+    height: 10,
+    initFrequency: 2000,
+    currFrequency: 2000,
     x: 0,
     y: 0,
     jumps: 0,
@@ -39,10 +41,10 @@ export interface GameEndAction extends Action {
 export interface GameResetAction extends Action {
 }
 
-interface GameStartPayload {
-    fieldWidth: number;
-    fieldHeight: number;
-    fieldFrequency: number;
+export interface GameStartPayload {
+    width: number;
+    height: number;
+    frequency: number;
 }
 
 export interface GameStartAction extends Action {
@@ -66,8 +68,13 @@ const increaseFrequency = (oldFrequency: number): number => {
 export function gameReducer(state: GameState = defaultGameState, action: GameAction): GameState {
     switch (action.type) {
         case ActionTypes.gameStart: {
+            const {width, height, frequency} = (action as GameStartAction).payload
             return {
-                ...state
+                ...state,
+                width: width,
+                height: height,
+                initFrequency: frequency,
+                currFrequency: frequency,
             }
         }
         case ActionTypes.gameEnd: {
@@ -78,13 +85,18 @@ export function gameReducer(state: GameState = defaultGameState, action: GameAct
         case ActionTypes.gameReset: {
             return {
                 ...state,
+                currFrequency: state.initFrequency,
+                clicks: 0,
+                jumps: 0,
+                x: 0,
+                y: 0,
             }
         }
         case ActionTypes.gameClick: {
             const {clicks, x, y} = state
             const {clickX, clickY} = (action as GameClickAction).payload
             let jumps = state.jumps
-            let fieldFrequency = state.fieldFrequency
+            let fieldFrequency = state.currFrequency
             if (x === clickX && y === clickY) {
                 fieldFrequency = increaseFrequency(fieldFrequency)
                 jumps++
@@ -93,14 +105,14 @@ export function gameReducer(state: GameState = defaultGameState, action: GameAct
                 ...state,
                 clicks: clicks + 1,
                 jumps: jumps,
-                fieldFrequency: fieldFrequency
+                currFrequency: fieldFrequency
 
             }
         }
         case ActionTypes.gameJump: {
-            const {fieldWidth, fieldHeight} = state;
-            const newX = nextRandomCoord(fieldWidth);
-            const newY = nextRandomCoord(fieldHeight);
+            const {width, height} = state;
+            const newX = nextRandomCoord(width);
+            const newY = nextRandomCoord(height);
             return {
                 ...state,
                 x: newX,
