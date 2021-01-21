@@ -2,8 +2,6 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "styled/*": ["src/components/styled/*"],
-      "cmp/*": ["src/components/*"],
       "@/*": ["src/*"]
     },
     "target": "es5",

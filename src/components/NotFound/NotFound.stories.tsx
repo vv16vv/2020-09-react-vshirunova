@@ -1,6 +1,7 @@
 import React from "react";
 import {action} from "@storybook/addon-actions";
 import {text, withKnobs} from "@storybook/addon-knobs";
+
 import {NotFound} from "./NotFound";
 
 export default {

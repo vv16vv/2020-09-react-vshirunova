@@ -4,7 +4,7 @@ import {Dispatch} from "redux";
 import {connect} from "react-redux";
 
 import {Paths} from "@/Paths";
-import {StyledButton} from "styled/StyledComponents";
+import {StyledButton} from "@/components/styled/StyledComponents";
 import {logout} from "@/rdx/features/login";
 import {AppState} from "@/rdx/reducers";
 

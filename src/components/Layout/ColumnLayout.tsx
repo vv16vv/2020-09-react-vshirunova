@@ -1,6 +1,6 @@
 import React from "react";
-import {ColumnBlockFC} from "styled/StyledComponents";
-import {GameWithSettings} from "cmp/GameWithSettings";
+import {ColumnBlockFC} from "@/components/styled/StyledComponents";
+import {GameWithSettings} from "@/components/GameWithSettings";
 
 type ColQuantity = 1 | 2 | 3 | 4;
 

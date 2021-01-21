@@ -1,6 +1,7 @@
 import 'jsdom-global/register';
 import React from "react";
 import {mount} from "enzyme";
+
 import {initialFormProps, LoginForm, LoginFormResult} from "./LoginForm";
 
 describe("Login form", () => {

@@ -1,7 +1,8 @@
 import React from "react";
 import {number, withKnobs} from "@storybook/addon-knobs";
+
 import {JumpingCellGame} from "./JumpingCellGame";
-import {ErrorBoundary} from "cmp/ErrorBoundary";
+import {ErrorBoundary} from "@/components/ErrorBoundary";
 
 export default {
     title: "Jumping Cell Game Story",

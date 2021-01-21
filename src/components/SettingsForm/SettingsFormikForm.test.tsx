@@ -1,8 +1,9 @@
 import 'jsdom-global/register';
 import React from "react";
-import {SettingsFormikForm} from "./SettingsFormikForm";
 import {mount} from "enzyme";
 import {act} from "@testing-library/react";
+
+import {SettingsFormikForm} from "./SettingsFormikForm";
 
 describe("Settings form", () => {
 
