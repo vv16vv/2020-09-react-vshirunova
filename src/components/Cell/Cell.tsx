@@ -1,5 +1,6 @@
 import React from "react";
-import {StyledTd} from "styled/StyledComponents";
+
+import {StyledTd} from "@/components/styled/StyledComponents";
 
 interface CellProp {
     x: number;

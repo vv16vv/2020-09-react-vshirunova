@@ -1,8 +1,9 @@
 import React from "react";
 import {Form, Formik} from "formik";
-import {FieldTitle, TableTitle} from "styled/StyledTextComponents";
-import {LayoutTable, LayoutTd, LayoutTr, StyledButton, StyledFieldSet} from "styled/StyledComponents";
-import {RangeFormik} from "cmp/Range/RangeFormik";
+
+import {FieldTitle, TableTitle} from "@/components/styled/StyledTextComponents";
+import {LayoutTable, LayoutTd, LayoutTr, StyledButton, StyledFieldSet} from "@/components/styled/StyledComponents";
+import {RangeFormik} from "@/components/Range/RangeFormik";
 
 export interface SettingsFormResult {
     width: number;

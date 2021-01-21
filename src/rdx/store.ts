@@ -1,4 +1,5 @@
 import {createStore} from "redux";
+
 import {rootReducer} from "@/rdx/reducers";
 
 export const store = createStore(

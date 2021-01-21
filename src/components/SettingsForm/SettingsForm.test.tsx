@@ -1,19 +1,24 @@
 import 'jsdom-global/register';
 import React from "react";
 import {mount} from "enzyme";
-import {SettingsForm, SettingsFormResult} from "./SettingsForm";
-import {initialGameSettings} from "cmp/GameWithSettings";
+
+import {SettingsFormResult} from "@/components/SettingsForm/SettingsFormikForm";
+import {SettingsForm} from "@/components/SettingsForm/SettingsForm";
 
 describe("Settings form", () => {
 
     const submitHandler = jest.fn();
 
-    const defaultValues = initialGameSettings;
+    const defaultValues:SettingsFormResult = {
+        width: 10,
+        height: 10,
+        frequency: 2000
+    };
     const changedValues:SettingsFormResult = {
         width: 15,
         height: 8,
         frequency: 1000
-    } ;
+    };
 
     it("should process submit with default values", () => {
         const wrapper = mount(

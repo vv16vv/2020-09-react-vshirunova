@@ -1,6 +1,7 @@
 import React from 'react';
-import {StyledButton} from "styled/StyledComponents";
-import {ErrorLabel, StyledP} from "styled/StyledTextComponents";
+
+import {StyledButton} from "@/components/styled/StyledComponents";
+import {ErrorLabel, StyledP} from "@/components/styled/StyledTextComponents";
 
 interface NotFoundProps {
     notFoundPath: string;

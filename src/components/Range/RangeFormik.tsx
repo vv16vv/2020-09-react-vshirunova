@@ -1,7 +1,8 @@
 import React, {ChangeEvent, useCallback, useState} from "react";
-import {RangeBlock, StyledRange} from "styled/StyledComponents";
-import {CenteredLabel, RangeLabel} from "styled/StyledTextComponents";
 import {Field} from "formik";
+
+import {RangeBlock, StyledRange} from "@/components/styled/StyledComponents";
+import {CenteredLabel, RangeLabel} from "@/components/styled/StyledTextComponents";
 
 export interface RangeProp {
     name: string;

@@ -2,9 +2,9 @@ import React, {useCallback, useEffect, useState} from "react";
 import {Dispatch} from "redux";
 import {connect} from "react-redux";
 
-import {Field} from "cmp/Field";
-import {StyledBlock, StyledButton} from "styled/StyledComponents";
-import {CenteredLabel} from "styled/StyledTextComponents";
+import {Field} from "@/components/Field";
+import {StyledBlock, StyledButton} from "@/components/styled/StyledComponents";
+import {CenteredLabel} from "@/components/styled/StyledTextComponents";
 import {AppState} from "@/rdx/reducers";
 import {gameClick, gameJump, gameReset} from "@/rdx/features/game";
 

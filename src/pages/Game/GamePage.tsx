@@ -1,10 +1,10 @@
 import React from "react";
-import {GameHalfWindowColumn} from "cmp/Layout";
+import {connect} from "react-redux";
 import {Redirect} from "react-router-dom";
 
 import {Paths} from "@/Paths";
 import {AppState} from "@/rdx/reducers";
-import {connect} from "react-redux";
+import {GameHalfWindowColumn} from "@/components/Layout";
 
 interface ReduxProps {
     isLoggedIn: boolean
