@@ -63,9 +63,9 @@ export const RawJumpingCellGame: React.FC<ReduxProps> = props => {
 
 function mapStateToProps(state: AppState) {
     return {
-        width: state.gameReducer.fieldWidth,
-        height: state.gameReducer.fieldHeight,
-        frequency: state.gameReducer.fieldFrequency,
+        width: state.gameReducer.width,
+        height: state.gameReducer.height,
+        frequency: state.gameReducer.currFrequency,
         x: state.gameReducer.x,
         y: state.gameReducer.y,
         jumps: state.gameReducer.jumps,
