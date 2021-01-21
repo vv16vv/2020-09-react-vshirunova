@@ -4,7 +4,7 @@ import {Redirect, useHistory} from "react-router-dom";
 import {connect} from "react-redux";
 import {Dispatch} from "redux";
 
-import {LoginForm, LoginFormResult} from "cmp/LoginForm";
+import {LoginForm, LoginFormResult} from "@/components/LoginForm";
 import {Paths} from "@/Paths";
 import {AppState} from "@/rdx/reducers";
 import {login} from "@/rdx/features/login";

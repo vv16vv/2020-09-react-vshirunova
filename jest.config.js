@@ -12,8 +12,6 @@ module.exports = {
     "^.+\\.(js|jsx|ts|tsx)$": "<rootDir>/node_modules/babel-jest",
   },
   moduleNameMapper: {
-    "^styled/(.*)$": "<rootDir>/src/components/styled/$1",
-    "^cmp/(.*)$": "<rootDir>/src/components/$1",
     "^@/(.*)$": "<rootDir>/src/$1",
   }
 };

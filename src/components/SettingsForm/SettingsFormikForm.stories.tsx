@@ -1,6 +1,7 @@
 import React from "react";
-import {SettingsFormikForm} from "./SettingsFormikForm";
 import {action} from "@storybook/addon-actions";
+
+import {SettingsFormikForm} from "./SettingsFormikForm";
 
 export default {
     title: "Jumping Cell Game Settings Story (using Formik)",

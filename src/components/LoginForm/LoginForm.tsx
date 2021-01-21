@@ -1,6 +1,7 @@
 import React, {ChangeEvent} from "react";
-import {LayoutTable, LayoutTd, LayoutTr, StyledButton, StyledFieldSet, StyledInput} from "styled/StyledComponents";
-import {FieldTitle, TableTitle} from "styled/StyledTextComponents";
+
+import {LayoutTable, LayoutTd, LayoutTr, StyledButton, StyledFieldSet, StyledInput} from "@/components/styled/StyledComponents";
+import {FieldTitle, TableTitle} from "@/components/styled/StyledTextComponents";
 
 export interface LoginFormResult {
     login: string;

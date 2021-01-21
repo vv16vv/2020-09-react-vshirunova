@@ -2,11 +2,11 @@ import React, {useCallback, useState} from "react";
 import {Dispatch} from "redux";
 import {connect} from "react-redux";
 
-import {Range} from "cmp/Range";
-import {FieldTitle, TableTitle} from "styled/StyledTextComponents";
-import {LayoutTable, LayoutTd, LayoutTr, StyledButton, StyledFieldSet} from "styled/StyledComponents";
 import {gameStart, GameStartPayload} from "@/rdx/features/game";
 import {AppState} from "@/rdx/reducers";
+import {Range} from "@/components/Range";
+import {LayoutTable, LayoutTd, LayoutTr, StyledButton, StyledFieldSet} from "@/components/styled/StyledComponents";
+import {FieldTitle, TableTitle} from "@/components/styled/StyledTextComponents";
 
 interface ReduxProps {
     width: number;

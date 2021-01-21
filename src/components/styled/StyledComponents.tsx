@@ -1,8 +1,9 @@
 import styled from "@emotion/styled";
 import {css} from "@emotion/core";
+import React from "react";
+
 import {CurrentTheme} from "./StyledColors";
 import {SelectedFontSmall} from "./StyledTextComponents";
-import React from "react";
 
 const TableBorder = css`
   border-width: 1px;

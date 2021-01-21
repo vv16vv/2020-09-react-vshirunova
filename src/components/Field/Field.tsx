@@ -1,6 +1,6 @@
 import React from "react";
-import {Cell} from "cmp/Cell";
-import {StyledTable, StyledTr} from "styled/StyledComponents";
+import {Cell} from "@/components/Cell";
+import {StyledTable, StyledTr} from "@/components/styled/StyledComponents";
 
 interface FieldProp {
     width: number;

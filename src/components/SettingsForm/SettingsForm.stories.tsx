@@ -1,7 +1,8 @@
 import React from "react";
 import {action} from "@storybook/addon-actions";
-import {SettingsForm} from "./SettingsForm";
 import {number, text, withKnobs} from "@storybook/addon-knobs";
+
+import {SettingsForm} from "./SettingsForm";
 
 export default {
     title: "Jumping Cell Game Settings Story (using state)",
