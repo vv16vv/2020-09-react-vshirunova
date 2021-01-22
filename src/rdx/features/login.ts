@@ -1,4 +1,4 @@
-import {Action} from "redux";
+import {Action, Dispatch} from "redux";
 
 import {ActionTypes} from "@/rdx/actions";
 import {LoginStorage} from "@/logic/LoginStorage";
@@ -54,5 +54,20 @@ export function login(payload: LoginPayload): LoginAction {
 export function logout(): Action {
     return {
         type: ActionTypes.logout,
+    }
+}
+
+export function loading() {
+    return (dispatch: Dispatch) => {
+        LoginStorage
+            .isNameSet()
+            .then((isNameSet) => {
+                if(isNameSet)
+                    LoginStorage
+                        .getCurrentName()
+                        .then((userName) => {
+                            dispatch(login({userName}))
+                        })
+            })
     }
 }
