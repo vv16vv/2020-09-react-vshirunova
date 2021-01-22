@@ -20,19 +20,33 @@ export interface LoginAction extends Action {
     payload: LoginPayload
 }
 
-export function loginReducer(state: LoginState = defaultLoginState, action: LoginAction): LoginState {
+export interface LoginInitAction extends Action {
+    payload: LoginState
+}
+
+type LoginActions = LoginAction
+    | LoginInitAction
+
+export function loginReducer(state: LoginState = defaultLoginState, action: LoginActions): LoginState {
     switch (action.type) {
-        case ActionTypes.login: {
-            const userName: string = action.payload.userName
-            LoginStorage.putNameToStorage(userName)
+        case ActionTypes.initLogin: {
+            const user: string | undefined = (action as LoginInitAction).payload.user;
+            const isLoggedIn: boolean = (action as LoginInitAction).payload.isLoggedIn;
             return {
                 ...state,
-                user: userName,
+                user,
+                isLoggedIn
+            }
+        }
+        case ActionTypes.login: {
+            const user: string = (action as LoginAction).payload.userName
+            return {
+                ...state,
+                user,
                 isLoggedIn: true
             }
         }
         case ActionTypes.logout: {
-            LoginStorage.clearName()
             return {
                 ...state,
                 user: undefined,
@@ -44,10 +58,20 @@ export function loginReducer(state: LoginState = defaultLoginState, action: Logi
     }
 }
 
-export function login(payload: LoginPayload): LoginAction {
+export function initLogin(isLoggedIn: boolean, user: string | undefined = undefined): LoginInitAction {
     return {
         type: ActionTypes.login,
-        payload: payload
+        payload: {
+            isLoggedIn,
+            user
+        }
+    }
+}
+
+export function login(userName: string): LoginAction {
+    return {
+        type: ActionTypes.login,
+        payload: { userName }
     }
 }
 
@@ -62,12 +86,37 @@ export function loading() {
         LoginStorage
             .isNameSet()
             .then((isNameSet) => {
-                if(isNameSet)
+                if (isNameSet)
                     LoginStorage
                         .getCurrentName()
                         .then((userName) => {
-                            dispatch(login({userName}))
+                            if(userName !== "")
+                                dispatch(initLogin(true,userName))
+                            else
+                                dispatch(initLogin(false))
                         })
+                else
+                    dispatch(initLogin(false))
+            })
+    }
+}
+
+export function saveName(userName: string) {
+    return (dispatch: Dispatch) => {
+        LoginStorage
+            .putNameToStorage(userName)
+            .then(() => {
+                dispatch(login(userName))
+            })
+    }
+}
+
+export function clearName() {
+    return (dispatch: Dispatch) => {
+        LoginStorage
+            .clearName()
+            .then(() => {
+                dispatch(logout())
             })
     }
 }

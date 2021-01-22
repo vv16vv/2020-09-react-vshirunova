@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 
 import {Paths} from "@/Paths";
 import {StyledButton} from "@/components/styled/StyledComponents";
-import {logout} from "@/rdx/features/login";
+import {clearName} from "@/rdx/features/login";
 import {AppState} from "@/rdx/reducers";
 
 interface ReduxProps {
@@ -27,7 +27,7 @@ function mapStateToProps(state: AppState) {
 
 function mapDispatchToProps(dispatch: Dispatch) {
     return {
-        onLogout: () => dispatch(logout()),
+        onLogout: () => dispatch(clearName()),
     };
 }
 
