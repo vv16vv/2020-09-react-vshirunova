@@ -1,5 +1,5 @@
 import "regenerator-runtime/runtime.js";
-import React, {useCallback} from "react";
+import React, {useCallback, useEffect} from "react";
 import {Redirect, useHistory} from "react-router-dom";
 import {connect} from "react-redux";
 import {Dispatch} from "redux";
@@ -7,11 +7,12 @@ import {Dispatch} from "redux";
 import {LoginForm, LoginFormResult} from "@/components/LoginForm";
 import {Paths} from "@/Paths";
 import {AppState} from "@/rdx/reducers";
-import {login} from "@/rdx/features/login";
+import {loading, login} from "@/rdx/features/login";
 
 interface ReduxProps {
     isLoggedIn: boolean
     loginHandler: (userName: string) => void;
+    loading: () => void;
 }
 
 const RawLoginPage: React.FC<ReduxProps> = (props) => {
@@ -22,6 +23,9 @@ const RawLoginPage: React.FC<ReduxProps> = (props) => {
             history.push(Paths.Game)
         },
         [])
+    useEffect(()=>{
+        props.loading()
+    })
     return <>{
         props.isLoggedIn
             ? <Redirect to={Paths.Game}/>
@@ -38,6 +42,7 @@ function mapStateToProps(state: AppState) {
 function mapDispatchToProps(dispatch: Dispatch) {
     return {
         loginHandler: (userName: string) => dispatch(login({userName: userName})),
+        loading: () => dispatch(loading()),
     };
 }
 
