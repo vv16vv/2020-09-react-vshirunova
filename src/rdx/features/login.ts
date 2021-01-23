@@ -114,7 +114,7 @@ export function initLogin(isLoggedIn: boolean, user: string | undefined = undefi
 export function login(userName: string): LoginAction {
     return {
         type: ActionTypes.login,
-        payload: { userName }
+        payload: {userName}
     }
 }
 
@@ -133,8 +133,8 @@ export function loading() {
                     LoginStorage
                         .getCurrentName()
                         .then((userName) => {
-                            if(userName !== "")
-                                dispatch(initLogin(true,userName))
+                            if (userName !== "")
+                                dispatch(initLogin(true, userName))
                             else
                                 dispatch(initLogin(false))
                         })

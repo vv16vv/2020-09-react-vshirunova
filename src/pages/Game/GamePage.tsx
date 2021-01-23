@@ -1,11 +1,11 @@
 import React, {useEffect} from "react";
 import {connect} from "react-redux";
 import {Redirect} from "react-router-dom";
+import {Dispatch} from "redux";
 
 import {Paths} from "@/Paths";
 import {AppState} from "@/rdx/reducers";
 import {GameHalfWindowColumn} from "@/components/Layout";
-import {Dispatch} from "redux";
 import {loading} from "@/rdx/features/login";
 
 interface ReduxProps {
