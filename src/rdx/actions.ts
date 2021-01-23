@@ -1,5 +1,5 @@
 export enum ActionTypes {
-    initLogin = "initLogin",
+    loginInit = "loginInit",
     isLoggingOut = "isLoggingOut",
     login = "login",
     logout = "logout",

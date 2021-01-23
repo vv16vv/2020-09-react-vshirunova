@@ -6,7 +6,9 @@ import {Field} from "@/components/Field";
 import {StyledBlock, StyledButton} from "@/components/styled/StyledComponents";
 import {CenteredLabel} from "@/components/styled/StyledTextComponents";
 import {AppState} from "@/rdx/reducers";
-import {gameClick, gameJump, gameReset} from "@/rdx/features/game";
+import {gameClick} from "@/rdx/game/gameClick";
+import {gameJump} from "@/rdx/game/gameJump";
+import {gameReset} from "@/rdx/game/gameReset";
 
 interface ReduxProps {
     frequency: number;
