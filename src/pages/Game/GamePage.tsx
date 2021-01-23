@@ -6,7 +6,7 @@ import {bindActionCreators, Dispatch} from "redux";
 import {Paths} from "@/Paths";
 import {AppState} from "@/rdx/reducers";
 import {GameHalfWindowColumn} from "@/components/Layout";
-import {loading} from "@/rdx/features/login";
+import {loading} from "@/rdx/login";
 
 interface ReduxProps {
     isLoggedIn: boolean;

@@ -3,7 +3,7 @@ import {bindActionCreators, Dispatch} from "redux";
 import {connect} from "react-redux";
 
 import {StyledButton} from "@/components/styled/StyledComponents";
-import {clearName} from "@/rdx/features/login";
+import {clearName} from "@/rdx/login";
 import {AppState} from "@/rdx/reducers";
 
 interface ReduxProps {
