@@ -1,7 +1,7 @@
 import {Action} from "redux";
 
 import {ActionTypes} from "@/rdx/actions";
-import {LoginState} from "@/rdx/login/loginState";
+import {LoginState} from "@/rdx/user/loginState";
 
 export interface LogoutAction extends Action {
 }
