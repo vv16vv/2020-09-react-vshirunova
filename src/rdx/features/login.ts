@@ -24,8 +24,13 @@ export interface LoginAction extends Action {
     payload: LoginPayload
 }
 
+export interface LoginInitPayload {
+    user?: string;
+    isLoggedIn: boolean;
+}
+
 export interface LoginInitAction extends Action {
-    payload: LoginState
+    payload: LoginInitPayload
 }
 
 export interface IsLoggingOutPayload {
@@ -98,7 +103,7 @@ export function loginReducer(state: LoginState = defaultLoginState, action: Logi
 
 export function initLogin(isLoggedIn: boolean, user: string | undefined = undefined): LoginInitAction {
     return {
-        type: ActionTypes.login,
+        type: ActionTypes.initLogin,
         payload: {
             isLoggedIn,
             user
