@@ -6,7 +6,7 @@ export const LoginStorage = {
     },
 
     async isNameSet(): Promise<boolean> {
-        const loginValue = global.localStorage.getItem(loginKey)
+        const loginValue = await global.localStorage.getItem(loginKey)
         return loginValue !== null && loginValue !== ""
     },
 
