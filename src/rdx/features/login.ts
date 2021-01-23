@@ -1,7 +1,9 @@
 import {Action, Dispatch} from "redux";
+import {push} from "react-router-redux";
 
 import {ActionTypes} from "@/rdx/actions";
 import {LoginStorage} from "@/logic/LoginStorage";
+import {Paths} from "@/Paths";
 
 interface LoginState {
     user?: string;
@@ -108,6 +110,9 @@ export function saveName(userName: string) {
             .then(() => {
                 dispatch(login(userName))
             })
+            .then(() => {
+                dispatch(push(Paths.Game))
+            })
     }
 }
 
@@ -117,6 +122,12 @@ export function clearName() {
             .clearName()
             .then(() => {
                 dispatch(logout())
+            })
+            .then(() => {
+                dispatch(isLoggingOut(false))
+            })
+            .then(() => {
+                dispatch(push(Paths.Root))
             })
     }
 }
