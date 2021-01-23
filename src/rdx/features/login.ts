@@ -8,10 +8,12 @@ import {Paths} from "@/Paths";
 interface LoginState {
     user?: string;
     isLoggedIn: boolean;
+    isLoggingOut: boolean;
 }
 
 const defaultLoginState: LoginState = {
     isLoggedIn: false,
+    isLoggingOut: false,
 }
 
 export interface LoginPayload {
@@ -26,10 +28,42 @@ export interface LoginInitAction extends Action {
     payload: LoginState
 }
 
+export interface IsLoggingOutPayload {
+    isLoggingOut: boolean;
+}
+
+export interface IsLoggingOutAction extends Action {
+    payload: IsLoggingOutPayload
+}
+
 type LoginActions = LoginAction
     | LoginInitAction
+    | IsLoggingOutAction
+
+export function isLoggingOutReducer(state: LoginState, action: LoginActions): LoginState {
+    switch (action.type) {
+        case ActionTypes.isLoggingOut: {
+            return {
+                ...state,
+                isLoggingOut: (action as IsLoggingOutAction).payload.isLoggingOut
+            }
+        }
+        default:
+            return state
+    }
+}
+
+export function isLoggingOut(isLoggingOut: boolean): IsLoggingOutAction {
+    return {
+        type: ActionTypes.isLoggingOut,
+        payload: {
+            isLoggingOut
+        }
+    }
+}
 
 export function loginReducer(state: LoginState = defaultLoginState, action: LoginActions): LoginState {
+    if (state.isLoggingOut && action.type === ActionTypes.login) return state;
     switch (action.type) {
         case ActionTypes.initLogin: {
             const user: string | undefined = (action as LoginInitAction).payload.user;
@@ -40,6 +74,8 @@ export function loginReducer(state: LoginState = defaultLoginState, action: Logi
                 isLoggedIn
             }
         }
+        case ActionTypes.isLoggingOut:
+            return isLoggingOutReducer(state, action)
         case ActionTypes.login: {
             const user: string = (action as LoginAction).payload.userName
             return {
@@ -118,6 +154,7 @@ export function saveName(userName: string) {
 
 export function clearName() {
     return (dispatch: Dispatch) => {
+        dispatch(isLoggingOut(true))
         LoginStorage
             .clearName()
             .then(() => {

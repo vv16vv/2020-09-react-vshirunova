@@ -10,7 +10,8 @@ import {AppState} from "@/rdx/reducers";
 import {loading, saveName} from "@/rdx/features/login";
 
 interface ReduxProps {
-    isLoggedIn: boolean
+    isLoggedIn: boolean;
+    isLoggingOut: boolean;
     loginHandler: (userName: string) => void;
     loading: () => void;
 }
@@ -21,8 +22,9 @@ const RawLoginPage: React.FC<ReduxProps> = (props) => {
             props.loginHandler(login)
         },
         [])
-    useEffect(()=>{
-        props.loading()
+    useEffect(() => {
+        if(!props.isLoggingOut)
+            props.loading()
     })
     return <>{
         props.isLoggedIn
@@ -33,7 +35,8 @@ const RawLoginPage: React.FC<ReduxProps> = (props) => {
 
 function mapStateToProps(state: AppState) {
     return {
-        isLoggedIn: state.loginReducer.isLoggedIn
+        isLoggedIn: state.loginReducer.isLoggedIn,
+        isLoggingOut: state.loginReducer.isLoggingOut,
     };
 }
 

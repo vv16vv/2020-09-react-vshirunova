@@ -10,11 +10,15 @@ import {loading} from "@/rdx/features/login";
 
 interface ReduxProps {
     isLoggedIn: boolean;
+    isLoggingOut: boolean;
     loading: () => void;
 }
 
 export const RawGamePage: React.FC<ReduxProps> = props => {
-    useEffect(() => props.loading())
+    useEffect(() => {
+        if(!props.isLoggingOut)
+            props.loading()
+    })
     return <>{
         props.isLoggedIn
             ? <GameHalfWindowColumn name={"left"}/>
@@ -24,7 +28,8 @@ export const RawGamePage: React.FC<ReduxProps> = props => {
 
 function mapStateToProps(state: AppState) {
     return {
-        isLoggedIn: state.loginReducer.isLoggedIn
+        isLoggedIn: state.loginReducer.isLoggedIn,
+        isLoggingOut: state.loginReducer.isLoggingOut,
     };
 }
 
