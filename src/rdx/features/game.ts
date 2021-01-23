@@ -33,7 +33,13 @@ export interface GameClickAction extends Action {
     payload: GameClickPayload
 }
 
+export interface GameJumpPayload {
+    seedX: number;
+    seedY: number;
+}
+
 export interface GameJumpAction extends Action {
+    payload: GameJumpPayload
 }
 
 export interface GameEndAction extends Action {
@@ -58,8 +64,8 @@ type GameAction = GameClickAction
     | GameStartAction
     | GameResetAction
 
-const nextRandomCoord = (quantity: number): number => {
-    return Math.floor(Math.random() * quantity + 1)
+const nextJumpCoord = (seed: number, quantity: number): number => {
+    return Math.floor(seed * quantity + 1)
 }
 
 const increaseFrequency = (oldFrequency: number): number => {
@@ -112,8 +118,9 @@ export function gameReducer(state: GameState = defaultGameState, action: GameAct
         }
         case ActionTypes.gameJump: {
             const {width, height} = state;
-            const newX = nextRandomCoord(width);
-            const newY = nextRandomCoord(height);
+            const {seedX, seedY} = (action as GameJumpAction).payload
+            const newX = nextJumpCoord(seedX,width);
+            const newY = nextJumpCoord(seedY, height);
             return {
                 ...state,
                 x: newX,
@@ -154,5 +161,9 @@ export function gameClick(payload: GameClickPayload): GameClickAction {
 export function gameJump(): GameJumpAction {
     return {
         type: ActionTypes.gameJump,
+        payload: {
+            seedX: Math.random(),
+            seedY: Math.random()
+        }
     }
 }
