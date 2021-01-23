@@ -2,7 +2,7 @@ import "regenerator-runtime/runtime.js";
 import React, {useCallback, useEffect} from "react";
 import {Redirect} from "react-router-dom";
 import {connect} from "react-redux";
-import {Dispatch} from "redux";
+import {bindActionCreators, Dispatch} from "redux";
 
 import {LoginForm, LoginFormResult} from "@/components/LoginForm";
 import {Paths} from "@/Paths";
@@ -23,7 +23,7 @@ const RawLoginPage: React.FC<ReduxProps> = (props) => {
         },
         [])
     useEffect(() => {
-        if(!props.isLoggingOut)
+        if (!props.isLoggingOut)
             props.loading()
     })
     return <>{
@@ -41,10 +41,10 @@ function mapStateToProps(state: AppState) {
 }
 
 function mapDispatchToProps(dispatch: Dispatch) {
-    return {
-        loginHandler: (userName: string) => dispatch(saveName(userName)),
-        loading: () => dispatch(loading()),
-    };
+    return bindActionCreators({
+        loginHandler: saveName,
+        loading,
+    }, dispatch)
 }
 
 export const LoginPage = connect(mapStateToProps, mapDispatchToProps)(RawLoginPage);

@@ -1,6 +1,7 @@
 import React, {useCallback} from "react";
-import {Dispatch} from "redux";
+import {bindActionCreators, Dispatch} from "redux";
 import {connect} from "react-redux";
+
 import {StyledButton} from "@/components/styled/StyledComponents";
 import {clearName} from "@/rdx/features/login";
 import {AppState} from "@/rdx/reducers";
@@ -21,9 +22,9 @@ function mapStateToProps(state: AppState) {
 }
 
 function mapDispatchToProps(dispatch: Dispatch) {
-    return {
-        onLogout: () => dispatch(clearName()),
-    };
+    return bindActionCreators({
+        onLogout: clearName,
+    }, dispatch)
 }
 
 export const LogoutButton = connect(mapStateToProps, mapDispatchToProps)(RawLogoutButton);
