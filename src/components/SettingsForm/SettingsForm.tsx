@@ -2,7 +2,7 @@ import React, {useCallback, useState} from "react";
 import {Dispatch} from "redux";
 import {connect} from "react-redux";
 
-import {gameStart, GameStartPayload} from "@/rdx/features/game";
+import {gameStart, GameStartPayload} from "@/rdx/game/gameStart";
 import {AppState} from "@/rdx/reducers";
 import {Range} from "@/components/Range";
 import {LayoutTable, LayoutTd, LayoutTr, StyledButton, StyledFieldSet} from "@/components/styled/StyledComponents";

@@ -1,7 +1,7 @@
 import {combineReducers} from "redux";
 
-import {gameReducer} from "@/rdx/features/game";
-import {loginReducer} from "@/rdx/features/login";
+import {gameReducer} from "@/rdx/game";
+import {loginReducer} from "@/rdx/login";
 
 export const rootReducer = combineReducers({
     loginReducer,
