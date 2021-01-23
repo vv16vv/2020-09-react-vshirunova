@@ -3,24 +3,24 @@ import {Action} from "redux";
 import {ActionTypes} from "@/rdx/actions";
 import {LoginState} from "@/rdx/user/loginState";
 
-export interface LoginInitPayload {
+export interface InitPayload {
     user?: string;
     isLoggedIn: boolean;
 }
 
-export interface LoginInitAction extends Action {
-    payload: LoginInitPayload
+export interface InitAction extends Action {
+    payload: InitPayload
 }
 
-export const loginInit = (isLoggedIn: boolean, user: string | undefined = undefined): LoginInitAction => ({
-    type: ActionTypes.loginInit,
+export const init = (isLoggedIn: boolean, user: string | undefined = undefined): InitAction => ({
+    type: ActionTypes.init,
     payload: {
         isLoggedIn,
         user
     }
 });
 
-export const loginInitReducer = (state: LoginState, payload: LoginInitPayload): LoginState => {
+export const initReducer = (state: LoginState, payload: InitPayload): LoginState => {
     const user: string | undefined = payload.user;
     const isLoggedIn: boolean = payload.isLoggedIn;
     return {
