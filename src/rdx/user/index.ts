@@ -6,20 +6,20 @@ import {LoginStorage} from "@/logic/LoginStorage";
 import {Paths} from "@/Paths";
 import {defaultLoginState, LoginState} from "@/rdx/user/loginState";
 import {login, LoginAction, loginReducer} from "@/rdx/user/login";
-import {loginInit, LoginInitAction, loginInitReducer} from "@/rdx/user/loginInit";
+import {init, InitAction, initReducer} from "@/rdx/user/init";
 import {isLoggingOut, IsLoggingOutAction, isLoggingOutReducer} from "@/rdx/user/isLoggingOut";
 import {logout, LogoutAction, logoutReducer} from "@/rdx/user/logout";
 
 type LoginActions = LoginAction
     | LogoutAction
-    | LoginInitAction
+    | InitAction
     | IsLoggingOutAction
 
 export function userReducer(state: LoginState = defaultLoginState, action: LoginActions): LoginState {
     if (state.isLoggingOut && action.type === ActionTypes.login) return state;
     switch (action.type) {
-        case ActionTypes.loginInit:
-            return loginInitReducer(state, (action as LoginInitAction).payload)
+        case ActionTypes.init:
+            return initReducer(state, (action as InitAction).payload)
         case ActionTypes.isLoggingOut:
             return isLoggingOutReducer(state, (action as IsLoggingOutAction).payload)
         case ActionTypes.login:
@@ -40,12 +40,12 @@ export const loading = () => (dispatch: Dispatch) => {
                     .getCurrentName()
                     .then((userName) => {
                         if (userName !== "")
-                            dispatch(loginInit(true, userName))
+                            dispatch(init(true, userName))
                         else
-                            dispatch(loginInit(false))
+                            dispatch(init(false))
                     })
             else
-                dispatch(loginInit(false))
+                dispatch(init(false))
         })
 };
 
