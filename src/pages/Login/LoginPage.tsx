@@ -1,6 +1,6 @@
 import "regenerator-runtime/runtime.js";
 import React, {useCallback, useEffect} from "react";
-import {Redirect, useHistory} from "react-router-dom";
+import {Redirect} from "react-router-dom";
 import {connect} from "react-redux";
 import {Dispatch} from "redux";
 
@@ -16,11 +16,9 @@ interface ReduxProps {
 }
 
 const RawLoginPage: React.FC<ReduxProps> = (props) => {
-    const history = useHistory()
     const submitHandler = useCallback(
         ({login}: LoginFormResult) => {
             props.loginHandler(login)
-            history.push(Paths.Game)
         },
         [])
     useEffect(()=>{
