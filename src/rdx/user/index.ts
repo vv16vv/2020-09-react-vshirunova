@@ -4,18 +4,18 @@ import {push} from "react-router-redux";
 import {ActionTypes} from "@/rdx/actions";
 import {LoginStorage} from "@/logic/LoginStorage";
 import {Paths} from "@/Paths";
-import {defaultLoginState, LoginState} from "@/rdx/login/loginState";
-import {login, LoginAction, loginReducer as partialLoginReducer} from "@/rdx/login/login";
-import {loginInit, LoginInitAction, loginInitReducer} from "@/rdx/login/loginInit";
-import {isLoggingOut, IsLoggingOutAction, isLoggingOutReducer} from "@/rdx/login/isLoggingOut";
-import {logout, LogoutAction, logoutReducer} from "@/rdx/login/logout";
+import {defaultLoginState, LoginState} from "@/rdx/user/loginState";
+import {login, LoginAction, loginReducer} from "@/rdx/user/login";
+import {loginInit, LoginInitAction, loginInitReducer} from "@/rdx/user/loginInit";
+import {isLoggingOut, IsLoggingOutAction, isLoggingOutReducer} from "@/rdx/user/isLoggingOut";
+import {logout, LogoutAction, logoutReducer} from "@/rdx/user/logout";
 
 type LoginActions = LoginAction
     | LogoutAction
     | LoginInitAction
     | IsLoggingOutAction
 
-export function loginReducer(state: LoginState = defaultLoginState, action: LoginActions): LoginState {
+export function userReducer(state: LoginState = defaultLoginState, action: LoginActions): LoginState {
     if (state.isLoggingOut && action.type === ActionTypes.login) return state;
     switch (action.type) {
         case ActionTypes.loginInit:
@@ -23,7 +23,7 @@ export function loginReducer(state: LoginState = defaultLoginState, action: Logi
         case ActionTypes.isLoggingOut:
             return isLoggingOutReducer(state, (action as IsLoggingOutAction).payload)
         case ActionTypes.login:
-            return partialLoginReducer(state, (action as LoginAction).payload)
+            return loginReducer(state, (action as LoginAction).payload)
         case ActionTypes.logout:
             return logoutReducer(state)
         default:
