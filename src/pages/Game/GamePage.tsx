@@ -28,8 +28,8 @@ export const RawGamePage: React.FC<ReduxProps> = props => {
 
 function mapStateToProps(state: AppState) {
     return {
-        isLoggedIn: state.loginReducer.isLoggedIn,
-        isLoggingOut: state.loginReducer.isLoggingOut,
+        isLoggedIn: state.userReducer.isLoggedIn,
+        isLoggingOut: state.userReducer.isLoggingOut,
     };
 }
 

@@ -102,7 +102,7 @@ function mapStateToProps(state: AppState) {
         width: state.gameReducer.width,
         height: state.gameReducer.height,
         frequency: state.gameReducer.initFrequency,
-        userName: state.loginReducer.user
+        userName: state.userReducer.user
     };
 }
 
