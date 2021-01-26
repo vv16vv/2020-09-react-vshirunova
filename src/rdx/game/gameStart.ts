@@ -21,6 +21,8 @@ export const gameStartReducer = (state: GameState, payload: GameStartPayload): G
         height: height,
         initFrequency: frequency,
         currFrequency: frequency,
+        clicks: 0,
+        jumps: 0,
     }
 }
 
