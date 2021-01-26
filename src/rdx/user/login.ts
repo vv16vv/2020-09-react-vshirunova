@@ -16,8 +16,13 @@ export const login = (userName: string): LoginAction => ({
     payload: {userName}
 });
 
-export const loginReducer = (state: LoginState, payload: LoginPayload): LoginState => ({
-    ...state,
-    user: payload.userName,
-    isLoggedIn: true
-})
+export const loginReducer = (state: LoginState, payload: LoginPayload): LoginState => {
+    let user;
+    const isLoggedIn = payload.userName !== undefined && payload.userName !== ""
+    if (isLoggedIn) user = payload.userName
+    return ({
+        ...state,
+        user,
+        isLoggedIn
+    });
+}

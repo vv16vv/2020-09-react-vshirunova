@@ -9,6 +9,7 @@ import {login, LoginAction, loginReducer} from "@/rdx/user/login";
 import {init, InitAction, initReducer} from "@/rdx/user/init";
 import {isLoggingOut, IsLoggingOutAction, isLoggingOutReducer} from "@/rdx/user/isLoggingOut";
 import {logout, LogoutAction, logoutReducer} from "@/rdx/user/logout";
+import {AppThunk} from "@/rdx/reducers";
 
 type LoginActions = LoginAction
     | LogoutAction
@@ -31,46 +32,53 @@ export function userReducer(state: LoginState = defaultLoginState, action: Login
     }
 }
 
-export const loading = () => (dispatch: Dispatch) => {
-    LoginStorage
-        .isNameSet()
-        .then((isNameSet) => {
-            if (isNameSet)
-                LoginStorage
-                    .getCurrentName()
-                    .then((userName) => {
-                        if (userName !== "")
-                            dispatch(init(true, userName))
-                        else
-                            dispatch(init(false))
-                    })
-            else
-                dispatch(init(false))
-        })
+export function loading(): AppThunk {
+    return async (dispatch: Dispatch) => {
+        return LoginStorage
+            .isNameSet()
+            .then((isNameSet) => {
+                if (isNameSet) {
+                    LoginStorage
+                        .getCurrentName()
+                        .then((userName) => {
+                            if (userName !== "")
+                                dispatch(init(true, userName))
+                            else
+                                dispatch(init(false))
+                        })
+                } else {
+                    dispatch(init(false))
+                }
+            })
+    };
+}
+
+export const saveName = (userName: string): AppThunk => {
+    return async (dispatch: Dispatch) => {
+        return LoginStorage
+            .putNameToStorage(userName)
+            .then(() => {
+                dispatch(login(userName))
+            })
+            .then(() => {
+                dispatch(push(Paths.Game))
+            })
+    };
 };
 
-export const saveName = (userName: string) => (dispatch: Dispatch) => {
-    LoginStorage
-        .putNameToStorage(userName)
-        .then(() => {
-            dispatch(login(userName))
-        })
-        .then(() => {
-            dispatch(push(Paths.Game))
-        })
-};
-
-export const clearName = () => (dispatch: Dispatch) => {
-    dispatch(isLoggingOut(true))
-    LoginStorage
-        .clearName()
-        .then(() => {
-            dispatch(logout())
-        })
-        .then(() => {
-            dispatch(isLoggingOut(false))
-        })
-        .then(() => {
-            dispatch(push(Paths.Root))
-        })
-};
+export function clearName(): AppThunk {
+    return async (dispatch: Dispatch<any>) => {
+        dispatch(isLoggingOut(true))
+        return LoginStorage
+            .clearName()
+            .then(() => {
+                dispatch(logout())
+            })
+            .then(() => {
+                dispatch(isLoggingOut(false))
+            })
+            .then(() => {
+                dispatch(push(Paths.Root))
+            })
+    };
+}
