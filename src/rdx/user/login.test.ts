@@ -12,6 +12,7 @@ import {saveName} from "@/rdx/user/index";
 import {Paths} from "@/Paths";
 import {defaultLoginState} from "@/rdx/user/loginState";
 import {defaultGameState} from "@/rdx/game/gameState";
+import {mockStore} from "@/rdx/mockStore";
 
 describe("Login action should", () => {
     it('pass with correct name', () => {
@@ -47,8 +48,6 @@ describe("Login action should", () => {
     });
     describe("produce several actions", () => {
         let store: any;
-        const middlewares = [thunk]
-        const mockStore = configureMockStore(middlewares)
         beforeEach(async () => {
             store = mockStore({
                 userReducer: defaultLoginState,
