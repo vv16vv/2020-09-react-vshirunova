@@ -1,9 +1,6 @@
 /**
  * @jest-environment jsdom
  */
-import configureMockStore from 'redux-mock-store'
-import thunk from "redux-thunk";
-
 import {testedUser, userLoggedIn} from "@/rdx/testConstants";
 import {rootReducer} from "@/rdx/reducers";
 import {LoginStorage} from "@/logic/LoginStorage";
@@ -11,6 +8,7 @@ import {ActionTypes} from "@/rdx/actions";
 import {loading} from "@/rdx/user/index";
 import {defaultLoginState} from "@/rdx/user/loginState";
 import {defaultGameState} from "@/rdx/game/gameState";
+import {mockStore} from "@/rdx/mockStore";
 
 describe("Initialize the store accordingly to local storage state", () => {
     it('if login is set already', () => {
@@ -48,8 +46,6 @@ describe("Initialize the store accordingly to local storage state", () => {
 
     describe('should produce action init in the correct state', () => {
         let store: any;
-        const middlewares = [thunk]
-        const mockStore = configureMockStore(middlewares)
         afterEach(async () => {
             store.clearActions()
         })

@@ -1,9 +1,6 @@
 /**
  * @jest-environment jsdom
  */
-import configureMockStore from 'redux-mock-store'
-import thunk from "redux-thunk";
-
 import {gameAfterSeveralClicks, testedUser, userLoggedIn} from "@/rdx/testConstants";
 import {ActionTypes} from "@/rdx/actions";
 import {clearName} from "@/rdx/user/index";
@@ -12,12 +9,11 @@ import {rootReducer} from "@/rdx/reducers";
 import {Paths} from "@/Paths";
 import {defaultLoginState} from "@/rdx/user/loginState";
 import {defaultGameState} from "@/rdx/game/gameState";
+import {mockStore} from "@/rdx/mockStore";
 
 describe("logout", () => {
     describe('should produce several actions', () => {
         let store: any;
-        const middlewares = [thunk]
-        const mockStore = configureMockStore(middlewares)
         beforeEach(async () => {
             store = mockStore({
                 userReducer: defaultLoginState,
