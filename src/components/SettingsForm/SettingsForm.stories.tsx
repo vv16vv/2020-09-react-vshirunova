@@ -1,8 +1,10 @@
 import React from "react";
-import {action} from "@storybook/addon-actions";
 import {number, text, withKnobs} from "@storybook/addon-knobs";
+import {Provider} from "react-redux";
 
 import {SettingsForm} from "./SettingsForm";
+import {userLoggedIn} from "@/rdx/testConstants";
+import {mockStore} from "@/rdx/mockStore";
 
 export default {
     title: "Jumping Cell Game Settings Story (using state)",
@@ -26,13 +28,22 @@ export const NoNameSettingsStory: React.FC<{}> = () => {
     const width = number("Width", 10, optionsDimension);
     const height = number("Height", 10, optionsDimension);
     const frequency = number("Frequency", 5000, optionsFreq);
-    return <SettingsForm
-        key={width*height*frequency}
-        width={width}
-        height={height}
-        frequency={frequency}
-        onSubmit={action("apply changes")}
-    />
+    const store = mockStore({
+        userReducer: userLoggedIn,
+        gameReducer: {
+            width,
+            height,
+            initFrequency: frequency,
+            currFrequency: frequency,
+            x: 0,
+            y: 0,
+            jumps: 0,
+            clicks: 0,
+        }
+    })
+    return <Provider store={store}>
+        <SettingsForm key={width * height * frequency}/>
+    </Provider>
 }
 
 export const WithNameSettingsStory: React.FC<{}> = () => {
@@ -40,12 +51,26 @@ export const WithNameSettingsStory: React.FC<{}> = () => {
     const height = number("Height", 10, optionsDimension);
     const frequency = number("Frequency", 5000, optionsFreq);
     const userName = text("User name", "Vitkus");
-    return <SettingsForm
-        key={userName+width*height*frequency}
-        width={width}
-        height={height}
-        frequency={frequency}
-        userName={userName}
-        onSubmit={action("apply changes")}
-    />
+    const store = mockStore({
+        userReducer: {
+            isLoggedIn: true,
+            isLoggingOut: false,
+            user: userName
+        },
+        gameReducer: {
+            width,
+            height,
+            initFrequency: frequency,
+            currFrequency: frequency,
+            x: 0,
+            y: 0,
+            jumps: 0,
+            clicks: 0,
+        }
+    })
+    return <Provider store={store}>
+        <SettingsForm
+            key={userName + width * height * frequency}
+        />
+    </Provider>
 }
