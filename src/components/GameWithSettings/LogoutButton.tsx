@@ -3,8 +3,8 @@ import {bindActionCreators, Dispatch} from "redux";
 import {connect} from "react-redux";
 
 import {StyledButton} from "@/components/styled/StyledComponents";
-import {clearName} from "@/rdx/user";
 import {AppState} from "@/rdx/reducers";
+import {clearNameGen} from "@/saga/first";
 
 interface ReduxProps {
     onLogout: () => void
@@ -23,7 +23,7 @@ function mapStateToProps(state: AppState) {
 
 function mapDispatchToProps(dispatch: Dispatch) {
     return bindActionCreators({
-        onLogout: clearName,
+        onLogout: clearNameGen,
     }, dispatch)
 }
 

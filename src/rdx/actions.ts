@@ -1,4 +1,7 @@
 export enum ActionTypes {
+    loading="loading",
+    clearName="clearName",
+    saveName="saveName",
     init = "init",
     isLoggingOut = "isLoggingOut",
     login = "login",

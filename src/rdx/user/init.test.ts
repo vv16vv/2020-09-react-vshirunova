@@ -5,10 +5,10 @@ import {testedUser, userLoggedIn} from "@/rdx/testConstants";
 import {rootReducer} from "@/rdx/reducers";
 import {LoginStorage} from "@/logic/LoginStorage";
 import {ActionTypes} from "@/rdx/actions";
-import {loading} from "@/rdx/user/index";
 import {defaultLoginState} from "@/rdx/user/loginState";
 import {defaultGameState} from "@/rdx/game/gameState";
 import {mockStore} from "@/rdx/mockStore";
+import {loading} from "@/saga/first";
 
 describe("Initialize the store accordingly to local storage state", () => {
     it('if login is set already', () => {
@@ -67,7 +67,7 @@ describe("Initialize the store accordingly to local storage state", () => {
                     }
                 }]
 
-                await store.dispatch(loading())
+                await store.dispatch(loadingGen())
                 expect(store.getActions()).toEqual(expectedActions)
             })
         })
@@ -89,7 +89,7 @@ describe("Initialize the store accordingly to local storage state", () => {
                     }
                 }]
 
-                await store.dispatch(loading())
+                await store.dispatch(loadingGen())
                 expect(store.getActions()).toEqual(expectedActions)
             })
         })

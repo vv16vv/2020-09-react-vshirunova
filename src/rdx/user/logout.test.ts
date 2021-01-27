@@ -10,6 +10,7 @@ import {Paths} from "@/Paths";
 import {defaultLoginState} from "@/rdx/user/loginState";
 import {defaultGameState} from "@/rdx/game/gameState";
 import {mockStore} from "@/rdx/mockStore";
+import {clearNameGen} from "@/saga/first";
 
 describe("logout", () => {
     describe('should produce several actions', () => {
@@ -43,7 +44,7 @@ describe("logout", () => {
                 }
             }]
 
-            await store.dispatch(clearName())
+            await store.dispatch(clearNameGen())
             expect(store.getActions()).toEqual(expectedActions)
         })
     })

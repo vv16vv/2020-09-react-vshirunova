@@ -7,7 +7,7 @@ import {bindActionCreators, Dispatch} from "redux";
 import {LoginForm, LoginFormResult} from "@/components/LoginForm";
 import {Paths} from "@/Paths";
 import {AppState} from "@/rdx/reducers";
-import {loading, saveName} from "@/rdx/user";
+import {loading, saveName} from "@/saga/first";
 
 interface ReduxProps {
     isLoggedIn: boolean;
@@ -43,7 +43,7 @@ function mapStateToProps(state: AppState) {
 function mapDispatchToProps(dispatch: Dispatch) {
     return bindActionCreators({
         loginHandler: saveName,
-        loading,
+        loading: loading,
     }, dispatch)
 }
 
