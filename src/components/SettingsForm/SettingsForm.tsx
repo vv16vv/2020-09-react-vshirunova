@@ -26,7 +26,7 @@ const calculateFrequency = (frequency: number): number => {
     return frequency / milliInSecond
 }
 
-const RawSettingsForm: React.FC<ReduxProps> = props => {
+export const RawSettingsForm: React.FC<ReduxProps> = props => {
     const [width, setWidth] = useState(props.width)
     const [height, setHeight] = useState(props.height)
     const [frequency, setFrequency] = useState(calculateFrequency(props.frequency))
