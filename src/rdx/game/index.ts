@@ -12,7 +12,7 @@ type GameActions = GameClickAction
     | GameStartAction
     | GameResetAction
 
-export function gameReducer(state: GameState = defaultGameState, action: GameActions): GameState {
+export const gameReducer = (state: GameState = defaultGameState, action: GameActions): GameState => {
     switch (action.type) {
         case ActionTypes.gameStart:
             return gameStartReducer(state, (action as GameStartAction).payload)
@@ -27,4 +27,4 @@ export function gameReducer(state: GameState = defaultGameState, action: GameAct
         default:
             return state;
     }
-}
+};

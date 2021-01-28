@@ -16,7 +16,7 @@ type LoginActions = LoginAction
     | InitAction
     | IsLoggingOutAction
 
-export function userReducer(state: LoginState = defaultLoginState, action: LoginActions): LoginState {
+export const userReducer = (state: LoginState = defaultLoginState, action: LoginActions): LoginState => {
     if (state.isLoggingOut && action.type === ActionTypes.login) return state;
     switch (action.type) {
         case ActionTypes.init:
@@ -30,55 +30,48 @@ export function userReducer(state: LoginState = defaultLoginState, action: Login
         default:
             return state
     }
-}
+};
 
-export function loading(): AppThunk {
-    return async (dispatch: Dispatch) => {
-        return LoginStorage
-            .isNameSet()
-            .then((isNameSet) => {
-                if (isNameSet) {
-                    LoginStorage
-                        .getCurrentName()
-                        .then((userName) => {
-                            if (userName !== "")
-                                dispatch(init(true, userName))
-                            else
-                                dispatch(init(false))
-                        })
-                } else {
-                    dispatch(init(false))
-                }
-            })
-    };
-}
+export const loading = (): AppThunk => async (dispatch: Dispatch) =>
+    LoginStorage
+        .isNameSet()
+        .then((isNameSet) => {
+            if (isNameSet) {
+                LoginStorage
+                    .getCurrentName()
+                    .then((userName) => {
+                        if (userName !== "")
+                            dispatch(init(true, userName))
+                        else
+                            dispatch(init(false))
+                    })
+            } else {
+                dispatch(init(false))
+            }
+        });
 
-export const saveName = (userName: string): AppThunk => {
-    return async (dispatch: Dispatch) => {
-        return LoginStorage
+export const saveName = (userName: string): AppThunk =>
+    async (dispatch: Dispatch) =>
+        LoginStorage
             .putNameToStorage(userName)
             .then(() => {
                 dispatch(login(userName))
             })
             .then(() => {
                 dispatch(push(Paths.Game))
-            })
-    };
-};
+            });
 
-export function clearName(): AppThunk {
-    return async (dispatch: Dispatch<any>) => {
-        dispatch(isLoggingOut(true))
-        return LoginStorage
-            .clearName()
-            .then(() => {
-                dispatch(logout())
-            })
-            .then(() => {
-                dispatch(isLoggingOut(false))
-            })
-            .then(() => {
-                dispatch(push(Paths.Root))
-            })
-    };
-}
+export const clearName = (): AppThunk => async (dispatch: Dispatch<any>) => {
+    dispatch(isLoggingOut(true))
+    return LoginStorage
+        .clearName()
+        .then(() => {
+            dispatch(logout())
+        })
+        .then(() => {
+            dispatch(isLoggingOut(false))
+        })
+        .then(() => {
+            dispatch(push(Paths.Root))
+        })
+};
