@@ -18,7 +18,7 @@ describe("isLoggingOut", () => {
                 isLoggingOut: true
             }
         });
-        expect(state).toEqual({
+        expect(state).toStrictEqual({
             userReducer: userLogOutInProcess,
             gameReducer: gameAfterSeveralClicks
         });
@@ -34,7 +34,7 @@ describe("isLoggingOut", () => {
                 isLoggingOut: false
             }
         });
-        expect(state).toEqual({
+        expect(state).toStrictEqual({
             userReducer: userLoggedIn,
             gameReducer: gameAfterSeveralClicks
         });

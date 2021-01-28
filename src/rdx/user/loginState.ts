@@ -7,4 +7,5 @@ export interface LoginState {
 export const defaultLoginState: LoginState = {
     isLoggedIn: false,
     isLoggingOut: false,
+    user: undefined,
 }

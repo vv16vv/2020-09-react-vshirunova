@@ -14,7 +14,7 @@ it('Start should begin new game with applied width, height and initial frequency
         }
     });
     expect(state)
-        .toEqual({
+        .toStrictEqual({
             userReducer: userLoggedIn,
             gameReducer: {
                 width: 5,
