@@ -46,19 +46,21 @@ export const RawJumpingCellGame: React.FC<ReduxProps> = props => {
         }
     })
 
+    const {width, height, x, y, jumps, clicks, onReset} = props
+
     return <>
         <StyledBlock>
             <Field
-                width={props.width}
-                height={props.height}
-                filledCells={[{x: props.x, y: props.y}]}
+                width={width}
+                height={height}
+                filledCells={[{x, y}]}
                 clickHandler={handleClick}
             />
         </StyledBlock>
         <StyledBlock>
-            <CenteredLabel>{`Jumps: ${props.jumps}`}</CenteredLabel>
-            <CenteredLabel>{`Clicks: ${props.clicks}`}</CenteredLabel>
-            <StyledButton onClick={props.onReset}>Reset</StyledButton>
+            <CenteredLabel>{`Jumps: ${jumps}`}</CenteredLabel>
+            <CenteredLabel>{`Clicks: ${clicks}`}</CenteredLabel>
+            <StyledButton onClick={onReset}>Reset</StyledButton>
         </StyledBlock>
     </>;
 }
