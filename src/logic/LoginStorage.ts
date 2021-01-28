@@ -1,6 +1,6 @@
 export const loginKey = "login"
 
-export const LoginStorage = {
+export const loginStorage = {
     async putNameToStorage(name: string) {
         await global.localStorage.setItem(loginKey, name)
     },
