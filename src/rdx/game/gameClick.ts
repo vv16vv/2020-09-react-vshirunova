@@ -33,6 +33,6 @@ export const gameClickReducer = (state: GameState, payload: GameClickPayload): G
 };
 
 export const gameClick = (payload: GameClickPayload): GameClickAction => ({
-    type: ActionTypes.gameClick,
+    type: ActionTypes.GAME_CLICK,
     payload
 });

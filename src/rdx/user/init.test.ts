@@ -16,7 +16,7 @@ describe("Initialize the store accordingly to local storage state", () => {
             userReducer: defaultLoginState,
             gameReducer: defaultGameState
         }, {
-            type: 'init',
+            type: ActionTypes.INIT,
             payload: {
                 isLoggedIn: true,
                 user: testedUser
@@ -33,7 +33,7 @@ describe("Initialize the store accordingly to local storage state", () => {
             userReducer: defaultLoginState,
             gameReducer: defaultGameState
         }, {
-            type: 'init',
+            type: ActionTypes.INIT,
             payload: {
                 isLoggedIn: false,
             }
@@ -44,7 +44,7 @@ describe("Initialize the store accordingly to local storage state", () => {
         });
     });
 
-    describe('should produce action init in the correct state', () => {
+    describe('should produce action INIT in the correct state', () => {
         let store: any;
         afterEach(async () => {
             store.clearActions()
@@ -59,9 +59,9 @@ describe("Initialize the store accordingly to local storage state", () => {
                 await loginStorage.clearName()
             })
 
-            it("init should be with isLoggedIn = false", async () => {
+            it("INIT should be with isLoggedIn = false", async () => {
                 const expectedActions = [{
-                    type: ActionTypes.init,
+                    type: ActionTypes.INIT,
                     payload: {
                         isLoggedIn: false,
                         user: undefined,
@@ -82,9 +82,9 @@ describe("Initialize the store accordingly to local storage state", () => {
                 await loginStorage.putNameToStorage("")
             })
 
-            it("init should be with isLoggedIn = false", async () => {
+            it("INIT should be with isLoggedIn = false", async () => {
                 const expectedActions = [{
-                    type: ActionTypes.init,
+                    type: ActionTypes.INIT,
                     payload: {
                         isLoggedIn: false,
                         user: undefined,
@@ -105,9 +105,9 @@ describe("Initialize the store accordingly to local storage state", () => {
                 })
                 await loginStorage.putNameToStorage(testedUser)
             })
-            it("init should be with isLoggedIn = false", async () => {
+            it("INIT should be with isLoggedIn = false", async () => {
                 const expectedActions = [{
-                    type: ActionTypes.init,
+                    type: ActionTypes.INIT,
                     payload: {
                         isLoggedIn: true,
                         user: testedUser

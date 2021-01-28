@@ -24,14 +24,14 @@ describe("logout", () => {
 
         it("in the required order", async () => {
             const expectedActions = [{
-                type: ActionTypes.isLoggingOut,
+                type: ActionTypes.IS_LOGGING_OUT,
                 payload: {
                     isLoggingOut: true
                 }
             }, {
-                type: ActionTypes.logout,
+                type: ActionTypes.LOGOUT,
             }, {
-                type: ActionTypes.isLoggingOut,
+                type: ActionTypes.IS_LOGGING_OUT,
                 payload: {
                     isLoggingOut: false
                 }
@@ -53,7 +53,7 @@ describe("logout", () => {
             userReducer: userLoggedIn,
             gameReducer: defaultGameState
         }, {
-            type: 'logout',
+            type: ActionTypes.LOGOUT,
         });
         expect(state)
             .toStrictEqual({

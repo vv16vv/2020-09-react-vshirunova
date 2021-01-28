@@ -13,7 +13,7 @@ export interface InitAction extends Action {
 }
 
 export const init = (isLoggedIn: boolean, user: string | undefined = undefined): InitAction => ({
-    type: ActionTypes.init,
+    type: ActionTypes.INIT,
     payload: {
         isLoggedIn,
         user

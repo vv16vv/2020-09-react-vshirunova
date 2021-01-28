@@ -12,7 +12,7 @@ export interface LoginAction extends Action {
 }
 
 export const login = (userName: string): LoginAction => ({
-    type: ActionTypes.login,
+    type: ActionTypes.LOGIN,
     payload: {userName}
 });
 

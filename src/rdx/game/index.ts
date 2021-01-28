@@ -14,15 +14,15 @@ type GameActions = GameClickAction
 
 export const gameReducer = (state: GameState = defaultGameState, action: GameActions): GameState => {
     switch (action.type) {
-        case ActionTypes.gameStart:
+        case ActionTypes.GAME_START:
             return gameStartReducer(state, (action as GameStartAction).payload)
-        case ActionTypes.gameEnd:
+        case ActionTypes.GAME_END:
             return gameEndReducer(state)
-        case ActionTypes.gameReset:
+        case ActionTypes.GAME_RESET:
             return gameResetReducer(state)
-        case ActionTypes.gameClick:
+        case ActionTypes.GAME_CLICK:
             return gameClickReducer(state, (action as GameClickAction).payload)
-        case ActionTypes.gameJump:
+        case ActionTypes.GAME_JUMP:
             return gameJumpReducer(state, (action as GameJumpAction).payload)
         default:
             return state;

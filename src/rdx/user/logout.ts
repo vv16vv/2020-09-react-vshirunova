@@ -7,7 +7,7 @@ export interface LogoutAction extends Action {
 }
 
 export const logout = (): LogoutAction => ({
-    type: ActionTypes.logout,
+    type: ActionTypes.LOGOUT,
 });
 
 export const logoutReducer = (state: LoginState): LoginState => ({

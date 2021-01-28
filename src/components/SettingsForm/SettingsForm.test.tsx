@@ -8,6 +8,7 @@ import {SettingsForm} from "@/components/SettingsForm/SettingsForm";
 import {defaultGameState} from "@/rdx/game/gameState";
 import {userLoggedIn} from "@/rdx/testConstants";
 import {mockStore} from "@/rdx/mockStore";
+import {ActionTypes} from "@/rdx/actions";
 
 describe("Settings form", () => {
     let store: any;
@@ -40,7 +41,7 @@ describe("Settings form", () => {
             .find('button')
             .simulate('submit');
         expect(store.getActions()).toEqual([{
-            type: 'gameStart',
+            type: ActionTypes.GAME_START,
             payload: defaultValues
         }])
     });
@@ -70,7 +71,7 @@ describe("Settings form", () => {
             .find('button')
             .simulate('submit');
         expect(store.getActions()).toEqual([{
-            type: 'gameStart',
+            type: ActionTypes.GAME_START,
             payload: changedValues
         }])
     });

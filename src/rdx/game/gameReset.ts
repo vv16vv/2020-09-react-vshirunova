@@ -18,6 +18,6 @@ export const gameResetReducer = (state: GameState): GameState => ({
 
 export function gameReset(): GameEndAction {
     return {
-        type: ActionTypes.gameReset,
+        type: ActionTypes.GAME_RESET,
     }
 }
