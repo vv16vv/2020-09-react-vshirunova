@@ -1,13 +1,14 @@
 import {rootReducer} from "@/rdx/reducers";
 import {userLoggedIn} from "@/rdx/testConstants";
 import {defaultGameState} from "@/rdx/game/gameState";
+import {ActionTypes} from "@/rdx/actions";
 
 it('Game jump should calculate new coordinates', () => {
     const state = rootReducer({
         userReducer: userLoggedIn,
         gameReducer: defaultGameState
     }, {
-        type: 'gameJump',
+        type: ActionTypes.GAME_JUMP,
         payload: {
             seedX: 0.2567296167753027,
             seedY: 0.5600669849441537

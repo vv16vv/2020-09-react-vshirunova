@@ -9,6 +9,6 @@ export const gameEndReducer = (state: GameState): GameState => state
 
 export function gameEnd(): GameEndAction {
     return {
-        type: ActionTypes.gameEnd,
+        type: ActionTypes.GAME_END,
     }
 }

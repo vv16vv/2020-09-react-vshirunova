@@ -1,7 +1,8 @@
 import {rootReducer} from "@/rdx/reducers";
 import {gameAfterSeveralClicks, testedUser, userLoggedIn} from "@/rdx/testConstants";
+import {ActionTypes} from "@/rdx/actions";
 
-describe("isLoggingOut", () => {
+describe("IS_LOGGING_OUT", () => {
     const userLogOutInProcess = {
         isLoggedIn: true,
         isLoggingOut: true,
@@ -13,7 +14,7 @@ describe("isLoggingOut", () => {
             userReducer: userLoggedIn,
             gameReducer: gameAfterSeveralClicks
         }, {
-            type: 'isLoggingOut',
+            type: ActionTypes.IS_LOGGING_OUT,
             payload: {
                 isLoggingOut: true
             }
@@ -29,7 +30,7 @@ describe("isLoggingOut", () => {
             userReducer: userLogOutInProcess,
             gameReducer: gameAfterSeveralClicks
         }, {
-            type: 'isLoggingOut',
+            type: ActionTypes.IS_LOGGING_OUT,
             payload: {
                 isLoggingOut: false
             }

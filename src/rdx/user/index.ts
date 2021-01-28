@@ -17,15 +17,15 @@ type LoginActions = LoginAction
     | IsLoggingOutAction
 
 export const userReducer = (state: LoginState = defaultLoginState, action: LoginActions): LoginState => {
-    if (state.isLoggingOut && action.type === ActionTypes.login) return state;
+    if (state.isLoggingOut && action.type === ActionTypes.LOGIN) return state;
     switch (action.type) {
-        case ActionTypes.init:
+        case ActionTypes.INIT:
             return initReducer(state, (action as InitAction).payload)
-        case ActionTypes.isLoggingOut:
+        case ActionTypes.IS_LOGGING_OUT:
             return isLoggingOutReducer(state, (action as IsLoggingOutAction).payload)
-        case ActionTypes.login:
+        case ActionTypes.LOGIN:
             return loginReducer(state, (action as LoginAction).payload)
-        case ActionTypes.logout:
+        case ActionTypes.LOGOUT:
             return logoutReducer(state)
         default:
             return state

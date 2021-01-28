@@ -28,7 +28,7 @@ export const gameStartReducer = (state: GameState, payload: GameStartPayload): G
 
 export function gameStart(payload: GameStartPayload): GameStartAction {
     return {
-        type: ActionTypes.gameStart,
+        type: ActionTypes.GAME_START,
         payload: payload
     }
 }

@@ -1,6 +1,7 @@
 import {rootReducer} from "@/rdx/reducers";
 import {userLoggedIn} from "@/rdx/testConstants";
 import {defaultGameState} from "@/rdx/game/gameState";
+import {ActionTypes} from "@/rdx/actions";
 
 describe("Click on the game field should", () => {
     it('if click on the filled cell, increment clicks and jumps, decrease current frequency', () => {
@@ -8,7 +9,7 @@ describe("Click on the game field should", () => {
             userReducer: userLoggedIn,
             gameReducer: defaultGameState
         }, {
-            type: 'gameClick',
+            type: ActionTypes.GAME_CLICK,
             payload: {
                 clickX: 0,
                 clickY: 0
@@ -33,7 +34,7 @@ describe("Click on the game field should", () => {
             userReducer: userLoggedIn,
             gameReducer: defaultGameState
         }, {
-            type: 'gameClick',
+            type: ActionTypes.GAME_CLICK,
             payload: {
                 clickX: 3,
                 clickY: 3

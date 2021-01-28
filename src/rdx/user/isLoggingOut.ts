@@ -18,7 +18,7 @@ export const isLoggingOutReducer = (state: LoginState, payload: IsLoggingOutPayl
 
 export function isLoggingOut(isLoggingOut: boolean): IsLoggingOutAction {
     return {
-        type: ActionTypes.isLoggingOut,
+        type: ActionTypes.IS_LOGGING_OUT,
         payload: {
             isLoggingOut
         }

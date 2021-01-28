@@ -17,7 +17,7 @@ describe("Login action should", () => {
             userReducer: defaultLoginState,
             gameReducer: defaultGameState
         }, {
-            type: 'login',
+            type: ActionTypes.LOGIN,
             payload: {
                 userName: testedUser
             }
@@ -33,7 +33,7 @@ describe("Login action should", () => {
             userReducer: defaultLoginState,
             gameReducer: defaultGameState
         }, {
-            type: 'login',
+            type: ActionTypes.LOGIN,
             payload: {
                 userName: ''
             }
@@ -55,7 +55,7 @@ describe("Login action should", () => {
 
         it("in the required order", async () => {
             const expectedActions = [{
-                type: ActionTypes.login,
+                type: ActionTypes.LOGIN,
                 payload: {
                     userName: testedUser
                 }

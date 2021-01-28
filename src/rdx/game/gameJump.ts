@@ -30,7 +30,7 @@ export const gameJumpReducer = (state: GameState, payload: GameJumpPayload): Gam
 
 export function gameJump(): GameJumpAction {
     return {
-        type: ActionTypes.gameJump,
+        type: ActionTypes.GAME_JUMP,
         payload: {
             seedX: Math.random(),
             seedY: Math.random()

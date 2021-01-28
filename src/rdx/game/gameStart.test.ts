@@ -1,12 +1,13 @@
 import {rootReducer} from "@/rdx/reducers";
 import {gameAfterSeveralClicks, userLoggedIn} from "@/rdx/testConstants";
+import {ActionTypes} from "@/rdx/actions";
 
 it('Start should begin new game with applied width, height and initial frequency; jumps and clicks should be reset', () => {
     const state = rootReducer({
         userReducer: userLoggedIn,
         gameReducer: gameAfterSeveralClicks
     }, {
-        type: 'gameStart',
+        type: ActionTypes.GAME_START,
         payload: {
             width: 5,
             height: 3,
