@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-import {LoginStorage} from "@/logic/LoginStorage";
+import {loginStorage} from "@/logic/LoginStorage";
 import {testedUser, userLoggedIn} from "@/rdx/testConstants";
 import {rootReducer} from "@/rdx/reducers";
 import {ActionTypes} from "@/rdx/actions";
@@ -50,7 +50,7 @@ describe("Login action should", () => {
                 userReducer: defaultLoginState,
                 gameReducer: defaultGameState
             })
-            await LoginStorage.clearName()
+            await loginStorage.clearName()
         })
 
         it("in the required order", async () => {

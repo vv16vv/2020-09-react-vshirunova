@@ -3,7 +3,7 @@
  */
 import {testedUser, userLoggedIn} from "@/rdx/testConstants";
 import {rootReducer} from "@/rdx/reducers";
-import {LoginStorage} from "@/logic/LoginStorage";
+import {loginStorage} from "@/logic/LoginStorage";
 import {ActionTypes} from "@/rdx/actions";
 import {loading} from "@/rdx/user/index";
 import {defaultLoginState} from "@/rdx/user/loginState";
@@ -56,7 +56,7 @@ describe("Initialize the store accordingly to local storage state", () => {
                     userReducer: defaultLoginState,
                     gameReducer: defaultGameState
                 })
-                await LoginStorage.clearName()
+                await loginStorage.clearName()
             })
 
             it("init should be with isLoggedIn = false", async () => {
@@ -79,7 +79,7 @@ describe("Initialize the store accordingly to local storage state", () => {
                     userReducer: defaultLoginState,
                     gameReducer: defaultGameState
                 })
-                await LoginStorage.putNameToStorage("")
+                await loginStorage.putNameToStorage("")
             })
 
             it("init should be with isLoggedIn = false", async () => {
@@ -103,7 +103,7 @@ describe("Initialize the store accordingly to local storage state", () => {
                     userReducer: defaultLoginState,
                     gameReducer: defaultGameState
                 })
-                await LoginStorage.putNameToStorage(testedUser)
+                await loginStorage.putNameToStorage(testedUser)
             })
             it("init should be with isLoggedIn = false", async () => {
                 const expectedActions = [{

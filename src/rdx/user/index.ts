@@ -2,7 +2,7 @@ import {Dispatch} from "redux";
 import {push} from "react-router-redux";
 
 import {ActionTypes} from "@/rdx/actions";
-import {LoginStorage} from "@/logic/LoginStorage";
+import {loginStorage} from "@/logic/LoginStorage";
 import {Paths} from "@/Paths";
 import {defaultLoginState, LoginState} from "@/rdx/user/loginState";
 import {login, LoginAction, loginReducer} from "@/rdx/user/login";
@@ -33,11 +33,11 @@ export const userReducer = (state: LoginState = defaultLoginState, action: Login
 };
 
 export const loading = (): AppThunk => async (dispatch: Dispatch) =>
-    LoginStorage
+    loginStorage
         .isNameSet()
         .then((isNameSet) => {
             if (isNameSet) {
-                LoginStorage
+                loginStorage
                     .getCurrentName()
                     .then((userName) => {
                         if (userName !== "")
@@ -52,7 +52,7 @@ export const loading = (): AppThunk => async (dispatch: Dispatch) =>
 
 export const saveName = (userName: string): AppThunk =>
     async (dispatch: Dispatch) =>
-        LoginStorage
+        loginStorage
             .putNameToStorage(userName)
             .then(() => {
                 dispatch(login(userName))
@@ -63,7 +63,7 @@ export const saveName = (userName: string): AppThunk =>
 
 export const clearName = (): AppThunk => async (dispatch: Dispatch<any>) => {
     dispatch(isLoggingOut(true))
-    return LoginStorage
+    return loginStorage
         .clearName()
         .then(() => {
             dispatch(logout())

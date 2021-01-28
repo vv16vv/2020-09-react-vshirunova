@@ -4,7 +4,7 @@
 import {gameAfterSeveralClicks, testedUser, userLoggedIn} from "@/rdx/testConstants";
 import {ActionTypes} from "@/rdx/actions";
 import {clearName} from "@/rdx/user/index";
-import {LoginStorage} from "@/logic/LoginStorage";
+import {loginStorage} from "@/logic/LoginStorage";
 import {rootReducer} from "@/rdx/reducers";
 import {Paths} from "@/Paths";
 import {defaultLoginState} from "@/rdx/user/loginState";
@@ -19,7 +19,7 @@ describe("logout", () => {
                 userReducer: defaultLoginState,
                 gameReducer: gameAfterSeveralClicks
             })
-            await LoginStorage.putNameToStorage(testedUser)
+            await loginStorage.putNameToStorage(testedUser)
         })
 
         it("in the required order", async () => {
