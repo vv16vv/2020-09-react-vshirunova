@@ -1,4 +1,4 @@
-import React, {useCallback} from "react";
+import React from "react";
 import {bindActionCreators, Dispatch} from "redux";
 import {connect} from "react-redux";
 
@@ -9,12 +9,7 @@ interface ReduxProps {
     onLogout: () => void
 }
 
-const RawLogoutButton: React.FC<ReduxProps> = props => {
-    const logout = useCallback(() => {
-        props.onLogout()
-    }, [])
-    return <StyledButton onClick={logout}>Log out</StyledButton>
-}
+const RawLogoutButton: React.FC<ReduxProps> = props => <StyledButton onClick={props.onLogout}>Log out</StyledButton>
 
 function mapDispatchToProps(dispatch: Dispatch) {
     return bindActionCreators({
