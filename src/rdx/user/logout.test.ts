@@ -44,7 +44,7 @@ describe("logout", () => {
             }]
 
             await store.dispatch(clearName())
-            expect(store.getActions()).toEqual(expectedActions)
+            expect(store.getActions()).toStrictEqual(expectedActions)
         })
     })
 
@@ -56,7 +56,7 @@ describe("logout", () => {
             type: 'logout',
         });
         expect(state)
-            .toEqual({
+            .toStrictEqual({
                 userReducer: defaultLoginState,
                 gameReducer: defaultGameState
             });

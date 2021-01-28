@@ -13,7 +13,7 @@ it('Game jump should calculate new coordinates', () => {
             seedY: 0.5600669849441537
         }
     });
-    expect(state).toEqual({
+    expect(state).toStrictEqual({
         userReducer: userLoggedIn,
         gameReducer: {
             width: 10,

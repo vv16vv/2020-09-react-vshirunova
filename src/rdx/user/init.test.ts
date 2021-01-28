@@ -22,7 +22,7 @@ describe("Initialize the store accordingly to local storage state", () => {
                 user: testedUser
             }
         });
-        expect(state).toEqual({
+        expect(state).toStrictEqual({
             userReducer: userLoggedIn,
             gameReducer: defaultGameState
         });
@@ -38,7 +38,7 @@ describe("Initialize the store accordingly to local storage state", () => {
                 isLoggedIn: false,
             }
         });
-        expect(state).toEqual({
+        expect(state).toStrictEqual({
             userReducer: defaultLoginState,
             gameReducer: defaultGameState
         });
@@ -63,12 +63,13 @@ describe("Initialize the store accordingly to local storage state", () => {
                 const expectedActions = [{
                     type: ActionTypes.init,
                     payload: {
-                        isLoggedIn: false
+                        isLoggedIn: false,
+                        user: undefined,
                     }
                 }]
 
                 await store.dispatch(loading())
-                expect(store.getActions()).toEqual(expectedActions)
+                expect(store.getActions()).toStrictEqual(expectedActions)
             })
         })
 
@@ -85,12 +86,13 @@ describe("Initialize the store accordingly to local storage state", () => {
                 const expectedActions = [{
                     type: ActionTypes.init,
                     payload: {
-                        isLoggedIn: false
+                        isLoggedIn: false,
+                        user: undefined,
                     }
                 }]
 
                 await store.dispatch(loading())
-                expect(store.getActions()).toEqual(expectedActions)
+                expect(store.getActions()).toStrictEqual(expectedActions)
             })
         })
 
@@ -113,7 +115,7 @@ describe("Initialize the store accordingly to local storage state", () => {
                 }]
 
                 await store.dispatch(loading())
-                expect(store.getActions()).toEqual(expectedActions)
+                expect(store.getActions()).toStrictEqual(expectedActions)
             })
         })
     })

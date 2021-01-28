@@ -1,9 +1,6 @@
 /**
  * @jest-environment jsdom
  */
-import thunk from "redux-thunk";
-import configureMockStore from "redux-mock-store";
-
 import {LoginStorage} from "@/logic/LoginStorage";
 import {testedUser, userLoggedIn} from "@/rdx/testConstants";
 import {rootReducer} from "@/rdx/reducers";
@@ -26,7 +23,7 @@ describe("Login action should", () => {
             }
         });
         expect(state)
-            .toEqual({
+            .toStrictEqual({
                 userReducer: userLoggedIn,
                 gameReducer: defaultGameState
             });
@@ -41,7 +38,7 @@ describe("Login action should", () => {
                 userName: ''
             }
         });
-        expect(state).toEqual({
+        expect(state).toStrictEqual({
             userReducer: defaultLoginState,
             gameReducer: defaultGameState
         });
@@ -71,7 +68,7 @@ describe("Login action should", () => {
             }]
 
             await store.dispatch(saveName(testedUser))
-            expect(store.getActions()).toEqual(expectedActions)
+            expect(store.getActions()).toStrictEqual(expectedActions)
         })
     })
 })

@@ -8,7 +8,7 @@ it('Game end does nothing with state still', () => {
     }, {
         type: 'gameEnd'
     });
-    expect(state).toEqual({
+    expect(state).toStrictEqual({
         userReducer: userLoggedIn,
         gameReducer: gameAfterSeveralClicks
     });

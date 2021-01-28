@@ -14,7 +14,7 @@ describe("Click on the game field should", () => {
                 clickY: 0
             }
         });
-        expect(state).toEqual({
+        expect(state).toStrictEqual({
             userReducer: userLoggedIn,
             gameReducer: {
                 width: 10,
@@ -39,7 +39,7 @@ describe("Click on the game field should", () => {
                 clickY: 3
             }
         });
-        expect(state).toEqual({
+        expect(state).toStrictEqual({
             userReducer: userLoggedIn,
             gameReducer: {
                 width: 10,

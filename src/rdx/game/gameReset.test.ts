@@ -9,7 +9,7 @@ it('Game reset should reset jumps, clicks, coordinates and current frequency', (
     }, {
         type: 'gameReset'
     });
-    expect(state).toEqual({
+    expect(state).toStrictEqual({
         userReducer: userLoggedIn,
         gameReducer: defaultGameState
     });
