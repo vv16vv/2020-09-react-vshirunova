@@ -12,30 +12,30 @@ import {logout} from "@/rdx/user/logout";
 
 
 export const loading = (): Action => ({
-    type: ActionTypes.loading,
+    type: ActionTypes.LOADING,
 });
 
 export const saveName = (userName: string): LoginAction => ({
-    type: ActionTypes.saveName,
+    type: ActionTypes.SAVE_NAME,
     payload: {
         userName
     }
 });
 
 export const clearName = (): Action => ({
-    type: ActionTypes.clearName,
+    type: ActionTypes.CLEAR_NAME,
 });
 
 export function* watchLoading() {
-    yield takeLatest(ActionTypes.loading, loadingGen)
+    yield takeLatest(ActionTypes.LOADING, loadingGen)
 }
 
 export function* watchLogout() {
-    yield takeEvery(ActionTypes.clearName, clearNameGen)
+    yield takeEvery(ActionTypes.CLEAR_NAME, clearNameGen)
 }
 
 export function* watchSaveName() {
-    yield takeEvery(ActionTypes.saveName, saveNameGen)
+    yield takeEvery(ActionTypes.SAVE_NAME, saveNameGen)
 }
 
 export function* loadingGen() {
@@ -52,7 +52,7 @@ export function* loadingGen() {
 }
 
 export function* saveNameGen(action: LoginAction) {
-    console.log("saveName gen, action = ", action)
+    console.log("SAVE_NAME gen, action = ", action)
     const {userName} = action.payload
     yield call(() => loginStorage.putNameToStorage(userName))
     yield put(login(userName))
@@ -60,7 +60,7 @@ export function* saveNameGen(action: LoginAction) {
 }
 
 export function* clearNameGen() {
-    console.log("clearName gen")
+    console.log("CLEAR_NAME gen")
     yield put(isLoggingOut(true))
     yield call(() => loginStorage.clearName())
     yield put(logout())

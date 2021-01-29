@@ -1,7 +1,7 @@
 export enum ActionTypes {
-    loading="loading",
-    clearName="clearName",
-    saveName="saveName",
+    LOADING = "LOADING",
+    CLEAR_NAME = "CLEAR_NAME",
+    SAVE_NAME = "SAVE_NAME",
     INIT = "INIT",
     IS_LOGGING_OUT = "IS_LOGGING_OUT",
     LOGIN = "LOGIN",
