@@ -5,10 +5,10 @@ import {testedUser, userLoggedIn} from "@/rdx/testConstants";
 import {rootReducer} from "@/rdx/reducers";
 import {loginStorage} from "@/logic/LoginStorage";
 import {ActionTypes} from "@/rdx/actions";
-import {loading} from "@/rdx/user/index";
 import {defaultLoginState} from "@/rdx/user/loginState";
 import {defaultGameState} from "@/rdx/game/gameState";
 import {mockStore} from "@/rdx/mockStore";
+import {loading} from "@/rdx/saga";
 
 describe("Initialize the store accordingly to local storage state", () => {
     it('if login is set already', () => {

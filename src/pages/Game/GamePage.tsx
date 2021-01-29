@@ -6,7 +6,7 @@ import {bindActionCreators, Dispatch} from "redux";
 import {Paths} from "@/Paths";
 import {AppState} from "@/rdx/reducers";
 import {GameHalfWindowColumn} from "@/components/Layout";
-import {loading} from "@/rdx/user";
+import {loading} from "@/rdx/saga";
 
 interface ReduxProps {
     isLoggedIn: boolean;
@@ -35,7 +35,7 @@ function mapStateToProps(state: AppState) {
 
 function mapDispatchToProps(dispatch: Dispatch) {
     return bindActionCreators({
-        loading
+        loading: loading
     }, dispatch)
 }
 

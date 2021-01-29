@@ -3,13 +3,13 @@
  */
 import {gameAfterSeveralClicks, testedUser, userLoggedIn} from "@/rdx/testConstants";
 import {ActionTypes} from "@/rdx/actions";
-import {clearName} from "@/rdx/user/index";
 import {loginStorage} from "@/logic/LoginStorage";
 import {rootReducer} from "@/rdx/reducers";
 import {Paths} from "@/Paths";
 import {defaultLoginState} from "@/rdx/user/loginState";
 import {defaultGameState} from "@/rdx/game/gameState";
 import {mockStore} from "@/rdx/mockStore";
+import {clearName} from "@/rdx/saga";
 
 describe("logout", () => {
     describe('should produce several actions', () => {
