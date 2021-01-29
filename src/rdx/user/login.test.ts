@@ -5,11 +5,11 @@ import {loginStorage} from "@/logic/LoginStorage";
 import {testedUser, userLoggedIn} from "@/rdx/testConstants";
 import {rootReducer} from "@/rdx/reducers";
 import {ActionTypes} from "@/rdx/actions";
-import {saveName} from "@/rdx/user/index";
 import {Paths} from "@/Paths";
 import {defaultLoginState} from "@/rdx/user/loginState";
 import {defaultGameState} from "@/rdx/game/gameState";
 import {mockStore} from "@/rdx/mockStore";
+import {saveName} from "@/rdx/saga";
 
 describe("Login action should", () => {
     it('pass with correct name', () => {
