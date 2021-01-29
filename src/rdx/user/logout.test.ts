@@ -1,53 +1,13 @@
 /**
  * @jest-environment jsdom
  */
-import {gameAfterSeveralClicks, testedUser, userLoggedIn} from "@/rdx/testConstants";
+import {userLoggedIn} from "@/rdx/testConstants";
 import {ActionTypes} from "@/rdx/actions";
-import {loginStorage} from "@/logic/LoginStorage";
 import {rootReducer} from "@/rdx/reducers";
-import {Paths} from "@/Paths";
 import {defaultLoginState} from "@/rdx/user/loginState";
 import {defaultGameState} from "@/rdx/game/gameState";
-import {mockStore} from "@/rdx/mockStore";
-import {clearName} from "@/rdx/saga";
 
 describe("logout", () => {
-    describe('should produce several actions', () => {
-        let store: any;
-        beforeEach(async () => {
-            store = mockStore({
-                userReducer: defaultLoginState,
-                gameReducer: gameAfterSeveralClicks
-            })
-            await loginStorage.putNameToStorage(testedUser)
-        })
-
-        it("in the required order", async () => {
-            const expectedActions = [{
-                type: ActionTypes.IS_LOGGING_OUT,
-                payload: {
-                    isLoggingOut: true
-                }
-            }, {
-                type: ActionTypes.LOGOUT,
-            }, {
-                type: ActionTypes.IS_LOGGING_OUT,
-                payload: {
-                    isLoggingOut: false
-                }
-            }, {
-                type: "@@router/CALL_HISTORY_METHOD",
-                payload: {
-                    method: "push",
-                    args: [Paths.Root]
-                }
-            }]
-
-            await store.dispatch(clearName())
-            expect(store.getActions()).toStrictEqual(expectedActions)
-        })
-    })
-
     it('should process user state log in to out', () => {
         const state = rootReducer({
             userReducer: userLoggedIn,
