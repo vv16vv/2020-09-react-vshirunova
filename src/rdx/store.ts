@@ -5,7 +5,7 @@ import createSagaMiddleware from "redux-saga";
 import {all} from "redux-saga/effects";
 
 import {rootReducer} from "@/rdx/reducers";
-import {watchLoading, watchLogout, watchSaveName} from "@/rdx/user/saga";
+import {watchLoading} from "@/rdx/user/saga";
 
 const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const routerEnhancer = routerMiddleware(createBrowserHistory())
@@ -22,8 +22,6 @@ export const store = createStore(
 function* rootSaga() {
     yield all([
         watchLoading(),
-        watchLogout(),
-        watchSaveName()
     ])
 }
 

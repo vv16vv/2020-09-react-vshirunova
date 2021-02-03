@@ -1,5 +1,5 @@
 import {Action} from "redux";
-import {call, put, takeEvery, takeLatest} from "redux-saga/effects"
+import {call, put, takeEvery, takeLatest, spawn} from "redux-saga/effects"
 import {push} from "react-router-redux";
 
 import {ActionTypes} from "@/rdx/actions";
@@ -30,37 +30,35 @@ export function* watchLoading() {
     yield takeLatest(ActionTypes.LOADING, loadingGen)
 }
 
-export function* watchLogout() {
+function* waitLogout() {
     yield takeEvery(ActionTypes.CLEAR_NAME, clearNameGen)
 }
 
-export function* watchSaveName() {
+function* waitLogin() {
     yield takeEvery(ActionTypes.SAVE_NAME, saveNameGen)
 }
 
-export function* loadingGen() {
-    console.log("loading gen")
+function* loadingGen() {
     const isNameSet: boolean = yield call(() => loginStorage.isNameSet())
-    console.log("loading gen: isNameSet = ", isNameSet)
     if (isNameSet) {
         const userName: string = yield call(() => loginStorage.getCurrentName())
-        if (userName !== "")
-            yield put(init(true, userName))
-        else
-            yield put(init(false))
-    } else yield put(init(false))
+        yield put(init(true, userName))
+        yield spawn(waitLogout)
+    } else {
+        yield put(init(false))
+        yield spawn(waitLogin)
+    }
 }
 
-export function* saveNameGen(action: LoginAction) {
-    console.log("SAVE_NAME gen, action = ", action)
+function* saveNameGen(action: LoginAction) {
     const {userName} = action.payload
     yield call(() => loginStorage.putNameToStorage(userName))
     yield put(login(userName))
     yield put(push(Paths.Game))
+    yield spawn(waitLogout)
 }
 
-export function* clearNameGen() {
-    console.log("CLEAR_NAME gen")
+function* clearNameGen() {
     yield put(isLoggingOut(true))
     yield call(() => loginStorage.clearName())
     yield put(logout())
