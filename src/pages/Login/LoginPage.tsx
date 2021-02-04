@@ -2,24 +2,25 @@ import "regenerator-runtime/runtime.js";
 import React, {useCallback, useEffect} from "react";
 import {Redirect} from "react-router-dom";
 import {connect} from "react-redux";
-import {bindActionCreators, Dispatch} from "redux";
+import {Dispatch} from "redux";
 
 import {LoginForm, LoginFormResult} from "@/components/LoginForm";
 import {Paths} from "@/Paths";
 import {AppState} from "@/rdx/reducers";
 import {loading, saveName} from "@/rdx/user/saga";
+import {LoginPayload} from "@/rdx/user/userSlice";
 
 interface ReduxProps {
     isLoggedIn: boolean;
     isLoggingOut: boolean;
-    loginHandler: (userName: string) => void;
+    loginHandler: (payload: LoginPayload) => void;
     loading: () => void;
 }
 
 const RawLoginPage: React.FC<ReduxProps> = (props) => {
     const submitHandler = useCallback(
         ({login}: LoginFormResult) => {
-            props.loginHandler(login)
+            props.loginHandler({userName: login})
         },
         [])
     useEffect(() => {
@@ -33,18 +34,14 @@ const RawLoginPage: React.FC<ReduxProps> = (props) => {
     }</>
 }
 
-function mapStateToProps(state: AppState) {
-    return {
-        isLoggedIn: state.userReducer.isLoggedIn,
-        isLoggingOut: state.userReducer.isLoggingOut,
-    };
-}
+const mapStateToProps = ({user}: AppState) => ({
+    isLoggedIn: user.isLoggedIn,
+    isLoggingOut: user.isLoggingOut,
+});
 
-function mapDispatchToProps(dispatch: Dispatch) {
-    return bindActionCreators({
-        loginHandler: saveName,
-        loading: loading,
-    }, dispatch)
-}
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+    loginHandler: (settings: LoginPayload) => dispatch(saveName(settings)),
+    loading: () => dispatch(loading({}))
+});
 
 export const LoginPage = connect(mapStateToProps, mapDispatchToProps)(RawLoginPage);

@@ -2,7 +2,7 @@ import React, {useCallback, useState} from "react";
 import {Dispatch} from "redux";
 import {connect} from "react-redux";
 
-import {gameStart, GameStartPayload} from "@/rdx/game/gameStart";
+import {start as gameStart, GameStartPayload} from "@/rdx/game/gameSlice";
 import {AppState} from "@/rdx/reducers";
 import {Range} from "@/components/Range";
 import {LayoutTable, LayoutTd, LayoutTr, StyledButton, StyledFieldSet} from "@/components/styled/StyledComponents";
@@ -97,19 +97,15 @@ export const RawSettingsForm: React.FC<ReduxProps> = props => {
 }
 
 
-function mapStateToProps(state: AppState) {
-    return {
-        width: state.gameReducer.width,
-        height: state.gameReducer.height,
-        frequency: state.gameReducer.initFrequency,
-        userName: state.userReducer.user
-    };
-}
+const mapStateToProps = ({game, user}: AppState) => ({
+    width: game.width,
+    height: game.height,
+    frequency: game.initFrequency,
+    userName: user.user
+});
 
-function mapDispatchToProps(dispatch: Dispatch) {
-    return {
-        onSubmit: (settings: GameStartPayload) => dispatch(gameStart(settings)),
-    };
-}
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+    onSubmit: (settings: GameStartPayload) => dispatch(gameStart(settings)),
+});
 
 export const SettingsForm = connect(mapStateToProps, mapDispatchToProps)(RawSettingsForm);

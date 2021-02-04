@@ -6,9 +6,7 @@ import {Field} from "@/components/Field";
 import {StyledBlock, StyledButton} from "@/components/styled/StyledComponents";
 import {CenteredLabel} from "@/components/styled/StyledTextComponents";
 import {AppState} from "@/rdx/reducers";
-import {gameClick} from "@/rdx/game/gameClick";
-import {gameJump} from "@/rdx/game/gameJump";
-import {gameReset} from "@/rdx/game/gameReset";
+import {click as gameClick, jump as gameJump, reset as gameReset} from "@/rdx/game/gameSlice";
 
 interface ReduxProps {
     frequency: number;
@@ -65,15 +63,15 @@ export const RawJumpingCellGame: React.FC<ReduxProps> = props => {
     </>;
 }
 
-function mapStateToProps(state: AppState) {
+function mapStateToProps({game}: AppState) {
     return {
-        width: state.gameReducer.width,
-        height: state.gameReducer.height,
-        frequency: state.gameReducer.currFrequency,
-        x: state.gameReducer.x,
-        y: state.gameReducer.y,
-        jumps: state.gameReducer.jumps,
-        clicks: state.gameReducer.clicks,
+        width: game.width,
+        height: game.height,
+        frequency: game.currFrequency,
+        x: game.x,
+        y: game.y,
+        jumps: game.jumps,
+        clicks: game.clicks,
     };
 }
 
