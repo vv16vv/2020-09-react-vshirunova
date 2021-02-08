@@ -3,7 +3,7 @@ import {Dispatch} from "redux";
 import {connect} from "react-redux";
 
 import {StyledButton} from "@/components/styled/StyledComponents";
-import {clearName} from "@/rdx/user/saga";
+import {clearName} from "@/rdx/user/userSlice";
 
 interface ReduxProps {
     onLogout: () => void

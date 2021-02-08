@@ -1,10 +1,10 @@
 /**
  * @jest-environment jsdom
  */
-import {clearNameGen, loadingGen, saveName, saveNameGen} from "@/rdx/user/saga";
 import {expectSaga} from "redux-saga-test-plan";
 
-import userSlice from "@/rdx/user/userSlice";
+import {clearNameGen, loadingGen, saveNameGen} from "@/rdx/user/saga";
+import userSlice, {saveName} from "@/rdx/user/userSlice";
 import {testedUser, userLoggedIn} from "@/rdx/testConstants";
 import {defaultLoginState} from "@/rdx/user/loginState";
 import {loginKey, loginStorage} from "@/logic/LoginStorage";
