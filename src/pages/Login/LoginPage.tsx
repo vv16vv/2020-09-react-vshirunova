@@ -7,7 +7,8 @@ import {bindActionCreators, Dispatch} from "redux";
 import {LoginForm, LoginFormResult} from "@/components/LoginForm";
 import {Paths} from "@/Paths";
 import {AppState} from "@/rdx/reducers";
-import {loading, saveName} from "@/rdx/user/saga";
+import {saveName} from "@/rdx/user/login";
+import {loading} from "@/rdx/user/init";
 
 interface ReduxProps {
     isLoggedIn: boolean;
