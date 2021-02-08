@@ -8,15 +8,16 @@ import {SettingsForm} from "@/components/SettingsForm/SettingsForm";
 import {defaultGameState} from "@/rdx/game/gameState";
 import {userLoggedIn} from "@/rdx/testConstants";
 import {mockStore} from "@/rdx/mockStore";
-import {ActionTypes} from "@/rdx/actions";
+import {start} from '@/rdx/game/gameSlice';
+import {AppState} from "@/rdx/reducers";
 
 describe("Settings form", () => {
     let store: any;
     beforeEach(async () => {
         store = mockStore({
-            userReducer: userLoggedIn,
-            gameReducer: defaultGameState
-        })
+            user: userLoggedIn,
+            game: defaultGameState
+        } as AppState)
     })
 
     const defaultValues: SettingsFormResult = {
@@ -41,7 +42,7 @@ describe("Settings form", () => {
             .find('button')
             .simulate('submit');
         expect(store.getActions()).toEqual([{
-            type: ActionTypes.GAME_START,
+            type: start.type,
             payload: defaultValues
         }])
     });
@@ -71,7 +72,7 @@ describe("Settings form", () => {
             .find('button')
             .simulate('submit');
         expect(store.getActions()).toEqual([{
-            type: ActionTypes.GAME_START,
+            type: start.type,
             payload: changedValues
         }])
     });
