@@ -23,7 +23,7 @@ function* waitLogin() {
     yield takeEvery(saveName.type, saveNameGen)
 }
 
-function* loadingGen() {
+export function* loadingGen() {
     const isNameSet: boolean = yield call(() => loginStorage.isNameSet())
     if (isNameSet) {
         const userName: string = yield call(() => loginStorage.getCurrentName())
@@ -35,7 +35,7 @@ function* loadingGen() {
     }
 }
 
-function* saveNameGen(action: PayloadAction<LoginPayload>) {
+export function* saveNameGen(action: PayloadAction<LoginPayload>) {
     const {userName} = action.payload
     yield call(() => loginStorage.putNameToStorage(userName))
     yield put(login({userName}))
@@ -43,7 +43,7 @@ function* saveNameGen(action: PayloadAction<LoginPayload>) {
     yield spawn(waitLogout)
 }
 
-function* clearNameGen() {
+export function* clearNameGen() {
     yield put(isLoggingOut({isLoggingOut: true}))
     yield call(() => loginStorage.clearName())
     yield put(logout())
