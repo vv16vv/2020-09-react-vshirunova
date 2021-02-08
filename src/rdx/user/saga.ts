@@ -1,5 +1,4 @@
-import {Action} from "redux";
-import {call, put, takeEvery, takeLatest, spawn} from "redux-saga/effects"
+import {call, put, spawn, takeEvery, takeLatest} from "redux-saga/effects"
 import {push} from "react-router-redux";
 
 import {ActionTypes} from "@/rdx/actions";
@@ -9,22 +8,6 @@ import {login, LoginAction} from "@/rdx/user/login";
 import {Paths} from "@/Paths";
 import {isLoggingOut} from "@/rdx/user/isLoggingOut";
 import {logout} from "@/rdx/user/logout";
-
-
-export const loading = (): Action => ({
-    type: ActionTypes.LOADING,
-});
-
-export const saveName = (userName: string): LoginAction => ({
-    type: ActionTypes.SAVE_NAME,
-    payload: {
-        userName
-    }
-});
-
-export const clearName = (): Action => ({
-    type: ActionTypes.CLEAR_NAME,
-});
 
 export function* watchLoading() {
     yield takeLatest(ActionTypes.LOADING, loadingGen)

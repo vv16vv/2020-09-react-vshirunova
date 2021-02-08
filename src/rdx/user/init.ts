@@ -20,6 +20,10 @@ export const init = (isLoggedIn: boolean, user: string | undefined = undefined):
     }
 });
 
+export const loading = (): Action => ({
+    type: ActionTypes.LOADING,
+});
+
 export const initReducer = (state: LoginState, payload: InitPayload): LoginState => {
     const user: string | undefined = payload.user;
     const isLoggedIn: boolean = payload.isLoggedIn;
