@@ -44,7 +44,7 @@ function mapStateToProps(state: AppState) {
 function mapDispatchToProps(dispatch: Dispatch) {
     return bindActionCreators({
         loginHandler: saveName,
-        loading: loading,
+        loading,
     }, dispatch)
 }
 
