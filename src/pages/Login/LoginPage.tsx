@@ -2,7 +2,6 @@ import "regenerator-runtime/runtime.js";
 import React, {useCallback, useEffect} from "react";
 import {Redirect} from "react-router-dom";
 import {connect} from "react-redux";
-import {Dispatch} from "redux";
 
 import {LoginForm, LoginFormResult} from "@/components/LoginForm";
 import {Paths} from "@/Paths";
@@ -38,9 +37,9 @@ const mapStateToProps = ({user}: AppState) => ({
     isLoggingOut: user.isLoggingOut,
 });
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-    loginHandler: (settings: LoginPayload) => dispatch(saveName(settings)),
-    loading: () => dispatch(loading({}))
-});
+const mapDispatchToProps = {
+    loginHandler: saveName,
+    loading,
+};
 
 export const LoginPage = connect(mapStateToProps, mapDispatchToProps)(RawLoginPage);

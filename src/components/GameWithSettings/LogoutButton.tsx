@@ -1,5 +1,4 @@
 import React from "react";
-import {Dispatch} from "redux";
 import {connect} from "react-redux";
 
 import {StyledButton} from "@/components/styled/StyledComponents";
@@ -11,8 +10,8 @@ interface ReduxProps {
 
 const RawLogoutButton: React.FC<ReduxProps> = props => <StyledButton onClick={props.onLogout}>Log out</StyledButton>
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-    onLogout: () => dispatch(clearName({})),
-});
+const mapDispatchToProps = {
+    onLogout: clearName,
+};
 
 export const LogoutButton = connect(null, mapDispatchToProps)(RawLogoutButton);

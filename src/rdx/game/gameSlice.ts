@@ -1,7 +1,7 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {defaultGameState} from "@/rdx/game/gameState";
 
-interface GameClickPayload {
+export interface GameClickPayload {
     clickX: number;
     clickY: number;
 }

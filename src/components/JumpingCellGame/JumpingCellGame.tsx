@@ -1,12 +1,11 @@
 import React, {useCallback, useEffect, useState} from "react";
-import {Dispatch} from "redux";
 import {connect} from "react-redux";
 
 import {Field} from "@/components/Field";
 import {StyledBlock, StyledButton} from "@/components/styled/StyledComponents";
 import {CenteredLabel} from "@/components/styled/StyledTextComponents";
 import {AppState} from "@/rdx/reducers";
-import {click as gameClick, jump as gameJump, reset as gameReset} from "@/rdx/game/gameSlice";
+import {click as gameClick, GameClickPayload, jump as gameJump, reset as gameReset} from "@/rdx/game/gameSlice";
 
 interface ReduxProps {
     frequency: number;
@@ -17,16 +16,16 @@ interface ReduxProps {
     jumps: number;
     clicks: number;
 
-    onClick: (x: number, y: number) => void;
+    onClick: (payload: GameClickPayload) => void;
     onJump: () => void;
     onReset: () => void;
 }
 
 export const RawJumpingCellGame: React.FC<ReduxProps> = props => {
 
-    const handleClick = useCallback((x: number, y: number) => {
-        props.onClick(x, y)
-        if (props.x === x && props.y === y) {
+    const handleClick = useCallback((clickX: number, clickY: number) => {
+        props.onClick({clickX, clickY})
+        if (props.x === clickX && props.y === clickY) {
             props.onJump()
         }
     }, [])
@@ -75,12 +74,10 @@ function mapStateToProps({game}: AppState) {
     };
 }
 
-function mapDispatchToProps(dispatch: Dispatch) {
-    return {
-        onClick: (x: number, y: number) => dispatch(gameClick({clickX: x, clickY: y})),
-        onJump: () => dispatch(gameJump()),
-        onReset: () => dispatch(gameReset()),
-    };
-}
+const mapDispatchToProps = {
+    onClick: gameClick,
+    onJump: gameJump,
+    onReset: gameReset,
+};
 
 export const JumpingCellGame = connect(mapStateToProps, mapDispatchToProps)(RawJumpingCellGame);

@@ -39,8 +39,8 @@ const userSlice = createSlice({
     }
 })
 
-export const loading = createAction<{}>(ActionTypes.LOADING);
-export const clearName = createAction<{}>(ActionTypes.CLEAR_NAME);
+export const loading = createAction(ActionTypes.LOADING);
+export const clearName = createAction(ActionTypes.CLEAR_NAME);
 export const saveName = createAction<LoginPayload>(ActionTypes.SAVE_NAME);
 
 export const {init, isLoggingOut, login, logout} = userSlice.actions

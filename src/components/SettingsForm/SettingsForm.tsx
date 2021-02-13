@@ -1,8 +1,7 @@
 import React, {useCallback, useState} from "react";
-import {Dispatch} from "redux";
 import {connect} from "react-redux";
 
-import {start as gameStart, GameStartPayload} from "@/rdx/game/gameSlice";
+import {GameStartPayload, start as gameStart} from "@/rdx/game/gameSlice";
 import {AppState} from "@/rdx/reducers";
 import {Range} from "@/components/Range";
 import {LayoutTable, LayoutTd, LayoutTr, StyledButton, StyledFieldSet} from "@/components/styled/StyledComponents";
@@ -104,8 +103,8 @@ const mapStateToProps = ({game, user}: AppState) => ({
     userName: user.user
 });
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-    onSubmit: (settings: GameStartPayload) => dispatch(gameStart(settings)),
-});
+const mapDispatchToProps = {
+    onSubmit: gameStart,
+};
 
 export const SettingsForm = connect(mapStateToProps, mapDispatchToProps)(RawSettingsForm);

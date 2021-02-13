@@ -1,7 +1,6 @@
 import React, {useEffect} from "react";
 import {connect} from "react-redux";
 import {Redirect} from "react-router-dom";
-import {Dispatch} from "redux";
 
 import {Paths} from "@/Paths";
 import {AppState} from "@/rdx/reducers";
@@ -31,8 +30,8 @@ const mapStateToProps = ({user}: AppState) => ({
     isLoggingOut: user.isLoggingOut,
 })
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-    loading: () => dispatch(loading({})),
-});
+const mapDispatchToProps = {
+    loading,
+};
 
 export const GamePage = connect(mapStateToProps, mapDispatchToProps)(RawGamePage);
