@@ -1,6 +1,7 @@
 import React, {useEffect} from "react";
 import {connect} from "react-redux";
 import {Redirect} from "react-router-dom";
+import {pick} from "ramda";
 
 import {Paths} from "@/Paths";
 import {AppState} from "@/rdx/reducers";
@@ -25,10 +26,9 @@ export const RawGamePage: React.FC<ReduxProps> = props => {
     }</>;
 }
 
-const mapStateToProps = ({user}: AppState) => ({
-    isLoggedIn: user.isLoggedIn,
-    isLoggingOut: user.isLoggingOut,
-})
+const mapStateToProps = ({user}: AppState) => (pick(
+    ['isLoggedIn', 'isLoggingOut'],
+    user))
 
 const mapDispatchToProps = {
     loading,

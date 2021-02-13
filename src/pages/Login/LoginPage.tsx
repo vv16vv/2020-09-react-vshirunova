@@ -2,6 +2,7 @@ import "regenerator-runtime/runtime.js";
 import React, {useCallback, useEffect} from "react";
 import {Redirect} from "react-router-dom";
 import {connect} from "react-redux";
+import {pick} from "ramda";
 
 import {LoginForm, LoginFormResult} from "@/components/LoginForm";
 import {Paths} from "@/Paths";
@@ -32,10 +33,9 @@ const RawLoginPage: React.FC<ReduxProps> = (props) => {
     }</>
 }
 
-const mapStateToProps = ({user}: AppState) => ({
-    isLoggedIn: user.isLoggedIn,
-    isLoggingOut: user.isLoggingOut,
-});
+const mapStateToProps = ({user}: AppState) => (pick(
+    ['isLoggedIn', 'isLoggingOut'],
+    user))
 
 const mapDispatchToProps = {
     loginHandler: saveName,

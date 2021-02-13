@@ -1,5 +1,6 @@
 import React, {useCallback, useEffect, useState} from "react";
 import {connect} from "react-redux";
+import {assoc, omit} from "ramda";
 
 import {Field} from "@/components/Field";
 import {StyledBlock, StyledButton} from "@/components/styled/StyledComponents";
@@ -62,17 +63,14 @@ export const RawJumpingCellGame: React.FC<ReduxProps> = props => {
     </>;
 }
 
-function mapStateToProps({game}: AppState) {
-    return {
-        width: game.width,
-        height: game.height,
-        frequency: game.currFrequency,
-        x: game.x,
-        y: game.y,
-        jumps: game.jumps,
-        clicks: game.clicks,
-    };
-}
+const mapStateToProps = ({game}: AppState) => assoc(
+        'frequency',
+        game.currFrequency,
+        omit(
+            ['initFrequency', 'currFrequency'],
+            game
+        )
+    );
 
 const mapDispatchToProps = {
     onClick: click,
