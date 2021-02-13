@@ -5,7 +5,7 @@ import {Field} from "@/components/Field";
 import {StyledBlock, StyledButton} from "@/components/styled/StyledComponents";
 import {CenteredLabel} from "@/components/styled/StyledTextComponents";
 import {AppState} from "@/rdx/reducers";
-import {click as gameClick, GameClickPayload, jump as gameJump, reset as gameReset} from "@/rdx/game/gameSlice";
+import {GameClickPayload, click, reset, jump} from "@/rdx/game/gameSlice";
 
 interface ReduxProps {
     frequency: number;
@@ -75,9 +75,9 @@ function mapStateToProps({game}: AppState) {
 }
 
 const mapDispatchToProps = {
-    onClick: gameClick,
-    onJump: gameJump,
-    onReset: gameReset,
+    onClick: click,
+    onJump: jump,
+    onReset: reset,
 };
 
 export const JumpingCellGame = connect(mapStateToProps, mapDispatchToProps)(RawJumpingCellGame);
