@@ -22,10 +22,10 @@ export function* loadingGen() {
     const isNameSet: boolean = yield call(() => loginStorage.isNameSet())
     if (isNameSet) {
         const userName: string = yield call(() => loginStorage.getCurrentName())
-        yield put(init({isLoggedIn: true, user: userName}))
+        yield put(init({userName}))
         yield spawn(waitLogout)
     } else {
-        yield put(init({isLoggedIn: false}))
+        yield put(init({}))
         yield spawn(waitLogin)
     }
 }

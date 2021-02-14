@@ -7,8 +7,7 @@ describe("Initialize the store accordingly to local storage state", () => {
         const state = userSlice(defaultLoginState, {
             type: init.type,
             payload: {
-                isLoggedIn: true,
-                user: testedUser
+                userName: testedUser
             }
         });
         expect(state).toStrictEqual(userLoggedIn);
@@ -18,7 +17,17 @@ describe("Initialize the store accordingly to local storage state", () => {
         const state = userSlice(defaultLoginState, {
             type: init.type,
             payload: {
-                isLoggedIn: false,
+                userName: undefined,
+            }
+        });
+        expect(state).toStrictEqual(defaultLoginState);
+    });
+
+    it('if login is set to empty string', () => {
+        const state = userSlice(defaultLoginState, {
+            type: init.type,
+            payload: {
+                userName: "",
             }
         });
         expect(state).toStrictEqual(defaultLoginState);

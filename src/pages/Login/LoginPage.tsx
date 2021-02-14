@@ -2,12 +2,12 @@ import "regenerator-runtime/runtime.js";
 import React, {useCallback, useEffect} from "react";
 import {Redirect} from "react-router-dom";
 import {connect} from "react-redux";
-import {pick} from "ramda";
 
 import {LoginForm, LoginFormResult} from "@/components/LoginForm";
 import {Paths} from "@/Paths";
 import {AppState} from "@/rdx/reducers";
 import {loading, LoginPayload, saveName} from "@/rdx/user/userSlice";
+import {isLoggedIn} from "@/rdx/selectors";
 
 interface ReduxProps {
     isLoggedIn: boolean;
@@ -33,9 +33,12 @@ const RawLoginPage: React.FC<ReduxProps> = (props) => {
     }</>
 }
 
-const mapStateToProps = ({user}: AppState) => (pick(
-    ['isLoggedIn', 'isLoggingOut'],
-    user))
+const mapStateToProps = (state: AppState) => {
+    return {
+        isLoggedIn: isLoggedIn(state),
+        isLoggingOut: state.user.isLoggingOut
+    }
+}
 
 const mapDispatchToProps = {
     loginHandler: saveName,

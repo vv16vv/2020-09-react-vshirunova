@@ -3,11 +3,6 @@ import {createAction, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {defaultLoginState} from "@/rdx/user/loginState";
 import {ActionTypes} from "@/rdx/actions";
 
-interface InitPayload {
-    user?: string;
-    isLoggedIn: boolean;
-}
-
 interface IsLoggingOutPayload {
     isLoggingOut: boolean;
 }
@@ -20,21 +15,23 @@ const userSlice = createSlice({
     name: "user",
     initialState: defaultLoginState,
     reducers: {
-        init: (state, action: PayloadAction<InitPayload>) => {
-            state.user = action.payload.user
-            state.isLoggedIn = action.payload.isLoggedIn
+        init: (state, action: PayloadAction<Partial<LoginPayload>>) => {
+            const {userName} = action.payload
+            if (userName !== undefined && userName !== "") {
+                state.userName = action.payload.userName
+            }
         },
         isLoggingOut: (state, action: PayloadAction<IsLoggingOutPayload>) => {
             state.isLoggingOut = action.payload.isLoggingOut;
         },
         login: (state, action: PayloadAction<LoginPayload>) => {
-            const isLoggedIn = action.payload.userName !== undefined && action.payload.userName !== ""
-            if (isLoggedIn) state.user = action.payload.userName
-            state.isLoggedIn = isLoggedIn
+            const {userName} = action.payload
+            if (userName !== undefined && userName !== "") {
+                state.userName = action.payload.userName
+            }
         },
         logout: (state) => {
-            state.user = undefined
-            state.isLoggedIn = false
+            state.userName = undefined
         }
     }
 })

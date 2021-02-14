@@ -1,11 +1,11 @@
 import {testedUser, userLoggedIn} from "@/rdx/testConstants";
 import userSlice, {isLoggingOut} from "@/rdx/user/userSlice"
+import {LoginState} from "@/rdx/user/loginState";
 
 describe("IS_LOGGING_OUT", () => {
-    const userLogOutInProcess = {
-        isLoggedIn: true,
+    const userLogOutInProcess: LoginState = {
         isLoggingOut: true,
-        user: testedUser
+        userName: testedUser
     }
 
     it('should correctly indicate start of logging out process', () => {
