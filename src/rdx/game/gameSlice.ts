@@ -62,8 +62,8 @@ const gameSlice = createSlice({
                 state.x = nextJumpCoord(seedX, width);
                 state.y = nextJumpCoord(seedY, height);
             },
-            prepare: () => {
-                return {payload: {seedX: Math.random(), seedY: Math.random()}}
+            prepare: (seedX: number = Math.random(), seedY: number = Math.random()) => {
+                return {payload: {seedX, seedY}}
             }
         }
     }
