@@ -4,9 +4,8 @@ import {GameState} from "@/rdx/game/gameState";
 export const testedUser = "vitkus"
 
 export const userLoggedIn: LoginState = {
-    isLoggedIn: true,
     isLoggingOut: false,
-    user: testedUser
+    userName: testedUser
 }
 
 export const gameAfterSeveralClicks: GameState = {

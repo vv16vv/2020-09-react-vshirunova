@@ -1,17 +1,10 @@
-import {rootReducer} from "@/rdx/reducers";
-import {gameAfterSeveralClicks, userLoggedIn} from "@/rdx/testConstants";
+import {gameAfterSeveralClicks} from "@/rdx/testConstants";
 import {defaultGameState} from "@/rdx/game/gameState";
-import {ActionTypes} from "@/rdx/actions";
+import gameSlice, {reset} from "@/rdx/game/gameSlice"
 
 it('Game reset should reset jumps, clicks, coordinates and current frequency', () => {
-    const state = rootReducer({
-        userReducer: userLoggedIn,
-        gameReducer: gameAfterSeveralClicks
-    }, {
-        type: ActionTypes.GAME_RESET
+    const state = gameSlice(gameAfterSeveralClicks, {
+        type: reset.type
     });
-    expect(state).toStrictEqual({
-        userReducer: userLoggedIn,
-        gameReducer: defaultGameState
-    });
+    expect(state).toStrictEqual(defaultGameState);
 });

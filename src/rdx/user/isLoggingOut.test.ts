@@ -1,44 +1,31 @@
-import {rootReducer} from "@/rdx/reducers";
-import {gameAfterSeveralClicks, testedUser, userLoggedIn} from "@/rdx/testConstants";
-import {ActionTypes} from "@/rdx/actions";
+import {testedUser, userLoggedIn} from "@/rdx/testConstants";
+import userSlice, {isLoggingOut} from "@/rdx/user/userSlice"
+import {LoginState} from "@/rdx/user/loginState";
 
 describe("IS_LOGGING_OUT", () => {
-    const userLogOutInProcess = {
-        isLoggedIn: true,
+    const userLogOutInProcess: LoginState = {
         isLoggingOut: true,
-        user: testedUser
+        userName: testedUser
     }
 
     it('should correctly indicate start of logging out process', () => {
-        const state = rootReducer({
-            userReducer: userLoggedIn,
-            gameReducer: gameAfterSeveralClicks
-        }, {
-            type: ActionTypes.IS_LOGGING_OUT,
+        const state = userSlice(userLoggedIn, {
+            type: isLoggingOut.type,
             payload: {
                 isLoggingOut: true
             }
         });
-        expect(state).toStrictEqual({
-            userReducer: userLogOutInProcess,
-            gameReducer: gameAfterSeveralClicks
-        });
+        expect(state).toStrictEqual(userLogOutInProcess);
     });
 
     it('should correctly indicate end of logging out process', () => {
-        const state = rootReducer({
-            userReducer: userLogOutInProcess,
-            gameReducer: gameAfterSeveralClicks
-        }, {
-            type: ActionTypes.IS_LOGGING_OUT,
+        const state = userSlice(userLogOutInProcess, {
+            type: isLoggingOut.type,
             payload: {
                 isLoggingOut: false
             }
         });
-        expect(state).toStrictEqual({
-            userReducer: userLoggedIn,
-            gameReducer: gameAfterSeveralClicks
-        });
+        expect(state).toStrictEqual(userLoggedIn);
     });
 
 })

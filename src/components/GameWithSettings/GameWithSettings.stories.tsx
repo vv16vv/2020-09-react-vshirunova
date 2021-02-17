@@ -5,6 +5,7 @@ import {GameWithSettings} from "./GameWithSettings";
 import {userLoggedIn} from "@/rdx/testConstants";
 import {defaultGameState} from "@/rdx/game/gameState";
 import {mockStore} from "@/rdx/mockStore";
+import {AppState} from "@/rdx/reducers";
 
 export default {
     title: "Jumping Cell Game with Settings Story",
@@ -12,9 +13,9 @@ export default {
 
 export const GameWithSettingsStory: React.FC<{}> = () => {
     const store = mockStore({
-        userReducer: userLoggedIn,
-        gameReducer: defaultGameState
-    })
+        user: userLoggedIn,
+        game: defaultGameState
+    } as AppState)
 
     return <Provider store={store}>
         <GameWithSettings/>

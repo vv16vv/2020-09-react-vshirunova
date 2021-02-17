@@ -1,11 +1,11 @@
 import {combineReducers} from "redux";
 
-import {gameReducer} from "@/rdx/game";
-import {userReducer} from "@/rdx/user";
+import userSlice from "@/rdx/user/userSlice";
+import gameSlice from "@/rdx/game/gameSlice";
 
 export const rootReducer = combineReducers({
-    userReducer,
-    gameReducer,
+    user: userSlice,
+    game: gameSlice,
 })
 
 export type AppState = ReturnType<typeof rootReducer>

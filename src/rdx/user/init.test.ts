@@ -1,43 +1,35 @@
-/**
- * @jest-environment jsdom
- */
 import {testedUser, userLoggedIn} from "@/rdx/testConstants";
-import {rootReducer} from "@/rdx/reducers";
-import {ActionTypes} from "@/rdx/actions";
 import {defaultLoginState} from "@/rdx/user/loginState";
-import {defaultGameState} from "@/rdx/game/gameState";
+import userSlice, {init} from "@/rdx/user/userSlice"
 
 describe("Initialize the store accordingly to local storage state", () => {
     it('if login is set already', () => {
-        const state = rootReducer({
-            userReducer: defaultLoginState,
-            gameReducer: defaultGameState
-        }, {
-            type: ActionTypes.INIT,
+        const state = userSlice(defaultLoginState, {
+            type: init.type,
             payload: {
-                isLoggedIn: true,
-                user: testedUser
+                userName: testedUser
             }
         });
-        expect(state).toStrictEqual({
-            userReducer: userLoggedIn,
-            gameReducer: defaultGameState
-        });
+        expect(state).toStrictEqual(userLoggedIn);
     });
 
     it('if login is not set', () => {
-        const state = rootReducer({
-            userReducer: defaultLoginState,
-            gameReducer: defaultGameState
-        }, {
-            type: ActionTypes.INIT,
+        const state = userSlice(defaultLoginState, {
+            type: init.type,
             payload: {
-                isLoggedIn: false,
+                userName: undefined,
             }
         });
-        expect(state).toStrictEqual({
-            userReducer: defaultLoginState,
-            gameReducer: defaultGameState
+        expect(state).toStrictEqual(defaultLoginState);
+    });
+
+    it('if login is set to empty string', () => {
+        const state = userSlice(defaultLoginState, {
+            type: init.type,
+            payload: {
+                userName: "",
+            }
         });
+        expect(state).toStrictEqual(defaultLoginState);
     });
 });

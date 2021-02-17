@@ -1,14 +1,12 @@
 import React, {useCallback, useEffect, useState} from "react";
-import {Dispatch} from "redux";
 import {connect} from "react-redux";
+import {assoc, omit} from "ramda";
 
 import {Field} from "@/components/Field";
 import {StyledBlock, StyledButton} from "@/components/styled/StyledComponents";
 import {CenteredLabel} from "@/components/styled/StyledTextComponents";
 import {AppState} from "@/rdx/reducers";
-import {gameClick} from "@/rdx/game/gameClick";
-import {gameJump} from "@/rdx/game/gameJump";
-import {gameReset} from "@/rdx/game/gameReset";
+import {GameClickPayload, click, reset, jump} from "@/rdx/game/gameSlice";
 
 interface ReduxProps {
     frequency: number;
@@ -19,16 +17,16 @@ interface ReduxProps {
     jumps: number;
     clicks: number;
 
-    onClick: (x: number, y: number) => void;
+    onClick: (payload: GameClickPayload) => void;
     onJump: () => void;
     onReset: () => void;
 }
 
 export const RawJumpingCellGame: React.FC<ReduxProps> = props => {
 
-    const handleClick = useCallback((x: number, y: number) => {
-        props.onClick(x, y)
-        if (props.x === x && props.y === y) {
+    const handleClick = useCallback((clickX: number, clickY: number) => {
+        props.onClick({clickX, clickY})
+        if (props.x === clickX && props.y === clickY) {
             props.onJump()
         }
     }, [])
@@ -65,24 +63,19 @@ export const RawJumpingCellGame: React.FC<ReduxProps> = props => {
     </>;
 }
 
-function mapStateToProps(state: AppState) {
-    return {
-        width: state.gameReducer.width,
-        height: state.gameReducer.height,
-        frequency: state.gameReducer.currFrequency,
-        x: state.gameReducer.x,
-        y: state.gameReducer.y,
-        jumps: state.gameReducer.jumps,
-        clicks: state.gameReducer.clicks,
-    };
-}
+const mapStateToProps = ({game}: AppState) => assoc(
+        'frequency',
+        game.currFrequency,
+        omit(
+            ['initFrequency', 'currFrequency'],
+            game
+        )
+    );
 
-function mapDispatchToProps(dispatch: Dispatch) {
-    return {
-        onClick: (x: number, y: number) => dispatch(gameClick({clickX: x, clickY: y})),
-        onJump: () => dispatch(gameJump()),
-        onReset: () => dispatch(gameReset()),
-    };
-}
+const mapDispatchToProps = {
+    onClick: click,
+    onJump: jump,
+    onReset: reset,
+};
 
 export const JumpingCellGame = connect(mapStateToProps, mapDispatchToProps)(RawJumpingCellGame);

@@ -1,12 +1,12 @@
 import React, {useEffect} from "react";
 import {connect} from "react-redux";
 import {Redirect} from "react-router-dom";
-import {bindActionCreators, Dispatch} from "redux";
 
 import {Paths} from "@/Paths";
 import {AppState} from "@/rdx/reducers";
 import {GameHalfWindowColumn} from "@/components/Layout";
-import {loading} from "@/rdx/user/init";
+import {loading} from "@/rdx/user/userSlice";
+import {isLoggedIn} from "@/rdx/selectors";
 
 interface ReduxProps {
     isLoggedIn: boolean;
@@ -26,17 +26,15 @@ export const RawGamePage: React.FC<ReduxProps> = props => {
     }</>;
 }
 
-function mapStateToProps(state: AppState) {
+const mapStateToProps = (state: AppState) => {
     return {
-        isLoggedIn: state.userReducer.isLoggedIn,
-        isLoggingOut: state.userReducer.isLoggingOut,
-    };
+        isLoggedIn: isLoggedIn(state),
+        isLoggingOut: state.user.isLoggingOut
+    }
 }
 
-function mapDispatchToProps(dispatch: Dispatch) {
-    return bindActionCreators({
-        loading: loading
-    }, dispatch)
-}
+const mapDispatchToProps = {
+    loading,
+};
 
 export const GamePage = connect(mapStateToProps, mapDispatchToProps)(RawGamePage);

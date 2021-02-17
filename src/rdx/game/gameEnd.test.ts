@@ -1,16 +1,9 @@
-import {rootReducer} from "@/rdx/reducers";
-import {gameAfterSeveralClicks, userLoggedIn} from "@/rdx/testConstants";
-import {ActionTypes} from "@/rdx/actions";
+import {gameAfterSeveralClicks} from "@/rdx/testConstants";
+import gameSlice, {end} from "@/rdx/game/gameSlice"
 
 it('Game end does nothing with state still', () => {
-    const state = rootReducer({
-        userReducer: userLoggedIn,
-        gameReducer: gameAfterSeveralClicks
-    }, {
-        type: ActionTypes.GAME_END
+    const state = gameSlice(gameAfterSeveralClicks, {
+        type: end.type
     });
-    expect(state).toStrictEqual({
-        userReducer: userLoggedIn,
-        gameReducer: gameAfterSeveralClicks
-    });
+    expect(state).toStrictEqual(gameAfterSeveralClicks);
 });
