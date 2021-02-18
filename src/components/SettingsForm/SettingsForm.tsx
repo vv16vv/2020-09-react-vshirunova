@@ -100,7 +100,7 @@ const mapStateToProps = ({game, user}: AppState) => ({
     width: game.width,
     height: game.height,
     frequency: game.initFrequency,
-    userName: user.user
+    userName: user.userName
 });
 
 const mapDispatchToProps = {
